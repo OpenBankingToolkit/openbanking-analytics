@@ -36,5 +36,6 @@
 
     <modules>
         <module>forgerock-openbanking-analytics-core</module>
+        <module>forgerock-openbanking-analytics-client</module>
     </modules>
 </project>
