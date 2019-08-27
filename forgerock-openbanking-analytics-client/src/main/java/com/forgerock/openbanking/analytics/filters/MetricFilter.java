@@ -12,7 +12,7 @@ import com.forgerock.openbanking.analytics.model.entries.EndpointUsageEntry;
 import com.forgerock.openbanking.analytics.model.entries.GeoIP;
 import com.forgerock.openbanking.analytics.model.openbanking.OpenBankingAPI;
 import com.forgerock.openbanking.analytics.services.MetricService;
-import com.forgerock.openbanking.auth.UserContext;
+import com.forgerock.openbanking.auth.model.UserContext;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
