@@ -9,7 +9,6 @@ package com.forgerock.openbanking.analytics.model.entries;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import com.forgerock.openbanking.serialiser.IsoDateTimeDeserializer;
 import com.forgerock.openbanking.serialiser.IsoDateTimeSerializer;
 import lombok.AllArgsConstructor;
@@ -20,12 +19,17 @@ import org.joda.time.DateTime;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Document
-public class JwtsValidationEntry {
+public class JwtsGenerationEntry {
+
+    public enum JwtType {
+        JWS, JWE, JWE_JWS, JWS_JWE
+    }
     @JsonDeserialize(using = IsoDateTimeDeserializer.class)
     @JsonSerialize(using = IsoDateTimeSerializer.class)
     @Indexed
@@ -33,7 +37,7 @@ public class JwtsValidationEntry {
     @Indexed
     private String appId;
     @Indexed
-    private Boolean wasValid;
+    private JwtType jwtType;
     private Long count = 0l;
 
 }

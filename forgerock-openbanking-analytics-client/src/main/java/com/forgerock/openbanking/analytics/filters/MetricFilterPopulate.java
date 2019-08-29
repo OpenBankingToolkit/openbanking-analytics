@@ -9,7 +9,7 @@ package com.forgerock.openbanking.analytics.filters;
 
 import brave.Tracer;
 import com.forgerock.openbanking.analytics.utils.MetricUtils;
-import com.forgerock.openbanking.auth.UserContext;
+import com.forgerock.openbanking.auth.model.UserContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;

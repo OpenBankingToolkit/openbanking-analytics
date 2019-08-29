@@ -9,7 +9,7 @@ package com.forgerock.openbanking.analytics.model.entries;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
+import com.forgerock.openbanking.auth.model.SoftwareStatementRole;
 import com.forgerock.openbanking.serialiser.IsoDateTimeDeserializer;
 import com.forgerock.openbanking.serialiser.IsoDateTimeSerializer;
 import lombok.AllArgsConstructor;
@@ -17,28 +17,39 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.joda.time.DateTime;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Document
-public class JwtsGenerationEntry {
+public class TppEntry {
+    @Id
+    @Indexed
+    private String oidcClientId;
+    @Indexed
+    public String name;
+    private String logoUri;
+    private Set<SoftwareStatementRole> types = new HashSet<>();
 
-    public enum JwtType {
-        JWS, JWE, JWE_JWS, JWS_JWE
-    }
+    @Indexed
+    public String directoryId;
+    public String softwareId;
+    @Indexed
+    public String organisationId;
+    public String organisationName;
     @JsonDeserialize(using = IsoDateTimeDeserializer.class)
     @JsonSerialize(using = IsoDateTimeSerializer.class)
     @Indexed
-    private DateTime date;
+    private DateTime created;
+    @JsonDeserialize(using = IsoDateTimeDeserializer.class)
+    @JsonSerialize(using = IsoDateTimeSerializer.class)
     @Indexed
-    private String appId;
-    @Indexed
-    private JwtType jwtType;
-    private Long count = 0l;
-
+    private DateTime deleted;
 }

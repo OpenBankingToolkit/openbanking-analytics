@@ -7,6 +7,7 @@
  */
 package com.forgerock.openbanking.analytics.configuration;
 
+import com.forgerock.openbanking.auth.config.ApplicationConfiguration;
 import com.nimbusds.jose.jwk.JWKSet;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

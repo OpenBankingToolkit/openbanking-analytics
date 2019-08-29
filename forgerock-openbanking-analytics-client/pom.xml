@@ -32,11 +32,7 @@
             <artifactId>forgerock-openbanking-auth</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>com.forgerock.openbanking.analytics</groupId>
-            <artifactId>forgerock-openbanking-analytics-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
