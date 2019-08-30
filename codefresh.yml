@@ -65,6 +65,7 @@ steps:
       - ./release.sh /codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository
     environment: *global_env
     when:
-      branch:
-        only:
-          - master
+      condition:
+        all:
+          noSkipCiInCommitMessage: 'includes(lower("${{CF_COMMIT_MESSAGE}}"), "[maven-release-plugin]") == false'
+          masterBranch: '"${{CF_BRANCH}}" == "master"'
