@@ -18,29 +18,29 @@ steps:
 
   #  Prepare stage
   check-copyright:
-    image: maven:3.6.1-jdk-11-slim
+    image: r.cfcr.io/openbanking/ob-release:latest
     stage: "prepare"
     title: "Verify copyrights"
     working-directory: ${{main_clone}}
     commands:
-      - mvn -Dmaven.repo.local=/codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository license:check
+      - mvn -s /ob-release/settings.xml -Dmaven.repo.local=/codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository license:check
   # Build stage
   build-stage:
     stage: "build"
-    image: maven:3.6.1-jdk-11-slim
+    image: r.cfcr.io/openbanking/ob-release:latest
     title: "Compile, build and install artifact"
     working-directory: ${{main_clone}}
     commands:
-      - mvn -Dmaven.repo.local=/codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository -Ddockerfile.skip -DdockerCompose.skip -DskipTests -DskipITs clean install -T 8
+      - mvn -s /ob-release/settings.xml -Dmaven.repo.local=/codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository -Ddockerfile.skip -DdockerCompose.skip -DskipTests -DskipITs clean install -T 8
 
   # unit test stage
   test-stage:
     stage: "unit-test"
-    image: maven:3.6.1-jdk-11-slim
+    image: r.cfcr.io/openbanking/ob-release:latest
     title: "Run unit tests"
     working-directory: ${{main_clone}}
     commands:
-      - mvn -Dmaven.repo.local=/codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository -DdockerCompose.skip -Ddockerfile.skip -DskipITs verify
+      - mvn -s /ob-release/settings.xml -Dmaven.repo.local=/codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository -DdockerCompose.skip -Ddockerfile.skip -DskipITs verify
 
  # deploy jar stage
   deploy-master:
