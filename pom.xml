@@ -38,4 +38,19 @@
         <module>forgerock-openbanking-analytics-core</module>
         <module>forgerock-openbanking-analytics-client</module>
     </modules>
+
+
+    <repositories>
+        <repository>
+            <id>forgerock-private-releases</id>
+            <name>ForgeRock Private Releases Repository</name>
+            <url>http://maven.forgerock.org/repo/private-releases</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
 </project>

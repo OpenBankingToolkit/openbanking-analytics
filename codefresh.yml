@@ -7,6 +7,14 @@ stages:
   - unit-test
   - deploy
 
+indicators:
+  - environment: &global_env
+      - FR_PRIVATE_REPO_USER=${{FR_PRIVATE_REPO_USER}}
+      - FR_PRIVATE_REPO_PASSWORD=${{FR_PRIVATE_REPO_PASSWORD}}
+      - GITHUB_GPG_KEY_ID=${{GITHUB_GPG_KEY_ID}}
+      - GITHUB_GPG_KEY=${{GITHUB_GPG_KEY}}
+      - GITHUB_ACCESS_TOKEN=${{GITHUB_ACCESS_TOKEN}}
+
 steps:
   #  Clone stage
   main_clone:
@@ -24,6 +32,7 @@ steps:
     working-directory: ${{main_clone}}
     commands:
       - mvn -s /ob-release/settings.xml -Dmaven.repo.local=/codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository license:check
+    environment: *global_env
   # Build stage
   build-stage:
     stage: "build"
@@ -32,6 +41,7 @@ steps:
     working-directory: ${{main_clone}}
     commands:
       - mvn -s /ob-release/settings.xml -Dmaven.repo.local=/codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository -Ddockerfile.skip -DdockerCompose.skip -DskipTests -DskipITs clean install -T 8
+    environment: *global_env
 
   # unit test stage
   test-stage:
@@ -41,8 +51,9 @@ steps:
     working-directory: ${{main_clone}}
     commands:
       - mvn -s /ob-release/settings.xml -Dmaven.repo.local=/codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository -DdockerCompose.skip -Ddockerfile.skip -DskipITs verify
+    environment: *global_env
 
- # deploy jar stage
+  # deploy jar stage
   deploy-master:
     title: "deploy jars to private maven repo"
     stage: "deploy"
@@ -52,12 +63,7 @@ steps:
       - git reset --hard origin/$CF_BRANCH
       - cp /ob-release/* ./
       - ./release.sh /codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository
-    environment:
-      - GITHUB_GPG_KEY_ID=${{GITHUB_GPG_KEY_ID}}
-      - GITHUB_GPG_KEY=${{GITHUB_GPG_KEY}}
-      - GITHUB_ACCESS_TOKEN=${{GITHUB_ACCESS_TOKEN}}
-      - FR_PRIVATE_REPO_USER=${{FR_PRIVATE_REPO_USER}}
-      - FR_PRIVATE_REPO_PASSWORD=${{FR_PRIVATE_REPO_PASSWORD}}
+    environment: *global_env
     when:
       branch:
         only:
