@@ -25,12 +25,10 @@
         <dependency>
             <groupId>com.forgerock.openbanking</groupId>
             <artifactId>forgerock-openbanking-serialisers</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.forgerock.openbanking</groupId>
             <artifactId>forgerock-openbanking-auth</artifactId>
-            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
