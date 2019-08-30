@@ -66,6 +66,13 @@
         </dependencies>
     </dependencyManagement>
 
+    <scm>
+        <connection>scm:git:https://github.com/ForgeCloud/ob-analytics.git</connection>
+        <developerConnection>scm:git:https://github.com/ForgeCloud/ob-analytics.git</developerConnection>
+        <url>https://github.com/ForgeCloud/ob-analytics.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <repositories>
         <repository>
             <id>forgerock-private-releases</id>
