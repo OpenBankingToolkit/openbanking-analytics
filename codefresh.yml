@@ -1,0 +1,64 @@
+version: "1.0"
+
+stages:
+  - clone
+  - prepare
+  - build
+  - unit-test
+  - deploy
+
+steps:
+  #  Clone stage
+  main_clone:
+    title: Cloning main repository...
+    stage: "clone"
+    type: git-clone
+    repo: '${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}'
+    revision: '${{CF_REVISION}}'
+
+  #  Prepare stage
+  check-copyright:
+    image: maven:3.6.1-jdk-11-slim
+    stage: "prepare"
+    title: "Verify copyrights"
+    working-directory: ${{main_clone}}
+    commands:
+      - mvn -Dmaven.repo.local=/codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository license:check
+  # Build stage
+  build-stage:
+    stage: "build"
+    image: maven:3.6.1-jdk-11-slim
+    title: "Compile, build and install artifact"
+    working-directory: ${{main_clone}}
+    commands:
+      - mvn -Dmaven.repo.local=/codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository -Ddockerfile.skip -DdockerCompose.skip -DskipTests -DskipITs clean install -T 8
+
+  # unit test stage
+  test-stage:
+    stage: "unit-test"
+    image: maven:3.6.1-jdk-11-slim
+    title: "Run unit tests"
+    working-directory: ${{main_clone}}
+    commands:
+      - mvn -Dmaven.repo.local=/codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository -DdockerCompose.skip -Ddockerfile.skip -DskipITs verify
+
+ # deploy jar stage
+  deploy-master:
+    title: "deploy jars to private maven repo"
+    stage: "deploy"
+    image: r.cfcr.io/openbanking/ob-release:latest
+    commands:
+      - git checkout $CF_BRANCH
+      - git reset --hard origin/$CF_BRANCH
+      - cp /ob-release/* ./
+      - ./release.sh /codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository
+    environment:
+      - GITHUB_GPG_KEY_ID=${{GITHUB_GPG_KEY_ID}}
+      - GITHUB_GPG_KEY=${{GITHUB_GPG_KEY}}
+      - GITHUB_ACCESS_TOKEN=${{GITHUB_ACCESS_TOKEN}}
+      - FR_PRIVATE_REPO_USER=${{FR_PRIVATE_REPO_USER}}
+      - FR_PRIVATE_REPO_PASSWORD=${{FR_PRIVATE_REPO_PASSWORD}}
+    when:
+      branch:
+        only:
+          - master
