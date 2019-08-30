@@ -32,6 +32,7 @@
     <url>http://www.forgerock.org</url>
 
     <properties>
+        <ob-build.version>1.0.11</ob-build.version>
     </properties>
 
     <modules>
@@ -39,6 +40,31 @@
         <module>forgerock-openbanking-analytics-client</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <!-- OpenBanking -->
+            <dependency>
+                <groupId>com.forgerock.openbanking</groupId>
+                <artifactId>forgerock-openbanking-serialisers</artifactId>
+                <version>${ob-build.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.forgerock.openbanking</groupId>
+                <artifactId>forgerock-openbanking-auth</artifactId>
+                <version>${ob-build.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.forgerock.openbanking</groupId>
+                <artifactId>forgerock-openbanking-ssl</artifactId>
+                <version>${ob-build.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.forgerock.openbanking</groupId>
+                <artifactId>forgerock-openbanking-upgrade</artifactId>
+                <version>${ob-build.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <repositories>
         <repository>
