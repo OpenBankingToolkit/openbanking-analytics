@@ -9,7 +9,7 @@ package com.forgerock.openbanking.analytics.model.entries;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.forgerock.openbanking.auth.model.SoftwareStatementRole;
+import com.forgerock.openbanking.model.SoftwareStatementRole;
 import com.forgerock.openbanking.serialiser.IsoDateTimeDeserializer;
 import com.forgerock.openbanking.serialiser.IsoDateTimeSerializer;
 import lombok.AllArgsConstructor;

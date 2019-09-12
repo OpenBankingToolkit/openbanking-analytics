@@ -23,7 +23,7 @@
     <dependencies>
         <dependency>
             <groupId>com.forgerock.openbanking</groupId>
-            <artifactId>forgerock-openbanking-serialisers</artifactId>
+            <artifactId>forgerock-openbanking-model</artifactId>
         </dependency>
         <dependency>
             <groupId>com.forgerock.openbanking</groupId>

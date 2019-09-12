@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.forgerock.openbanking</groupId>
         <artifactId>forgerock-openbanking-starter-parent</artifactId>
-        <version>1.0.11</version>
+        <version>1.0.21</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
@@ -31,7 +31,7 @@
     <url>http://www.forgerock.org</url>
 
     <properties>
-        <ob-build.version>1.0.11</ob-build.version>
+        <ob-build.version>1.0.19</ob-build.version>
     </properties>
 
     <modules>
@@ -44,7 +44,7 @@
             <!-- OpenBanking -->
             <dependency>
                 <groupId>com.forgerock.openbanking</groupId>
-                <artifactId>forgerock-openbanking-serialisers</artifactId>
+                <artifactId>forgerock-openbanking-model</artifactId>
                 <version>${ob-build.version}</version>
             </dependency>
             <dependency>
