@@ -188,7 +188,7 @@ For Apache Maven:
 For Gradle:
 
 ```
-compile 'com.forgerock.openbanking.jwkms:forgerock-openbanking-analytics-client'
+compile 'com.forgerock.openbanking.analytics:forgerock-openbanking-analytics-client'
 ```
 
 
