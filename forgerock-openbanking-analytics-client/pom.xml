@@ -24,7 +24,7 @@
         <dependency>
             <groupId>com.forgerock.openbanking</groupId>
             <artifactId>forgerock-openbanking-model</artifactId>
-            <version>${ob-build.version}</version>
+            <version>${ob-common.version}</version>
         </dependency>
 
         <dependency>
