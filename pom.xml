@@ -31,7 +31,7 @@
     <url>http://www.forgerock.org</url>
 
     <properties>
-        <ob-build.version>1.0.19</ob-build.version>
+        <ob-common.version>1.0.24</ob-common.version>
     </properties>
 
     <modules>
@@ -45,22 +45,28 @@
             <dependency>
                 <groupId>com.forgerock.openbanking</groupId>
                 <artifactId>forgerock-openbanking-model</artifactId>
-                <version>${ob-build.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.forgerock.openbanking</groupId>
-                <artifactId>forgerock-openbanking-auth</artifactId>
-                <version>${ob-build.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.forgerock.openbanking</groupId>
-                <artifactId>forgerock-openbanking-ssl</artifactId>
-                <version>${ob-build.version}</version>
+                <version>${ob-common.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.forgerock.openbanking</groupId>
                 <artifactId>forgerock-openbanking-upgrade</artifactId>
-                <version>${ob-build.version}</version>
+                <version>${ob-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.forgerock.openbanking</groupId>
+                <artifactId>forgerock-openbanking-ssl</artifactId>
+                <version>${ob-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.forgerock.openbanking</groupId>
+                <artifactId>forgerock-openbanking-upgrade</artifactId>
+                <version>${ob-common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.forgerock.openbanking.analytics</groupId>
+                <artifactId>forgerock-openbanking-analytics-client</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
