@@ -31,12 +31,13 @@
     <url>http://www.forgerock.org</url>
 
     <properties>
-        <ob-common.version>1.0.24</ob-common.version>
+        <ob-common.version>1.0.25</ob-common.version>
     </properties>
 
     <modules>
-        <module>forgerock-openbanking-analytics-core</module>
         <module>forgerock-openbanking-analytics-client</module>
+        <module>forgerock-openbanking-analytics-core</module>
+        <module>forgerock-openbanking-analytics-sample</module>
     </modules>
 
     <dependencyManagement>
@@ -66,6 +67,11 @@
             <dependency>
                 <groupId>com.forgerock.openbanking.analytics</groupId>
                 <artifactId>forgerock-openbanking-analytics-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.forgerock.openbanking.analytics</groupId>
+                <artifactId>forgerock-openbanking-analytics-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
