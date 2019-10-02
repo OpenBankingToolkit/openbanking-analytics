@@ -1,4 +1,4 @@
-debug: true
+#debug: true
 
 spring:
   application:
@@ -10,8 +10,7 @@ dns:
 server:
   hostname: ${dns.hosts.root}
   ssl:
-    client-auth: WANT
-    enabled: true
+    enabled: false
     trust-store: classpath:keystores/truststore.jks
     trust-store-password: changeit
     key-store: classpath:keystores/keystore.jks
@@ -36,9 +35,57 @@ metrics:
     jwts-validation:
       add-entries: ${metrics.endpoints.root}/api/kpi/jwts/jwts-validation/add-entries
 
+
+ob:
+  auth:
+    session:
+      token-lifetime: 7 #days
+      issuer-id: ${spring.application.name}
+      cookie:
+        domains: ${dns.hosts.root}
+    oidc:
+      idp:
+        issuerid: "https://am.${dns.hosts.root}/oauth2/realms/root/realms/auth"
+        jwk-uri: ${am.internal.root}/oauth2/realms/root/realms/auth/connect/jwk_uri
+        authorize: ${am.internal.root}/oauth2/realms/root/realms/auth/authorize
+      client:
+        client-id: metrics
+        redirect-uri: "https://${dns.hosts.root}:4206/redirectOpenId"
+
+
+#JKWMS configuration
+jwkms:
+  root: https://${server.hostname}:${server.port}
+  tan: openbanking.org.uk
+  certificate:
+    ou: forgerock.financial
+    o: ForgeRock
+    l: Bristol
+    st: Avon
+    c: UK
+  jwkMsId: jwkms
+  app-auth-header: X-APP
+  rotationScheduler: "0 0 1 * * *"
+  keysCleanup: "0 0 1 * * *"
+  transport:
+    algorithm: PS256
+  signing:
+    algorithm: PS256
+  encryption:
+    algorithm: RSA-OAEP-256
+  encryptionMethod: A128CBC_HS256
+  ExpirationWindowInMillis: 7200
+  rotation:
+    transport: 7776000000
+    keys: 7776000000
+  internalCAAlias: obri-internal-ca
+  defaultCAAlias: obri-external-ca
+  forgerock-applications:
+    - name: aspsp
+      group: as.aspsp.${dns.hosts.root}, rs.aspsp.${dns.hosts.root}, rcs.aspsp.${dns.hosts.root}, simulator.rs.${dns.hosts.root}, service.bank.${dns.hosts.root}, rs-store.aspsp.${dns.hosts.root}
+
+
 ## TO DELETE
-
-
 am:
   trusted-header-certificate: ebJ8Qo7p9MpAIVenixCsNiDySmWEKb
   port: 443
@@ -85,3 +132,21 @@ am:
       authentication: ${am.internal.root}/json/authenticate
     credential:
       amadmin: sy95jyiquqvjbbquq845gncysh13eax6 # TODO this is a default that shouldn't need to be here. All apps need it but may not use it.#obri
+
+scgw:
+  port: 8074
+
+#Swagger config
+#Swagger
+swagger:
+  license: "open-licence"
+  license-url: "https://www.openbanking.org.uk/open-licence"
+  terms-of-service-url: "https://backstage.forgerock.com/knowledge/openbanking/article/a45894685"
+  version: "v3.1.1"
+  contact:
+    name: "ForgeRock AS"
+    url: "https://${dns.hosts.root}"
+    email: "openbanking-support@forgerock.com"
+  title: "Analytics"
+  description: "Analytics"
+

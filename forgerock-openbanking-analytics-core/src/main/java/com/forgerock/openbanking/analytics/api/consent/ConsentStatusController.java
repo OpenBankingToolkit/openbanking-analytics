@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-@PreAuthorize("hasAnyAuthority('GROUP_FORGEROCK', 'GROUP_OB', 'ROLE_FORGEROCK_INTERNAL_APP')")
+
 @RequestMapping("/api/kpi/consent")
 @RestController
 public class ConsentStatusController {

@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 import static org.springframework.data.mongodb.core.query.Criteria.byExample;
 
 @Slf4j
-@PreAuthorize("hasAnyAuthority('GROUP_FORGEROCK', 'GROUP_OB', 'ROLE_FORGEROCK_INTERNAL_APP')")
+
 @RequestMapping("/api/kpi/session")
 @RestController
 public class SessionCounterController {

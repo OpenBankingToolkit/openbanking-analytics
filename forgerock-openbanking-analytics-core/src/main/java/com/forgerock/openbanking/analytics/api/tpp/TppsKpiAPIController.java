@@ -39,7 +39,7 @@ import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api/kpi/tpps")
-@PreAuthorize("hasAnyAuthority('GROUP_FORGEROCK', 'GROUP_OB', 'ROLE_FORGEROCK_INTERNAL_APP')")
+
 @Slf4j
 public class TppsKpiAPIController {
 

@@ -16,19 +16,21 @@ import com.forgerock.openbanking.analytics.model.openbanking.OBReference;
 import com.forgerock.openbanking.analytics.repository.CallBackCounterEntryRepository;
 import com.forgerock.openbanking.analytics.repository.EndpointUsageAggregateRepository;
 import com.google.common.collect.ImmutableList;
+import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import uk.org.openbanking.datamodel.account.OBReadConsentResponse1;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j
-@PreAuthorize("hasAnyAuthority('GROUP_FORGEROCK', 'GROUP_OB', 'ROLE_FORGEROCK_INTERNAL_APP')")
+@Api(tags = "Callback", description = "Callbacks KPIs related to the Open Banking UK Event notification APIs")
 @RequestMapping("/api/kpi/callbacks")
 @RestController
 public class CallBackController {
@@ -42,6 +44,15 @@ public class CallBackController {
         this.endpointUsageAggregateRepository = endpointUsageAggregateRepository;
     }
 
+    @ApiOperation(
+            value = "Push callback entries metrics",
+            tags={ "PUSH" })
+    @ApiResponses(value = {
+            @ApiResponse(
+                    code = 202,
+                    message = "Callback entries added with success"
+            )
+    })
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity addCallBackEntries(@RequestBody List<CallBackCounterEntry> callBackCounterEntries) {
         log.debug("Add callback entries in database: {}", callBackCounterEntries);
@@ -49,6 +60,18 @@ public class CallBackController {
         return ResponseEntity.accepted().build();
     }
 
+    @ApiOperation(
+            value = "Read callbacks by TPP response status KPI",
+            notes = "When the ASPSP callback the TPP, the response from the TPP may not always be a success. This" +
+                    "KPI allows you to get the repartition of callbacks by TPP response code.",
+            tags={ "PUSH" })
+    @ApiResponses(value = {
+            @ApiResponse(
+                    code = 200,
+                    message = "Callbacks by TPP response status KPI, in a donut format",
+                    response = Donut.class
+            )
+    })
     @RequestMapping(value = "/byResponseStatus", method = RequestMethod.GET)
     public ResponseEntity<Donut> getByResponseStatusCounters(
             @RequestParam(value = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime fromDateTime,
@@ -62,6 +85,17 @@ public class CallBackController {
        return ResponseEntity.ok(Donut.convertCountersToDonus(counters));
     }
 
+    @ApiOperation(
+            value = "Read number of callbacks created KPI",
+            notes = "TPPs register callbacks to the ASPSP. This KPI correspond of the number of callbacks registered",
+            tags={ "PUSH" })
+    @ApiResponses(value = {
+            @ApiResponse(
+                    code = 200,
+                    message = "Number of callbacks created.",
+                    response = Counter.class
+            )
+    })
     @RequestMapping(value = "/created", method = RequestMethod.GET)
     public ResponseEntity<Counter> createdCallBackCounter(
             @RequestParam(value = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime fromDateTime,
@@ -79,6 +113,4 @@ public class CallBackController {
                 .type(OBReference.CREATE_CALLBACK_URL.getReference())
                 .build());
     }
-
-
 }

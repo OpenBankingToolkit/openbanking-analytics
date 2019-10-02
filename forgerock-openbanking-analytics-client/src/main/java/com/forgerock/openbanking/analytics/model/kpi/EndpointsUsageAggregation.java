@@ -16,6 +16,7 @@ import org.joda.time.DateTimeZone;
 import org.joda.time.DurationFieldType;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.springframework.util.CollectionUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -200,7 +201,7 @@ public enum EndpointsUsageAggregation {
 
                 @Override
                 public List getValuesFromEntry(EndpointUsageAggregate entry, DateTimeFormatter dateGranularityFormatter, List definitionsSet) {
-                       return getValuesFromEntryForMs(entry.getResponseTimesByKbHistory(), definitionsSet);
+                        return getValuesFromEntryForMs(entry.getResponseTimesByKbHistory(), definitionsSet);
                 }
 
                 @Override
@@ -351,6 +352,10 @@ public enum EndpointsUsageAggregation {
         }
 
         public List getValuesFromEntryForMs(List<Long> ms, List definitionsSet) {
+                if (CollectionUtils.isEmpty(definitionsSet) || definitionsSet.size()<2) {
+                        log.debug("definitionsSet must have a size of at least two, to hold a logScale in x[1] so returning empty values. Actual list is: {}", definitionsSet);
+                        return new ArrayList();
+                }
                 //The log scale would always be in x=1
                 double logScale = (double) definitionsSet.get(1);
                 List<Double> values =  ms.stream().map(e -> {
@@ -364,8 +369,8 @@ public enum EndpointsUsageAggregation {
                         value = Math.round(value * 1000) / 1000.0;
 
                         if(!definitionsSet.contains(value)) {
-                               log.warn("Value {} should be contained in definition set {}", value, definitionsSet);
-                               return null;
+                                log.warn("Value {} should be contained in definition set {}", value, definitionsSet);
+                                return null;
                         }
                         return value;
                 }).filter(Objects::nonNull).collect(Collectors.toList());

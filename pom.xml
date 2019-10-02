@@ -31,7 +31,13 @@
     <url>http://www.forgerock.org</url>
 
     <properties>
-        <ob-common.version>1.0.25</ob-common.version>
+        <ob-common.version>1.0.29-SNAPSHOT</ob-common.version>
+        <spring-security-multi-auth-starter.version>0.0.15</spring-security-multi-auth-starter.version>
+        <ob-auth.version>1.0.0-SNAPSHOT</ob-auth.version>
+        <ob-jwkms.version>1.1.9-SNAPSHOT</ob-jwkms.version>
+
+        <mockito.version>3.0.0</mockito.version>
+        <asserts.version>3.13.2</asserts.version>
     </properties>
 
     <modules>
@@ -63,6 +69,21 @@
                 <artifactId>forgerock-openbanking-upgrade</artifactId>
                 <version>${ob-common.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.forgerock</groupId>
+                <artifactId>spring-security-multi-auth-starter</artifactId>
+                <version>${spring-security-multi-auth-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.forgerock.openbanking</groupId>
+                <artifactId>forgerock-openbanking-auth</artifactId>
+                <version>${ob-auth.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.forgerock.openbanking.jwkms</groupId>
+                <artifactId>forgerock-openbanking-jwkms-embedded</artifactId>
+                <version>${ob-jwkms.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.forgerock.openbanking.analytics</groupId>
@@ -73,6 +94,18 @@
                 <groupId>com.forgerock.openbanking.analytics</groupId>
                 <artifactId>forgerock-openbanking-analytics-core</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${asserts.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -26,7 +26,7 @@ import static org.springframework.data.mongodb.core.query.Criteria.byExample;
 
 
 @RestController
-@PreAuthorize("hasAnyAuthority('GROUP_FORGEROCK', 'GROUP_OB', 'ROLE_FORGEROCK_INTERNAL_APP')")
+
 @RequestMapping("/api/kpi/psu")
 @Slf4j
 public class PSUKpiAPIController {

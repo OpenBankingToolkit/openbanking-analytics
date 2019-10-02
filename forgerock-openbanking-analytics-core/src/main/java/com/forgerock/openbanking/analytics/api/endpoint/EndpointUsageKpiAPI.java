@@ -41,7 +41,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-@PreAuthorize("hasAnyAuthority('GROUP_FORGEROCK', 'GROUP_OB', 'ROLE_FORGEROCK_INTERNAL_APP')")
+
 @RequestMapping("/api/kpi/endpoint-usage")
 public interface EndpointUsageKpiAPI {
 

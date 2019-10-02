@@ -37,7 +37,7 @@ import static org.springframework.data.mongodb.core.query.Criteria.byExample;
 
 @RestController
 @RequestMapping("/api/kpi/jwts")
-@PreAuthorize("hasAnyAuthority('GROUP_FORGEROCK', 'GROUP_OB', 'ROLE_FORGEROCK_INTERNAL_APP')")
+
 @Slf4j
 public class JwtsKpiAPIController {
 
