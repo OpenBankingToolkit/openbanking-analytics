@@ -31,7 +31,7 @@
     <url>http://www.forgerock.org</url>
 
     <properties>
-        <ob-common.version>1.0.30</ob-common.version>
+        <ob-common.version>1.0.31</ob-common.version>
         <spring-security-multi-auth-starter.version>0.0.15</spring-security-multi-auth-starter.version>
         <ob-auth.version>1.0.0</ob-auth.version>
         <ob-jwkms.version>1.1.10</ob-jwkms.version>
@@ -121,7 +121,7 @@
         <repository>
             <id>forgerock-private-releases</id>
             <name>ForgeRock Private Releases Repository</name>
-            <url>http://maven.forgerock.org/repo/private-releases</url>
+            <url>https://maven.forgerock.org/repo/private-releases</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
