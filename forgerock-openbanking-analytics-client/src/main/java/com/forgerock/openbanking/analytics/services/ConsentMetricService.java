@@ -14,19 +14,20 @@ import com.forgerock.openbanking.analytics.utils.MetricUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
 @Slf4j
 public class ConsentMetricService {
 
-    private final RestTemplate restTemplate;
+    private final WebClient webClient;
     private final MetricsConfiguration metricsConfiguration;
     private final Tracer tracer;
 
 
-    public ConsentMetricService(RestTemplate restTemplate, MetricsConfiguration metricsConfiguration, Tracer tracer) {
-        this.restTemplate = restTemplate;
+    public ConsentMetricService(WebClient webClient, MetricsConfiguration metricsConfiguration, Tracer tracer) {
+        this.webClient = webClient;
         this.metricsConfiguration = metricsConfiguration;
         this.tracer = tracer;
     }
@@ -38,7 +39,14 @@ public class ConsentMetricService {
         }
         log.debug("Incrementing consent activity: {}", consentStatusEntry);
         try {
-            restTemplate.postForEntity(metricsConfiguration.rootEndpoint + "/api/kpi/consent", consentStatusEntry, Void.class);
+            webClient
+                    .post()
+                    .uri(metricsConfiguration.rootEndpoint + "/api/kpi/consent")
+                    .body(BodyInserters.fromObject(consentStatusEntry))
+                    .retrieve().bodyToMono(String.class)
+                    .log()
+                    .subscribe(response -> log.debug("Response from metrics: {}", response));
+            ;
         } catch (RestClientException e) {
             log.warn("Could not update consent status metrics type={}", consentStatusEntry, e);
         }

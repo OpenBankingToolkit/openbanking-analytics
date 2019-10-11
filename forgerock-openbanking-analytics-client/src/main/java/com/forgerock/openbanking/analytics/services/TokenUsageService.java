@@ -15,7 +15,8 @@ import com.forgerock.openbanking.model.oidc.AccessTokenResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -25,12 +26,12 @@ import java.util.Collections;
 @Service
 public class TokenUsageService {
 
-    private final RestTemplate restTemplate;
+    private final WebClient webClient;
     private final MetricsConfiguration metricsConfiguration;
     private final Tracer tracer;
 
-    public TokenUsageService(RestTemplate restTemplate, MetricsConfiguration metricsConfiguration, Tracer tracer) {
-        this.restTemplate = restTemplate;
+    public TokenUsageService(WebClient webClient, MetricsConfiguration metricsConfiguration, Tracer tracer) {
+        this.webClient = webClient;
         this.metricsConfiguration = metricsConfiguration;
         this.tracer = tracer;
     }
@@ -73,7 +74,13 @@ public class TokenUsageService {
         }
 
         try {
-            restTemplate.postForEntity(metricsConfiguration.rootEndpoint + "/api/kpi/token-usage", tokenUsages, Void.class);
+            webClient
+                    .post()
+                    .uri(metricsConfiguration.rootEndpoint + "/api/kpi/token-usage")
+                    .body(BodyInserters.fromObject(tokenUsages))
+                    .retrieve().bodyToMono(String.class)
+                    .log()
+                    .subscribe(response -> log.debug("Response from metrics: {}", response));
         } catch (RestClientException e) {
             log.warn("Could not update token metrics types={}", tokenUsages, e);
         }

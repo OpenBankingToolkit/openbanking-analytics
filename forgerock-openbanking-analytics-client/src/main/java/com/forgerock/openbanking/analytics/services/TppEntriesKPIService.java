@@ -13,7 +13,8 @@ import com.forgerock.openbanking.analytics.model.entries.TppEntry;
 import com.forgerock.openbanking.analytics.utils.MetricUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Arrays;
 
@@ -21,12 +22,12 @@ import java.util.Arrays;
 @Service
 public class TppEntriesKPIService {
 
-    private final RestTemplate restTemplate;
+    private final WebClient webClient;
     private final MetricsConfiguration metricsConfiguration;
     private final Tracer tracer;
 
-    public TppEntriesKPIService(RestTemplate restTemplate, MetricsConfiguration metricsConfiguration, Tracer tracer) {
-        this.restTemplate = restTemplate;
+    public TppEntriesKPIService(WebClient webClient, MetricsConfiguration metricsConfiguration, Tracer tracer) {
+        this.webClient = webClient;
         this.metricsConfiguration = metricsConfiguration;
         this.tracer = tracer;
     }
@@ -38,7 +39,13 @@ public class TppEntriesKPIService {
         }
         log.debug("Push tpp entry={}", entry);
         try {
-            restTemplate.postForEntity(metricsConfiguration.rootEndpoint + "/api/kpi/tpps/entries", Arrays.asList(entry), Void.class);
+            webClient
+                    .post()
+                    .uri(metricsConfiguration.rootEndpoint + "/api/kpi/tpps/entries")
+                    .body(BodyInserters.fromObject(Arrays.asList(entry)))
+                    .retrieve().bodyToMono(String.class)
+                    .log()
+                    .subscribe(response -> log.debug("Response from metrics: {}", response));
         } catch (Exception e) {
             log.warn("Couldn't send Tpp entry", entry, e);
         }

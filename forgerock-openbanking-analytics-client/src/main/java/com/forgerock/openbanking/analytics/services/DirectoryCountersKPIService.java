@@ -13,7 +13,8 @@ import com.forgerock.openbanking.analytics.model.entries.DirectoryCounterType;
 import com.forgerock.openbanking.analytics.utils.MetricUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Arrays;
 
@@ -21,12 +22,12 @@ import java.util.Arrays;
 @Service
 public class DirectoryCountersKPIService {
 
-    private final RestTemplate restTemplate;
+    private final WebClient webClient;
     private final MetricsConfiguration metricsConfiguration;
     private final Tracer tracer;
 
-    public DirectoryCountersKPIService(RestTemplate restTemplate, MetricsConfiguration metricsConfiguration, Tracer tracer) {
-        this.restTemplate = restTemplate;
+    public DirectoryCountersKPIService(WebClient webClient, MetricsConfiguration metricsConfiguration, Tracer tracer) {
+        this.webClient = webClient;
         this.metricsConfiguration = metricsConfiguration;
         this.tracer = tracer;
     }
@@ -38,7 +39,13 @@ public class DirectoryCountersKPIService {
         }
         log.debug("Incrementing directory counter types={}", Arrays.toString(directoryCounterType));
         try {
-            restTemplate.postForEntity(metricsConfiguration.rootEndpoint + "/api/kpi/directory/", directoryCounterType, Void.class);
+            webClient
+                    .post()
+                    .uri(metricsConfiguration.rootEndpoint + "/api/kpi/directory/")
+                    .body(BodyInserters.fromObject(directoryCounterType))
+                    .retrieve().bodyToMono(String.class)
+                    .log()
+                    .subscribe(response -> log.debug("Response from metrics: {}", response));
         } catch (Exception e) {
             log.warn("Couldn't send directory counters {} KPI to metrics", directoryCounterType, e);
         }

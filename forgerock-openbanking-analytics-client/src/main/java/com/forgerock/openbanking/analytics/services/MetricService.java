@@ -17,11 +17,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,7 +38,7 @@ public class MetricService {
     private List<JwtsValidationEntry> jwtsValidationMetric;
 
     @Autowired
-    private RestTemplate restTemplate;
+    private WebClient webClient;
     @Autowired
     private MetricsConfiguration metricsConfiguration;
     @Autowired
@@ -87,20 +86,35 @@ public class MetricService {
     public void pushMetrics() {
         try {
             if (endpointUsageMetric.size() > 0) {
-                HttpEntity<List<EndpointUsageEntry>> request = new HttpEntity<>(new ArrayList<>(endpointUsageMetric), new HttpHeaders());
-                restTemplate.exchange(metricsConfiguration.endpointUsageAddEntries, HttpMethod.POST, request, Void.class);
+                webClient
+                        .post()
+                        .uri(metricsConfiguration.endpointUsageAddEntries)
+                        .body(BodyInserters.fromObject(new ArrayList<>(endpointUsageMetric)))
+                        .retrieve().bodyToMono(String.class)
+                        .log()
+                        .subscribe(response -> log.debug("Response from metrics: {}", response));
                 endpointUsageMetric = new CopyOnWriteArrayList<>();
             }
 
             if (jwtsGenerationMetric.size() > 0) {
-                HttpEntity<List<JwtsGenerationEntry>> request = new HttpEntity<>(new ArrayList<>(jwtsGenerationMetric), new HttpHeaders());
-                restTemplate.exchange(metricsConfiguration.jwtsGenerationAddEntries, HttpMethod.POST, request, Void.class);
+                webClient
+                        .post()
+                        .uri(metricsConfiguration.jwtsGenerationAddEntries)
+                        .body(BodyInserters.fromObject(new ArrayList<>(jwtsGenerationMetric)))
+                        .retrieve().bodyToMono(String.class)
+                        .log()
+                        .subscribe(response -> log.debug("Response from metrics: {}", response));
                 jwtsGenerationMetric = new CopyOnWriteArrayList<>();
             }
 
             if (jwtsValidationMetric.size() > 0) {
-                HttpEntity<List<JwtsValidationEntry>> request = new HttpEntity<>(new ArrayList<>(jwtsValidationMetric), new HttpHeaders());
-                restTemplate.exchange(metricsConfiguration.jwtsValidationAddEntries, HttpMethod.POST, request, Void.class);
+                webClient
+                        .post()
+                        .uri(metricsConfiguration.jwtsValidationAddEntries)
+                        .body(BodyInserters.fromObject(new ArrayList<>(jwtsValidationMetric)))
+                        .retrieve().bodyToMono(String.class)
+                        .log()
+                        .subscribe(response -> log.debug("Response from metrics: {}", response));
                 jwtsValidationMetric = new CopyOnWriteArrayList<>();
             }
             this.errorCounter = 0;
