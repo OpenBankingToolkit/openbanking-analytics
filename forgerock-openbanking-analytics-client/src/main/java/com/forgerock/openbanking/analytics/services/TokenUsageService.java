@@ -67,7 +67,7 @@ public class TokenUsageService {
         increment(tokenUsages);
     }
 
-    private void increment(Collection<TokenUsage> tokenUsages) {
+    public void increment(Collection<TokenUsage> tokenUsages) {
         if (!MetricUtils.isRequestEnabledForAnalytics(tracer)) {
             log.debug("Request excluded for analytics");
             return;
