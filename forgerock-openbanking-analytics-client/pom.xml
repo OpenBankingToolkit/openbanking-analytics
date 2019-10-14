@@ -24,7 +24,6 @@
         <dependency>
             <groupId>com.forgerock.openbanking</groupId>
             <artifactId>forgerock-openbanking-model</artifactId>
-            <version>${ob-common.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
