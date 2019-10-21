@@ -81,7 +81,7 @@ public class TppsKpiAPIControllerIT {
         ));
         // When
         String jws = jws("accounts", "GROUP_FORGEROCK");
-        HttpResponse<Donut> response = Unirest.get("https://metrics-services:" + port + "/api/kpi/tpps/directories/")
+        HttpResponse<Donut> response = Unirest.get("http://metrics-services:" + port + "/api/kpi/tpps/directories/")
                 .header("Cookie", "obri-session=" + jws)
                 .queryString("fromDate", now.minusDays(1))
                 .queryString("toDate", now.plusDays(1))
@@ -126,7 +126,7 @@ public class TppsKpiAPIControllerIT {
         ));
         // When
         String jws = jws("accounts", "GROUP_FORGEROCK");
-        HttpResponse<BarChart> response = Unirest.get("https://metrics-services:" + port + "/api/kpi/tpps/type")
+        HttpResponse<BarChart> response = Unirest.get("http://metrics-services:" + port + "/api/kpi/tpps/type")
                 .header("Cookie", "obri-session=" + jws)
                 .queryString("fromDate", now.minusDays(1))
                 .queryString("toDate", now.plusDays(1))
@@ -171,7 +171,7 @@ public class TppsKpiAPIControllerIT {
         ));
         // When
         String jws = jws("accounts", "GROUP_FORGEROCK");
-        HttpResponse<Counter> response = Unirest.get("https://metrics-services:" + port + "/api/kpi/tpps/count")
+        HttpResponse<Counter> response = Unirest.get("http://metrics-services:" + port + "/api/kpi/tpps/count")
                 .header("Cookie", "obri-session=" + jws)
                 .queryString("fromDate", now.minusDays(1))
                 .queryString("toDate", now.plusDays(1))
@@ -189,7 +189,7 @@ public class TppsKpiAPIControllerIT {
 
         // When
 
-        HttpResponse response = Unirest.post("https://metrics-services:" + port + "/api/kpi/tpps/entries")
+        HttpResponse response = Unirest.post("http://metrics-services:" + port + "/api/kpi/tpps/entries")
                 .header("Cookie", "obri-session=" + jws)
                 .header("Content-Type", "application/json")
                 .body(tppEntries)

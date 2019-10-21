@@ -93,7 +93,7 @@ public class CallBackCountersKpiAPIControllerIT {
                 .build());
 
         // When
-        HttpResponse<Donut> response = Unirest.get("https://metrics-services:" + port + "/api/kpi/callbacks/byResponseStatus")
+        HttpResponse<Donut> response = Unirest.get("http://metrics-services:" + port + "/api/kpi/callbacks/byResponseStatus")
                 .queryString("fromDate", DateTime.now().minusDays(1))
                 .queryString("toDate", DateTime.now().plusDays(1))
                 .header("Content-Type", "application/json")

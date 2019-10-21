@@ -5,6 +5,7 @@ stages:
   - prepare
   - build
   - unit-test
+  - integration-test
   - deploy
 
 indicators:
@@ -52,6 +53,22 @@ steps:
     commands:
       - mvn -Dmaven.repo.local=/codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository -DdockerCompose.skip -Ddockerfile.skip -DskipITs verify
     environment: *global_env
+
+  integration-test-metrics:
+    type: composition
+    stage: "integration-test"
+    title: "analytics integration tests"
+    description: "Start docker services via docker-compose and run analytics integration tests"
+    composition: docker-compose.yml
+    working_directory: ${{main_clone}}/forgerock-openbanking-analytics-core/
+    composition_candidates:
+      metrics-tests:
+        volumes:
+          - ${{CF_VOLUME}}:/codefresh/volume
+        environment: *global_env
+        image: r.cfcr.io/openbanking/ob-release:latest
+        command: mvn -Dmaven.repo.local=/codefresh/volume/${{CF_BRANCH_TAG_NORMALIZED}}/.m2/repository -Dspring.data.mongodb.uri=mongodb://mongo:27017/test -Ddockerfile.skip -DdockerCompose.skip verify -f /codefresh/volume/ob-analytics/forgerock-openbanking-analytics-core/pom.xml
+        hostname: metrics-services
 
   # deploy jar stage
   deploy-master:

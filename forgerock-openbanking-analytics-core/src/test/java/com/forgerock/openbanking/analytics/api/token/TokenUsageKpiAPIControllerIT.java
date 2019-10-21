@@ -67,7 +67,7 @@ public class TokenUsageKpiAPIControllerIT {
                 .withMinuteOfHour(0)
                 .withSecondOfMinute(0)
                 .withMillisOfSecond(0);
-        HttpResponse response = Unirest.post("https://metrics-services:" + port + "/api/kpi/token-usage?type=ACCESS_TOKEN" )
+        HttpResponse response = Unirest.post("http://metrics-services:" + port + "/api/kpi/token-usage?type=ACCESS_TOKEN" )
                 .header("Content-Type", "application/json")
                 .body(Collections.singletonList(TokenUsage.ACCESS_TOKEN))
                 .asEmpty();
@@ -87,7 +87,7 @@ public class TokenUsageKpiAPIControllerIT {
                 .withMinuteOfHour(0)
                 .withSecondOfMinute(0)
                 .withMillisOfSecond(0);
-        HttpResponse response = Unirest.post("https://metrics-services:" + port + "/api/kpi/token-usage")
+        HttpResponse response = Unirest.post("http://metrics-services:" + port + "/api/kpi/token-usage")
                 .header("Content-Type", "application/json")
                 .body(Arrays.asList(TokenUsage.ACCESS_TOKEN, TokenUsage.ID_TOKEN))
                 .asEmpty();
@@ -113,7 +113,7 @@ public class TokenUsageKpiAPIControllerIT {
         // When
 
 
-        HttpResponse response = Unirest.post("https://metrics-services:" + port + "/api/kpi/token-usage")
+        HttpResponse response = Unirest.post("http://metrics-services:" + port + "/api/kpi/token-usage")
                 .header("Content-Type", "application/json")
                 .body(Collections.singletonList(TokenUsage.ACCESS_TOKEN))
                 .asEmpty();
@@ -129,7 +129,7 @@ public class TokenUsageKpiAPIControllerIT {
         tokenUsageEntryRepository.save(new TokenUsageEntry(TokenUsage.ACCESS_TOKEN, DateTime.now(), 1L));
 
         // When
-        HttpResponse<Counter> response = Unirest.get("https://metrics-services:" + port + "/api/kpi/token-usage")
+        HttpResponse<Counter> response = Unirest.get("http://metrics-services:" + port + "/api/kpi/token-usage")
                 .queryString("fromDate", DateTime.now().minusDays(1))
                 .queryString("toDate", DateTime.now().plusDays(1))
                 .queryString("type", "ACCESS_TOKEN")

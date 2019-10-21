@@ -66,7 +66,7 @@ public class ConsentStatusControllerIT {
         ConsentStatusEntry consentStatusEntry = ConsentStatusEntry.builder().consentId("1").consentStatus("awaiting").consentType(IntentType.ACCOUNT_ACCESS_CONSENT).date(DateTime.now().withMillisOfSecond(0)).build();
 
         // When
-        HttpResponse response = Unirest.post("https://metrics-services:" + port + "/api/kpi/consent")
+        HttpResponse response = Unirest.post("http://metrics-services:" + port + "/api/kpi/consent")
                 .body(consentStatusEntry)
                 .header("Cookie", "obri-session=" + jws)
                 .header("Content-Type", "application/json")
@@ -86,7 +86,7 @@ public class ConsentStatusControllerIT {
         consentStatusEntryRepository.save(ConsentStatusEntry.builder().consentId("3").consentStatus("completed").consentType(IntentType.ACCOUNT_ACCESS_CONSENT).date(DateTime.now()).build());
 
         // When
-        HttpResponse<Donut<String>> response = Unirest.get("https://metrics-services:" + port + "/api/kpi/consent/activities")
+        HttpResponse<Donut<String>> response = Unirest.get("http://metrics-services:" + port + "/api/kpi/consent/activities")
                 .queryString("fromDate", DateTime.now().minusDays(2).toString())
                 .queryString("toDate", DateTime.now().plusDays(1).toString())
                 .queryString("consentType", IntentType.ACCOUNT_ACCESS_CONSENT.name())
@@ -110,7 +110,7 @@ public class ConsentStatusControllerIT {
         consentStatusEntryRepository.save(ConsentStatusEntry.builder().consentId("3").consentStatus("completed").consentType(IntentType.PAYMENT_FILE_CONSENT).date(DateTime.now()).build());
 
         // When
-        HttpResponse<Donut<String>> response = Unirest.get("https://metrics-services:" + port + "/api/kpi/consent/activities")
+        HttpResponse<Donut<String>> response = Unirest.get("http://metrics-services:" + port + "/api/kpi/consent/activities")
                 .queryString("fromDate", DateTime.now().minusDays(2).toString())
                 .queryString("toDate", DateTime.now().plusDays(1).toString())
                 .queryString("consentType", IntentType.ACCOUNT_ACCESS_CONSENT.name())
@@ -133,7 +133,7 @@ public class ConsentStatusControllerIT {
         consentStatusEntryRepository.save(ConsentStatusEntry.builder().consentId("3").consentStatus("complete").consentType(IntentType.PAYMENT_FILE_CONSENT).date(DateTime.now()).build());
 
         // When
-        HttpResponse<Donut<String>> response = Unirest.get("https://metrics-services:" + port + "/api/kpi/consent/type")
+        HttpResponse<Donut<String>> response = Unirest.get("http://metrics-services:" + port + "/api/kpi/consent/type")
                 .queryString("fromDate", DateTime.now().minusDays(2).toString())
                 .queryString("toDate", DateTime.now().plusDays(1).toString())
                 .header("Cookie", "obri-session=" + jws)

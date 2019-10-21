@@ -1,0 +1,11 @@
+version: '2'
+services:
+ mongo-rs-store:
+  container_name: mongo-metrics-service
+  image: mongo
+  ports:
+  - "57020:27017"
+  networks:
+   default:
+    aliases:
+    - mongo

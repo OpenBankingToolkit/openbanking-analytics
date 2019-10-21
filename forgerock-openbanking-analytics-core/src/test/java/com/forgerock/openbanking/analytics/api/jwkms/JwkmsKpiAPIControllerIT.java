@@ -178,7 +178,7 @@ public class JwkmsKpiAPIControllerIT {
     private Donut getJwtsGenerationKPI(DateTime from, DateTime to) throws ParseException, JOSEException {
         String jws = jws("accounts", "GROUP_FORGEROCK");
 
-        HttpResponse<Donut> response = Unirest.get("https://metrics-services:" + port + "/api/kpi/jwts/jwts-generation/")
+        HttpResponse<Donut> response = Unirest.get("http://metrics-services:" + port + "/api/kpi/jwts/jwts-generation/")
                 .header("Cookie", "obri-session=" + jws)
                 .header("Content-Type", "application/json")
                 .queryString("application", ApplicationType.JWKMS.name())
@@ -193,7 +193,7 @@ public class JwkmsKpiAPIControllerIT {
     private void addGenerationJwtEntries(ImmutableList<Object> entries) throws ParseException, JOSEException {
         String jws = jws("accounts", "GROUP_FORGEROCK");
 
-        HttpResponse body = Unirest.post("https://metrics-services:" + port + "/api/kpi/jwts/jwts-generation/add-entries")
+        HttpResponse body = Unirest.post("http://metrics-services:" + port + "/api/kpi/jwts/jwts-generation/add-entries")
                 .header("Cookie", "obri-session=" + jws)
                 .header("Content-Type", "application/json")
                 .queryString("application", ApplicationType.JWKMS.name())
@@ -206,7 +206,7 @@ public class JwkmsKpiAPIControllerIT {
     private Donut getJwtsValidationKPI(DateTime from, DateTime to) throws ParseException, JOSEException {
         String jws = jws("accounts", "GROUP_FORGEROCK");
 
-        HttpResponse<Donut> response = Unirest.get("https://metrics-services:" + port + "/api/kpi/jwts/jwts-validation/")
+        HttpResponse<Donut> response = Unirest.get("http://metrics-services:" + port + "/api/kpi/jwts/jwts-validation/")
                 .header("Cookie", "obri-session=" + jws)
                 .header("Content-Type", "application/json")
                 .queryString("application", ApplicationType.JWKMS.name())
@@ -221,7 +221,7 @@ public class JwkmsKpiAPIControllerIT {
     private void addJwtsValidationEntries(ImmutableList<Object> entries) throws ParseException, JOSEException {
         String jws = jws("accounts", "GROUP_FORGEROCK");
 
-        HttpResponse body = Unirest.post("https://metrics-services:" + port + "/api/kpi/jwts/jwts-validation/add-entries")
+        HttpResponse body = Unirest.post("http://metrics-services:" + port + "/api/kpi/jwts/jwts-validation/add-entries")
                 .header("Cookie", "obri-session=" + jws)
                 .header("Content-Type", "application/json")
                 .queryString("application", ApplicationType.JWKMS.name())

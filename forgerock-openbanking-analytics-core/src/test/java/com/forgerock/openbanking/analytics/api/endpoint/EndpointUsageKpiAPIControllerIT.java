@@ -148,7 +148,7 @@ public class EndpointUsageKpiAPIControllerIT {
                         .build()));
 
         // When
-        HttpResponse response = Unirest.post("https://metrics-services:" + port + "/api/kpi/endpoint-usage/add-entry")
+        HttpResponse response = Unirest.post("http://metrics-services:" + port + "/api/kpi/endpoint-usage/add-entry")
                 .header("Content-Type", "application/json")
                 .body(entry)
                 .asJson();
@@ -172,7 +172,7 @@ public class EndpointUsageKpiAPIControllerIT {
                         .name("toto")
                         .build()));
         // When
-        HttpResponse response = Unirest.post("https://metrics-services:" + port + "/api/kpi/endpoint-usage/add-entries")
+        HttpResponse response = Unirest.post("http://metrics-services:" + port + "/api/kpi/endpoint-usage/add-entries")
                 .header("Content-Type", "application/json")
                 .body(Arrays.asList(entry, entry))
                 .asJson();
@@ -201,7 +201,7 @@ public class EndpointUsageKpiAPIControllerIT {
         endpointUsageAggregateRepository.save(aggregate);
 
         // When
-        HttpResponse response = Unirest.post("https://metrics-services:" + port + "/api/kpi/endpoint-usage/add-entries")
+        HttpResponse response = Unirest.post("http://metrics-services:" + port + "/api/kpi/endpoint-usage/add-entries")
                 .header("Content-Type", "application/json")
                 .body(Arrays.asList(entry, entry))
                 .asJson();
@@ -954,7 +954,7 @@ public class EndpointUsageKpiAPIControllerIT {
 
     private EndpointsUsageKPI callEndpointUsage(EndpointUsageKpiAPI.EndpointUsageKpiRequest request) throws ParseException, JOSEException {
 
-        HttpResponse<EndpointsUsageKPI> response = Unirest.post("https://metrics-services:" + port + "/api/kpi/endpoint-usage/")
+        HttpResponse<EndpointsUsageKPI> response = Unirest.post("http://metrics-services:" + port + "/api/kpi/endpoint-usage/")
                 .header("Content-Type", "application/json")
                 .queryString("application", ApplicationType.JWKMS.name())
                 .body(request)
@@ -969,7 +969,7 @@ public class EndpointUsageKpiAPIControllerIT {
     private Table<EndpointUsageAggregate> callEndpointUsageAggregated(EndpointUsageKpiAPI.EndpointTableRequest request) throws ParseException, JOSEException {
 
 
-        HttpResponse<Table<EndpointUsageAggregate>> response = Unirest.post("https://metrics-services:" + port + "/api/kpi/endpoint-usage/aggregated")
+        HttpResponse<Table<EndpointUsageAggregate>> response = Unirest.post("http://metrics-services:" + port + "/api/kpi/endpoint-usage/aggregated")
             .header("Content-Type", "application/json")
             .body(request)
             .asObject(new GenericType<Table<EndpointUsageAggregate>>() {});
@@ -981,7 +981,7 @@ public class EndpointUsageKpiAPIControllerIT {
 
     private EndpointStatisticKPI callEndpointStatistic(String endpoint, DateTime from, DateTime to) throws ParseException, JOSEException {
 
-        HttpResponse<EndpointStatisticKPI> response = Unirest.get("https://metrics-services:" + port + "/api/kpi/endpoint-usage/statistic")
+        HttpResponse<EndpointStatisticKPI> response = Unirest.get("http://metrics-services:" + port + "/api/kpi/endpoint-usage/statistic")
                 .header("Content-Type", "application/json")
                 .queryString("application", ApplicationType.JWKMS.name())
                 .queryString("fromDate", from)
@@ -999,7 +999,7 @@ public class EndpointUsageKpiAPIControllerIT {
 
     private void callAddEntries(List<EndpointUsageEntry> endpointUsageEntries) throws ParseException, JOSEException {
 
-        HttpResponse body = Unirest.post("https://metrics-services:" + port + "/api/kpi/endpoint-usage/add-entries")
+        HttpResponse body = Unirest.post("http://metrics-services:" + port + "/api/kpi/endpoint-usage/add-entries")
                 .header("Content-Type", "application/json")
                 .queryString("application", ApplicationType.JWKMS.name())
                 .body(endpointUsageEntries)
@@ -1011,7 +1011,7 @@ public class EndpointUsageKpiAPIControllerIT {
 
     private Table<EndpointUsageAggregate> callEndpointUsageRawData(DateTime from, DateTime to) throws ParseException, JOSEException {
 
-        HttpResponse<Table<EndpointUsageAggregate>> response = Unirest.get("https://metrics-services:" + port + "/api/kpi/endpoint-usage/history")
+        HttpResponse<Table<EndpointUsageAggregate>> response = Unirest.get("http://metrics-services:" + port + "/api/kpi/endpoint-usage/history")
                 .header("Content-Type", "application/json")
                 .queryString("fromDate", from)
                 .queryString("toDate", to)
