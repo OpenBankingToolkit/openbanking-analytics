@@ -20,29 +20,32 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Slf4j
 public enum EndpointsUsageAggregation {
         BY_TPP {
                 @Override
                 public List getValuesFromEntry(EndpointUsageAggregate entry, DateTimeFormatter dateGranularityFormatter, List definitionsSet) {
+                        log.trace("{} : Get value from entry {}", name(), entry);
                         return Collections.singletonList(entry.getIdentityId());
                 }
 
                 @Override
-                public List getSetDefinition(GetDistinctField getDistinctField, DateTime from, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat) {
+                public List getSetDefinition(EndpointUsageKpiRequest request, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat, GetDistinctField getDistinctField, DateTime from, EndpointUsageAggregateRepositoryCustom endpointUsageAggregateRepository) {
+                        log.trace("{} : Get definition set", name());
                         return getDistinctField.op(from, to, "identityId").stream().filter(key -> key != null).collect(Collectors.toList());
                 }
         },
         BY_RESPONSE_STATUS {
                 @Override
                 public List getValuesFromEntry(EndpointUsageAggregate entry, DateTimeFormatter dateGranularityFormatter, List definitionsSet) {
+                        log.trace("{} : Get value from entry {}", name(), entry);
                         return Collections.singletonList(getStatusRange(entry.getResponseStatus()));
                 }
 
                 @Override
-                public List getSetDefinition(GetDistinctField getDistinctField, DateTime from, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat) {
+                public List getSetDefinition(EndpointUsageKpiRequest request, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat, GetDistinctField getDistinctField, DateTime from, EndpointUsageAggregateRepositoryCustom endpointUsageAggregateRepository) {
+                        log.trace("{} : Get definition set", name());
                         return getDistinctField.op(from, to, "responseStatus").stream().map(d -> getStatusRange(d)).filter(key -> key != null).distinct().collect(Collectors.toList());
                 }
         },
@@ -58,11 +61,13 @@ public enum EndpointsUsageAggregation {
 
                 @Override
                 public List getValuesFromEntry(EndpointUsageAggregate entry, DateTimeFormatter dateGranularityFormatter, List definitionsSet) {
+                        log.trace("{} : Get value from entry {}", name(), entry);
                         return Collections.singletonList(roundDate(entry.getDate(), dateGranularityFormatter));
                 }
 
                 @Override
-                public List getSetDefinition(GetDistinctField getDistinctField, DateTime from, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat) {
+                public List getSetDefinition(EndpointUsageKpiRequest request, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat, GetDistinctField getDistinctField, DateTime from, EndpointUsageAggregateRepositoryCustom endpointUsageAggregateRepository) {
+                        log.trace("{} : Get definition set", name());
                         //For the date, we need iterate through the data definition set we build and use the granularity to compute the next date
                         List<DateTime> dateTimes = new ArrayList<>();
                         DateTime currentDate = new DateTime(from);
@@ -105,11 +110,13 @@ public enum EndpointsUsageAggregation {
 
                 @Override
                 public List getValuesFromEntry(EndpointUsageAggregate entry, DateTimeFormatter dateGranularityFormatter, List definitionsSet) {
+                        log.trace("{} : Get value from entry {}", name(), entry);
                         return Collections.singletonList(roundDateToDayWeek(entry.getDate()));
                 }
 
                 @Override
-                public List getSetDefinition(GetDistinctField getDistinctField, DateTime from, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat) {
+                public List getSetDefinition(EndpointUsageKpiRequest request, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat, GetDistinctField getDistinctField, DateTime from, EndpointUsageAggregateRepositoryCustom endpointUsageAggregateRepository) {
+                        log.trace("{} : Get definition set", name());
                         List<DateTime> dateTimes = new ArrayList<>();
                         DateTime currentDate = BEGINING_WEEK.withZone(DateTimeZone.UTC); //A monday
                         // We compute the next date
@@ -123,11 +130,13 @@ public enum EndpointsUsageAggregation {
         BY_OB_VERSIONS {
                 @Override
                 public List getValuesFromEntry(EndpointUsageAggregate entry, DateTimeFormatter dateGranularityFormatter, List definitionsSet) {
+                        log.trace("{} : Get value from entry {}", name(), entry);
                         return Collections.singletonList(entry.getObVersion());
                 }
 
                 @Override
-                public List getSetDefinition(GetDistinctField getDistinctField, DateTime from, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat) {
+                public List getSetDefinition(EndpointUsageKpiRequest request, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat, GetDistinctField getDistinctField, DateTime from, EndpointUsageAggregateRepositoryCustom endpointUsageAggregateRepository) {
+                        log.trace("{} : Get definition set", name());
                         return getDistinctField.op(from, to, "obVersion").stream().filter(key -> key != null).collect(Collectors.toList());
                 }
 
@@ -135,17 +144,20 @@ public enum EndpointsUsageAggregation {
         BY_OB_TYPE {
                 @Override
                 public List getValuesFromEntry(EndpointUsageAggregate entry, DateTimeFormatter dateGranularityFormatter, List definitionsSet) {
+                        log.trace("{} : Get value from entry {}", name(), entry);
                         return Arrays.asList(entry.getEndpointType());
                 }
 
                 @Override
-                public List getSetDefinition(GetDistinctField getDistinctField, DateTime from, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat) {
+                public List getSetDefinition(EndpointUsageKpiRequest request, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat, GetDistinctField getDistinctField, DateTime from, EndpointUsageAggregateRepositoryCustom endpointUsageAggregateRepository) {
+                        log.trace("{} : Get definition set", name());
                         return Arrays.asList(OBGroupName.values());
                 }
         },
         BY_AGGREGATION_METHODS {
                 @Override
                 public List getValuesFromEntry(EndpointUsageAggregate entry, DateTimeFormatter dateGranularityFormatter, List definitionsSet) {
+                        log.trace("{} : Get value from entry {}", name(), entry);
                         return Arrays.asList(
                                 AggregationMethod.BY_NB_CALLS,
 
@@ -162,7 +174,8 @@ public enum EndpointsUsageAggregation {
                 }
 
                 @Override
-                public List getSetDefinition(GetDistinctField getDistinctField, DateTime from, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat) {
+                public List getSetDefinition(EndpointUsageKpiRequest request, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat, GetDistinctField getDistinctField, DateTime from, EndpointUsageAggregateRepositoryCustom endpointUsageAggregateRepository) {
+                        log.trace("{} : Get definition set", name());
                         return Arrays.asList(
                                 AggregationMethod.BY_NB_CALLS,
 
@@ -187,8 +200,9 @@ public enum EndpointsUsageAggregation {
                 }
 
                 @Override
-                public List getSetDefinition(GetDistinctField getDistinctField, DateTime from, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat) {
-                        return getSetDefinitionForMS(getDistinctField, from, to, dateGranularityFormat, "responseTimesHistory");
+                public List getSetDefinition(EndpointUsageKpiRequest request, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat, GetDistinctField getDistinctField, DateTime from, EndpointUsageAggregateRepositoryCustom endpointUsageAggregateRepository) {
+                        log.trace("{} : Get definition set", name());
+                        return getSetDefinitionForMS(request, endpointUsageAggregateRepository, from, to, dateGranularityFormat, "responseTimesHistory", getDistinctField);
                 }
         },
         BY_RESPONSE_TIME_MB {
@@ -198,15 +212,16 @@ public enum EndpointsUsageAggregation {
                         return formatDefinitionForResponseTime(definitions);
                 }
 
-
                 @Override
                 public List getValuesFromEntry(EndpointUsageAggregate entry, DateTimeFormatter dateGranularityFormatter, List definitionsSet) {
+                        log.trace("{} : Get value from entry {}", name(), entry);
                         return getValuesFromEntryForMs(entry.getResponseTimesByKbHistory(), definitionsSet);
                 }
 
                 @Override
-                public List getSetDefinition(GetDistinctField getDistinctField, DateTime from, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat) {
-                        return getSetDefinitionForMS(getDistinctField, from, to, dateGranularityFormat, "responseTimesByMbHistory");
+                public List getSetDefinition(EndpointUsageKpiRequest request, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat, GetDistinctField getDistinctField, DateTime from, EndpointUsageAggregateRepositoryCustom endpointUsageAggregateRepository) {
+                        log.trace("{} : Get definition set", name());
+                        return getSetDefinitionForMS(request, endpointUsageAggregateRepository, from, to, dateGranularityFormat, "responseTimesByMbHistory", getDistinctField);
                 }
         };
 
@@ -257,9 +272,29 @@ public enum EndpointsUsageAggregation {
                         || this.getValuesFromEntry(entry, dateGranularityFormatter, list).isEmpty();
         }
 
+        /**
+         * Get the metric value from the endpoint usage entry. Ex: requested metric is By_status, we return entry.getStatus()
+         * @param entry the entry
+         * @param dateGranularityFormatter the date granularity format. For a request by day, we would have a date format rounding datetime to the day
+         * @param definitionsSet the current definition set that we would modify by board effect
+         * @return
+         */
         public abstract List getValuesFromEntry(EndpointUsageAggregate entry, DateTimeFormatter dateGranularityFormatter, List definitionsSet);
 
-        public abstract List getSetDefinition(GetDistinctField getDistinctField, DateTime from, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat);
+        /**
+         * Get the set of definitions for the requested aggrega. Ex. By_Status would be 3xx, 4xx, 5xx
+         *
+         *
+         *
+         * @param request
+         * @param to
+         * @param dateGranularityFormat
+         * @param getDistinctField
+         * @param from
+         * @param endpointUsageAggregateRepository
+         * @return
+         */
+        public abstract List getSetDefinition(EndpointUsageKpiRequest request, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat, GetDistinctField getDistinctField, DateTime from, EndpointUsageAggregateRepositoryCustom endpointUsageAggregateRepository);
 
         public AggregationMethod getAggregatorMethod(AggregationMethod aggregationMethodFromRequest, Object lineKey) {
                 return aggregationMethodFromRequest;
@@ -321,18 +356,9 @@ public enum EndpointsUsageAggregation {
                 return statusInString;
         }
 
-        public List getSetDefinitionForMS(GetDistinctField getDistinctField, DateTime from, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat, String field) {
-                List<String> responseTimesDistinct = getDistinctField.op(from, to, field);
-                if (responseTimesDistinct.size() == 0) {
-                        return Collections.emptyList();
-                }
-                Set<Long> responseTimes = responseTimesDistinct.stream()
-                        .filter(Objects::nonNull)
-                        .map(s -> Stream.of(s.split(",")).map(s1 -> Long.valueOf(s1)).collect(Collectors.toList()))
-                        .flatMap(List::stream)
-                        .collect(Collectors.toSet());
+        public List getSetDefinitionForMS(EndpointUsageKpiRequest request, EndpointUsageAggregateRepositoryCustom endpointUsageAggregateRepository, DateTime from, DateTime to, EndpointsUsageKPI.DateGranularity dateGranularityFormat, String field, GetDistinctField getDistinctField) {
 
-                Long maxResponseTime = responseTimes.stream().max((l1, l2) -> l1<l2?-1:l1>l2?1:0).get();
+                Long maxResponseTime = Long.valueOf(endpointUsageAggregateRepository.getMax(request, from, to, field));
 
                 // We find the best logarithmic scale based on the max value
                 double logScale = Math.pow(maxResponseTime, 1.0 / NB_X_ITEMS);
@@ -353,7 +379,7 @@ public enum EndpointsUsageAggregation {
 
         public List getValuesFromEntryForMs(List<Long> ms, List definitionsSet) {
                 if (CollectionUtils.isEmpty(definitionsSet) || definitionsSet.size()<2) {
-                        log.debug("definitionsSet must have a size of at least two, to hold a logScale in x[1] so returning empty values. Actual list is: {}", definitionsSet);
+                        log.trace("definitionsSet must have a size of at least two, to hold a logScale in x[1] so returning empty values. Actual list is: {}", definitionsSet);
                         return new ArrayList();
                 }
                 //The log scale would always be in x=1

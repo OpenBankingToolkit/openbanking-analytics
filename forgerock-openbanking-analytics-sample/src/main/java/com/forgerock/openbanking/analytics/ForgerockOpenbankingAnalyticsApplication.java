@@ -10,14 +10,12 @@ package com.forgerock.openbanking.analytics;
 import com.forgerock.openbanking.authentication.configurers.MultiAuthenticationCollectorConfigurer;
 import com.forgerock.openbanking.authentication.configurers.collectors.CustomJwtCookieCollector;
 import com.forgerock.openbanking.authentication.configurers.collectors.StaticUserCollector;
-import com.forgerock.openbanking.model.UserGroup;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
-import org.springframework.http.HttpMethod;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,10 +27,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -56,8 +52,7 @@ public class ForgerockOpenbankingAnalyticsApplication {
             http
                     .csrf().disable() // We don't need CSRF for JWT based authentication
                     .authorizeRequests()
-                    .antMatchers(HttpMethod.POST, "/api/kpi/**").hasRole(AnalyticsAuthority.PUSH_KPI.getAuthority())
-                    .antMatchers(HttpMethod.GET, "/api/kpi/**").hasRole(AnalyticsAuthority.READ_KPI.getAuthority())
+                    .anyRequest().permitAll()
                     .and()
                     .authenticationProvider(new CustomAuthProvider())
                     .apply(new MultiAuthenticationCollectorConfigurer<HttpSecurity>()

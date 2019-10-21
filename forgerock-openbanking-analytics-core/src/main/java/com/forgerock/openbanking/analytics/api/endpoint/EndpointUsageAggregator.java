@@ -11,6 +11,7 @@ import com.forgerock.openbanking.analytics.charts.Table;
 import com.forgerock.openbanking.analytics.model.entries.EndpointUsageAggregate;
 import com.forgerock.openbanking.analytics.model.entries.EndpointUsageEntry;
 import com.forgerock.openbanking.analytics.model.kpi.EndpointStatisticKPI;
+import com.forgerock.openbanking.analytics.model.kpi.EndpointTableRequest;
 import com.forgerock.openbanking.analytics.repository.EndpointUsageAggregateRepository;
 import com.mongodb.client.result.UpdateResult;
 import lombok.extern.slf4j.Slf4j;
@@ -136,19 +137,22 @@ public class EndpointUsageAggregator {
         return upsert.getModifiedCount() > 0;
     }
 
-    public Table<EndpointUsageAggregate> getAggregation(EndpointUsageKpiAPI.EndpointTableRequest request) {
+    public Table<EndpointUsageAggregate> getAggregation(EndpointTableRequest request) {
+        log.debug("Get aggregation for request {}", request);
         PageRequest pageRequest = PageRequest.of(request.getPage(), request.getSize(),
                 Sort.by(
 
                 request.getSort().stream().map(s -> new Sort.Order(s.getDirection(), s.getField())).collect(toList())));
+        log.debug("Get entry from database");
         Page<EndpointUsageAggregate> results = endpointUsageAggregateRepository.getEndpointUsageAggregateGroupBy(request, pageRequest);
+        log.debug("Build response");
         return Table.<EndpointUsageAggregate>builder()
                 .data(results.getContent().stream().map(
                         e -> {
                             EndpointStatisticKPI endpointStatisticKPI = new EndpointStatisticKPI();
                             endpointStatisticKPI.incrementCounters(e);
                             e.setEndpointStatisticKPI(endpointStatisticKPI);
-                            return e;
+                            return e.dropHistoricData();
                         }
                 ).collect(toList()))
                 .totalPages(results.getTotalPages())

@@ -19,6 +19,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -39,7 +40,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.forgerock.openbanking.analytics.model.kpi.EndpointsUsageAggregation.BY_RESPONSE_TIME;
 import static com.forgerock.openbanking.analytics.model.kpi.EndpointsUsageAggregation.formatterByGranularity;
 
 @Slf4j
@@ -154,25 +154,20 @@ public class EndpointUsageKpiAPIController implements EndpointUsageKpiAPI {
 
 
     @Override
+    @Cacheable(value="EndpointUsageKpiRequest", condition="#request.isCacheable()")
     public ResponseEntity<EndpointsUsageKPI> getKpi(@RequestBody EndpointUsageKpiRequest request) {
+
+        log.debug("KPI ennpoint usage request : {}", request);
         EndpointsUsageKPI.DateGranularity dateGranularity = getDateGranularity(request);
         log.debug("Date granularity for this request: {}", dateGranularity);
 
         DateTimeFormatter dateGranularityFormatter = formatterByGranularity.get(dateGranularity);
 
-        if (request.getAggregationMethod() == null) {
-            if (request.getAggregations().contains(BY_RESPONSE_TIME)) {
-                request.setAggregationMethod(AggregationMethod.BY_NB_RESPONSE_TIME);
-            } else {
-                request.setAggregationMethod(AggregationMethod.BY_NB_CALLS);
-
-            }
-        }
-
         // Round the dates definition set
         DateTime fromRounded = roundDate(request.from, dateGranularity);
         DateTime toRounded = roundDate(request.to.plusMinutes(1), dateGranularity);
         log.debug("Date from {} and to {} rounded", fromRounded, toRounded);
+
 
         if (request.getAggregations().size() > 2) {
             throw new IllegalArgumentException("Can't graph more than 2 aggrega");
@@ -185,6 +180,7 @@ public class EndpointUsageKpiAPIController implements EndpointUsageKpiAPI {
         log.debug("Initialisation of the lines based on the definitions set");
         Map<Object, EndpointsUsageKPI.Line> lines = initiateLines(request, definitions);
 
+        long tStart = System.currentTimeMillis();
 
         log.debug("Get entries stream");
         Stream<EndpointUsageAggregate> entries = getEndpointUsageAggregateEntries(request).parallel();
@@ -193,11 +189,19 @@ public class EndpointUsageKpiAPIController implements EndpointUsageKpiAPI {
         // Format the data and store them in the dataset
         log.debug("Compute each entry");
         int[] count = new int[1];
+
+        long[] addToDatasetTimer = new long[1];
         entries.forEach(e -> {
+            long tStartA = System.currentTimeMillis();
             addToDataset(lines, definitions, e, request, dateGranularityFormatter);
+            addToDatasetTimer[0] += System.currentTimeMillis() - tStartA;
+
             count[0]++;
         });
         log.debug("Computed {} entries", count[0]);
+
+        log.debug("Time {} ms", System.currentTimeMillis() - tStart);
+        log.debug("Time addToDataset {} ms", addToDatasetTimer[0]);
 
         // Compute line with context
         lines.values().forEach(l -> {
@@ -211,9 +215,8 @@ public class EndpointUsageKpiAPIController implements EndpointUsageKpiAPI {
         log.debug("Definition set now rounded for a better reading on the UI: {}", definitions);
         log.debug("KB: " + (double) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024);
 
-        return ResponseEntity.ok(new EndpointsUsageKPI(request.endpoint, dateGranularity, lines.values(), definitions));
+        return ResponseEntity.ok( new EndpointsUsageKPI(request.endpoint, dateGranularity, lines.values(), definitions));
     }
-
 
     /**
      * Initialise the lines with zero values
@@ -321,7 +324,7 @@ public class EndpointUsageKpiAPIController implements EndpointUsageKpiAPI {
 
         // We do the first dimension
         for(EndpointsUsageAggregation filter : filters) {
-            setOfDefinition.put(filter, filter.getSetDefinition((f, t, field) -> endpointUsageAggregateRepository.getSetDefinition(request, f, t, field), from, to, dateGranularityFormat));
+            setOfDefinition.put(filter, filter.getSetDefinition(request, to, dateGranularityFormat, (f, t, field) -> endpointUsageAggregateRepository.getSetDefinition(request, f, t, field), from, endpointUsageAggregateRepository));
         }
         return setOfDefinition;
     }
@@ -364,7 +367,16 @@ public class EndpointUsageKpiAPIController implements EndpointUsageKpiAPI {
     private void updateLineForX(EndpointUsageAggregate entry, Object x, EndpointsUsageKPI.Line line, List xDefinitionSet) {
         int xIndex = xDefinitionSet.indexOf(x);
         if (xIndex == -1) {
-            throw new IllegalStateException("Couldn't find the element in the set of definition");
+            log.error("Couldn't find the element {} in the set of definition {}", x, xDefinitionSet);
+            return;
+        }
+        if (line.getDataset().length <= xIndex) {
+            log.error("Couldn't update element {} as the line dataset size is {}", x, line.getDataset().length);
+            return;
+        }
+        if (line.getContext().length <= xIndex) {
+            log.error("Couldn't update element {} as the line context size is {}", x, line.getContext().length);
+            return;
         }
         AggregationContext context = line.getAggregationMethod().updateContext(
                 line.getDataset()[xIndex],

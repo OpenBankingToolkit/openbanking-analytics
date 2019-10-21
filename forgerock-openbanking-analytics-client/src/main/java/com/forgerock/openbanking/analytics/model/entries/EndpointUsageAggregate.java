@@ -21,6 +21,7 @@ import org.joda.time.DateTimeZone;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -106,6 +107,11 @@ public class EndpointUsageAggregate {
                 .build();
     }
 
+    public EndpointUsageAggregate dropHistoricData() {
+        responseTimesHistory = new ArrayList<>();
+        responseTimesByKbHistory = new ArrayList<>();
+        return this;
+    }
 
     @Override
     public boolean equals(Object o) {
