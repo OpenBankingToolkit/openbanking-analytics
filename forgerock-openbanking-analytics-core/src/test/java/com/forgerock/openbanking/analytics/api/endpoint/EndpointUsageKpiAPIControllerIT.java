@@ -13,10 +13,7 @@ import com.forgerock.openbanking.analytics.model.entries.EndpointUsageAggregate;
 import com.forgerock.openbanking.analytics.model.entries.EndpointUsageEntry;
 import com.forgerock.openbanking.analytics.model.entries.GeoIP;
 import com.forgerock.openbanking.analytics.model.entries.TppEntry;
-import com.forgerock.openbanking.analytics.model.kpi.AggregationMethod;
-import com.forgerock.openbanking.analytics.model.kpi.EndpointStatisticKPI;
-import com.forgerock.openbanking.analytics.model.kpi.EndpointsUsageAggregation;
-import com.forgerock.openbanking.analytics.model.kpi.EndpointsUsageKPI;
+import com.forgerock.openbanking.analytics.model.kpi.*;
 import com.forgerock.openbanking.analytics.model.openbanking.OBGroupName;
 import com.forgerock.openbanking.analytics.models.ApplicationType;
 import com.forgerock.openbanking.analytics.repository.EndpointUsageAggregateRepository;
@@ -94,11 +91,11 @@ public class EndpointUsageKpiAPIControllerIT {
         endpointUsageAggregateRepository.save(aggregate("/account-access-consent"));
 
         // When
-        Table<EndpointUsageAggregate> table = callEndpointUsageAggregated(EndpointUsageKpiAPI.EndpointTableRequest.builder()
+        Table<EndpointUsageAggregate> table = callEndpointUsageAggregated(EndpointTableRequest.builder()
                 .from(DateTime.now().minusDays(1))
                 .to(DateTime.now().plusDays(1))
-                .sort(Arrays.asList(new EndpointUsageKpiAPI.SortOrder("count", Sort.Direction.DESC)))
-                .fields(Arrays.asList("endpoint")).filters(Arrays.asList(EndpointUsageKpiAPI.EndpointTableFilter.builder()
+                .sort(Arrays.asList(new SortOrder("count", Sort.Direction.DESC)))
+                .fields(Arrays.asList("endpoint")).filters(Arrays.asList(EndpointTableFilter.builder()
                         .field("endpointType")
                         .regex("AISP")
                         .build()))
@@ -124,10 +121,10 @@ public class EndpointUsageKpiAPIControllerIT {
         endpointUsageAggregateRepository.saveAll(aggregates);
 
         // When
-        Table<EndpointUsageAggregate> table = callEndpointUsageAggregated(EndpointUsageKpiAPI.EndpointTableRequest.builder()
+        Table<EndpointUsageAggregate> table = callEndpointUsageAggregated(EndpointTableRequest.builder()
                 .from(DateTime.now().minusDays(1))
                 .to(DateTime.now().plusDays(1))
-                .sort(Arrays.asList(new EndpointUsageKpiAPI.SortOrder("count", Sort.Direction.DESC)))
+                .sort(Arrays.asList(new SortOrder("count", Sort.Direction.DESC)))
                 .fields(Arrays.asList("endpoint"))
                 .page(1)
                 .build());
@@ -223,11 +220,11 @@ public class EndpointUsageKpiAPIControllerIT {
         endpointUsageAggregateRepository.saveAll(Arrays.asList(aggregate1, aggregate2));
 
         // When
-        Table<EndpointUsageAggregate> table = callEndpointUsageAggregated(EndpointUsageKpiAPI.EndpointTableRequest.builder()
+        Table<EndpointUsageAggregate> table = callEndpointUsageAggregated(EndpointTableRequest.builder()
                 .from(DateTime.now().minusDays(1))
                 .to(DateTime.now().plusDays(1))
-                .sort(Arrays.asList(new EndpointUsageKpiAPI.SortOrder("count", Sort.Direction.DESC)))
-                .fields(Arrays.asList("endpoint", "userType")).filters(Arrays.asList(EndpointUsageKpiAPI.EndpointTableFilter.builder()
+                .sort(Arrays.asList(new SortOrder("count", Sort.Direction.DESC)))
+                .fields(Arrays.asList("endpoint", "userType")).filters(Arrays.asList(EndpointTableFilter.builder()
                         .field("userType")
                         .regex(UserContext.UserType.ANONYMOUS.name())
                         .build()))
@@ -251,11 +248,11 @@ public class EndpointUsageKpiAPIControllerIT {
         endpointUsageAggregateRepository.saveAll(Arrays.asList(aggregate1, aggregate2));
 
         // When
-        Table<EndpointUsageAggregate> table = callEndpointUsageAggregated(EndpointUsageKpiAPI.EndpointTableRequest.builder()
+        Table<EndpointUsageAggregate> table = callEndpointUsageAggregated(EndpointTableRequest.builder()
                 .from(DateTime.now().minusDays(1))
                 .to(DateTime.now().plusDays(1))
-                .sort(Arrays.asList(new EndpointUsageKpiAPI.SortOrder("count", Sort.Direction.DESC)))
-                .fields(Arrays.asList("endpoint", "endpointType")).filters(Arrays.asList(EndpointUsageKpiAPI.EndpointTableFilter.builder()
+                .sort(Arrays.asList(new SortOrder("count", Sort.Direction.DESC)))
+                .fields(Arrays.asList("endpoint", "endpointType")).filters(Arrays.asList(EndpointTableFilter.builder()
                         .field("endpointType")
                         .regex(OBGroupName.PISP.name())
                         .build()))
@@ -275,12 +272,12 @@ public class EndpointUsageKpiAPIControllerIT {
         endpointUsageAggregateRepository.saveAll(Arrays.asList(aggregate1, aggregate2));
 
         // When
-        Table<EndpointUsageAggregate> table = callEndpointUsageAggregated(EndpointUsageKpiAPI.EndpointTableRequest.builder()
+        Table<EndpointUsageAggregate> table = callEndpointUsageAggregated(EndpointTableRequest.builder()
                 .from(DateTime.now().minusDays(1))
                 .to(DateTime.now().plusDays(1))
-                .sort(Arrays.asList(new EndpointUsageKpiAPI.SortOrder("count", Sort.Direction.DESC)))
+                .sort(Arrays.asList(new SortOrder("count", Sort.Direction.DESC)))
                 .fields(Arrays.asList("endpoint", "application"))
-                .filters(Arrays.asList(EndpointUsageKpiAPI.EndpointTableFilter.builder()
+                .filters(Arrays.asList(EndpointTableFilter.builder()
                         .field("application")
                         .regex("jwkms")
                         .build()))
@@ -479,7 +476,7 @@ public class EndpointUsageKpiAPIControllerIT {
         callAddEntries(endpointUsageEntries);
 
         // When
-        EndpointsUsageKPI data = callEndpointUsage(EndpointUsageKpiAPI.EndpointUsageKpiRequest.builder()
+        EndpointsUsageKPI data = callEndpointUsage(EndpointUsageKpiRequest.builder()
                 .aggregations(new LinkedList<>(Arrays.asList(EndpointsUsageAggregation.BY_DATE)))
                 .dateGranularity(EndpointsUsageKPI.DateGranularity.BY_DAY)
                 .endpoint(endpoint)
@@ -541,7 +538,7 @@ public class EndpointUsageKpiAPIControllerIT {
         callAddEntries(endpointUsageEntries);
 
         // When
-        EndpointsUsageKPI data = callEndpointUsage(EndpointUsageKpiAPI.EndpointUsageKpiRequest.builder()
+        EndpointsUsageKPI data = callEndpointUsage(EndpointUsageKpiRequest.builder()
                 .aggregations(new LinkedList<>(Arrays.asList(EndpointsUsageAggregation.BY_DATE)))
                 .dateGranularity(EndpointsUsageKPI.DateGranularity.BY_DAY)
                 .endpoint(endpoint)
@@ -601,7 +598,7 @@ public class EndpointUsageKpiAPIControllerIT {
         callAddEntries(endpointUsageEntries);
 
         // When
-        EndpointsUsageKPI data = callEndpointUsage(EndpointUsageKpiAPI.EndpointUsageKpiRequest.builder()
+        EndpointsUsageKPI data = callEndpointUsage(EndpointUsageKpiRequest.builder()
                 .aggregations(new LinkedList<>(Arrays.asList(EndpointsUsageAggregation.BY_DATE, EndpointsUsageAggregation.BY_TPP)))
                 .dateGranularity(EndpointsUsageKPI.DateGranularity.BY_DAY)
                 .endpoint(endpoint)
@@ -662,7 +659,7 @@ public class EndpointUsageKpiAPIControllerIT {
         callAddEntries(endpointUsageEntries);
 
         // When
-        EndpointsUsageKPI data = callEndpointUsage(EndpointUsageKpiAPI.EndpointUsageKpiRequest.builder()
+        EndpointsUsageKPI data = callEndpointUsage(EndpointUsageKpiRequest.builder()
                 .aggregations(new LinkedList<>(Arrays.asList(EndpointsUsageAggregation.BY_DATE, EndpointsUsageAggregation.BY_RESPONSE_STATUS)))
                 .dateGranularity(EndpointsUsageKPI.DateGranularity.BY_DAY)
                 .endpoint(endpoint)
@@ -769,7 +766,7 @@ public class EndpointUsageKpiAPIControllerIT {
         callAddEntries(endpointUsageEntries);
 
         // When
-        EndpointsUsageKPI data = callEndpointUsage(EndpointUsageKpiAPI.EndpointUsageKpiRequest.builder()
+        EndpointsUsageKPI data = callEndpointUsage(EndpointUsageKpiRequest.builder()
                 .aggregations(new LinkedList<>(Arrays.asList(EndpointsUsageAggregation.BY_WEEK_DAY)))
                 .endpoint(endpoint)
                 .filtering(null)
@@ -920,7 +917,7 @@ public class EndpointUsageKpiAPIControllerIT {
         callAddEntries(endpointUsageEntries);
 
         // When
-        EndpointsUsageKPI data = callEndpointUsage(EndpointUsageKpiAPI.EndpointUsageKpiRequest.builder()
+        EndpointsUsageKPI data = callEndpointUsage(EndpointUsageKpiRequest.builder()
                 .aggregations(new LinkedList<>(Arrays.asList(EndpointsUsageAggregation.BY_RESPONSE_TIME)))
                 .endpoint(endpoint)
                 .aggregationMethod(AggregationMethod.BY_NB_RESPONSE_TIME)
@@ -952,7 +949,7 @@ public class EndpointUsageKpiAPIControllerIT {
         return data.getLines().get(indexLine).getDataset()[index];
     }
 
-    private EndpointsUsageKPI callEndpointUsage(EndpointUsageKpiAPI.EndpointUsageKpiRequest request) throws ParseException, JOSEException {
+    private EndpointsUsageKPI callEndpointUsage(EndpointUsageKpiRequest request) throws ParseException, JOSEException {
 
         HttpResponse<EndpointsUsageKPI> response = Unirest.post("http://metrics-services:" + port + "/api/kpi/endpoint-usage/")
                 .header("Content-Type", "application/json")
@@ -966,7 +963,7 @@ public class EndpointUsageKpiAPIControllerIT {
         return response.getBody();
     }
 
-    private Table<EndpointUsageAggregate> callEndpointUsageAggregated(EndpointUsageKpiAPI.EndpointTableRequest request) throws ParseException, JOSEException {
+    private Table<EndpointUsageAggregate> callEndpointUsageAggregated(EndpointTableRequest request) throws ParseException, JOSEException {
 
 
         HttpResponse<Table<EndpointUsageAggregate>> response = Unirest.post("http://metrics-services:" + port + "/api/kpi/endpoint-usage/aggregated")

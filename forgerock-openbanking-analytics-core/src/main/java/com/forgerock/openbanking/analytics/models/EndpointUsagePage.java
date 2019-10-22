@@ -12,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 
 import java.util.Iterator;
 import java.util.List;
@@ -23,13 +22,13 @@ import java.util.stream.Stream;
 public class EndpointUsagePage implements Page<EndpointUsageAggregate> {
 
     private int nbPages;
-    private AggregationResults<EndpointUsageAggregate> pageRefResults;
+    private long nbElements;
     private PageRequest pageRequest;
-    private AggregationResults<EndpointUsageAggregate> groupResults;
+    private Stream<EndpointUsageAggregate> groupResults;
 
-    public EndpointUsagePage(int nbPages, AggregationResults<EndpointUsageAggregate> pageRefResults, PageRequest pageRequest, AggregationResults<EndpointUsageAggregate> groupResults) {
+    public EndpointUsagePage(int nbPages, long nbElements, PageRequest pageRequest, Stream<EndpointUsageAggregate> groupResults) {
         this.nbPages = nbPages;
-        this.pageRefResults = pageRefResults;
+        this.nbElements = nbElements;
         this.pageRequest = pageRequest;
         this.groupResults = groupResults;
     }
@@ -46,7 +45,7 @@ public class EndpointUsagePage implements Page<EndpointUsageAggregate> {
 
     @Override
     public long getTotalElements() {
-        return  pageRefResults.getMappedResults().size();
+        return  nbElements;
     }
 
     @Override
@@ -56,18 +55,17 @@ public class EndpointUsagePage implements Page<EndpointUsageAggregate> {
 
     @Override
     public int getSize() {
-        return  groupResults.getMappedResults().size();
+        return  Math.toIntExact(groupResults.count());
     }
 
     @Override
     public int getNumberOfElements() {
-        return groupResults.getMappedResults().size();
+        return Math.toIntExact(groupResults.count());
     }
 
     @Override
     public List<EndpointUsageAggregate> getContent() {
-        return groupResults.getMappedResults()
-                .stream()
+        return groupResults
                 .map(e -> {
                     if (e.getResponseTimesHistorySerialised() != null && !e.getResponseTimesHistorySerialised().isEmpty()) {
                         e.setResponseTimesHistory(

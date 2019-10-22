@@ -29,7 +29,9 @@ public class TppsTypeKPI implements KPI {
     }
 
     public void increment(SoftwareStatementRole type) {
-        dataset.compute(type, (k, v) -> ++v);
+        if (dataset.keySet().contains(type)) {
+            dataset.compute(type, (k, v) -> ++v);
+        }
     }
 
     public Map<SoftwareStatementRole, Integer> getDataset() {
