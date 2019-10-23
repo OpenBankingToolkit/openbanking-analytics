@@ -32,7 +32,7 @@ public class AnalyticsUserProvider implements UserProvider {
     @Data
     @AllArgsConstructor
     private static class AnalyticsUser {
-        private String username;
+        private String id;
         private List<String> authorities;
     }
 }
