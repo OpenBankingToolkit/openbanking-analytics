@@ -32,7 +32,7 @@
 
     <properties>
         <ob-common.version>1.0.33</ob-common.version>
-        <ob-auth.version>1.0.32</ob-auth.version>
+        <ob-auth.version>1.0.33</ob-auth.version>
         <ob-jwkms.version>1.1.16</ob-jwkms.version>
     </properties>
 
@@ -52,11 +52,6 @@
             </dependency>
             <dependency>
                 <groupId>com.forgerock.openbanking</groupId>
-                <artifactId>forgerock-openbanking-model</artifactId>
-                <version>${ob-common.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.forgerock.openbanking</groupId>
                 <artifactId>forgerock-openbanking-upgrade</artifactId>
                 <version>${ob-common.version}</version>
             </dependency>
@@ -67,17 +62,17 @@
             </dependency>
             <dependency>
                 <groupId>com.forgerock.openbanking</groupId>
-                <artifactId>forgerock-openbanking-upgrade</artifactId>
-                <version>${ob-common.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.forgerock.openbanking</groupId>
                 <artifactId>forgerock-openbanking-auth</artifactId>
                 <version>${ob-auth.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.forgerock.openbanking.jwkms</groupId>
                 <artifactId>forgerock-openbanking-jwkms-embedded</artifactId>
+                <version>${ob-jwkms.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.forgerock.openbanking.jwkms</groupId>
+                <artifactId>forgerock-openbanking-jwkms-client</artifactId>
                 <version>${ob-jwkms.version}</version>
             </dependency>
 
