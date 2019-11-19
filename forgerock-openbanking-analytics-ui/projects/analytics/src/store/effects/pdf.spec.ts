@@ -17,7 +17,7 @@ import * as fileSaver from 'file-saver';
 import { GetPdfRequestAction, GetPdfSuccessAction, GetPdfErrorAction } from 'analytics/src/store/reducers/pdf';
 import { PdfEffects } from './pdf';
 import { MetricsService } from 'analytics/src/app/services/metrics.service';
-import { ForgerockMessagesService } from 'forgerock/src/app/services/forgerock-messages/forgerock-messages.service';
+import { ForgerockMessagesService } from 'ob-ui-libs/services/forgerock-messages';
 import rootReducer from 'analytics/src/store';
 import { IState } from 'analytics/src/models';
 import { first } from 'rxjs/operators';

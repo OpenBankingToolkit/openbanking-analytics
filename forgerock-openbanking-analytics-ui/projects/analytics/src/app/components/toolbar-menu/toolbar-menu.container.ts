@@ -5,8 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { IState } from 'analytics/src/models';
 import { selectDateTo, selectDateFrom, SetDatesAction } from 'analytics/src/store/reducers/dates';
 import { formatDateForMetricsServer } from 'analytics/src/utils/dates';
-import { ForgerockOIDCLogoutRequestAction } from 'forgerock/src/app/modules/oidc/store/reducers/logout';
-import { selectConnected, selectUserId } from 'forgerock/src/app/modules/oidc/store/reducers/user';
+import { ForgerockOIDCLogoutRequestAction, selectOIDCConnected, selectOIDCUserId } from 'ob-ui-libs/oidc';
 
 @Component({
   // tslint:disable-next-line
@@ -34,8 +33,8 @@ import { selectConnected, selectUserId } from 'forgerock/src/app/modules/oidc/st
   ]
 })
 export class AnalyticsToolbarMenuContainer implements OnInit {
-  connected$: Observable<boolean> = this.store.pipe(select(selectConnected));
-  username$: Observable<string> = this.store.pipe(select(selectUserId));
+  connected$: Observable<boolean> = this.store.pipe(select(selectOIDCConnected));
+  username$: Observable<string> = this.store.pipe(select(selectOIDCUserId));
   from$: Observable<string> = this.store.pipe(select(selectDateFrom));
   to$: Observable<string> = this.store.pipe(select(selectDateTo));
 

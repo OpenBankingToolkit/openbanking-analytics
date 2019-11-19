@@ -3,14 +3,15 @@ import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 
-import { ForgerockConfigService } from 'forgerock/src/app/services/forgerock-config/forgerock-config.service';
-import { ForgerockSplashscreenService } from 'forgerock/src/app/services/forgerock-splashscreen/forgerock-splashscreen.service';
-import { ForgerockGDPRService } from 'forgerock/src/app/modules/gdpr/gdpr.service';
+import { ForgerockConfigService } from 'ob-ui-libs/services/forgerock-config';
+import { ForgerockSplashscreenService } from 'ob-ui-libs/services/forgerock-splashscreen';
+import { ForgerockGDPRService } from 'ob-ui-libs/gdpr';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: `
+    <router-outlet></router-outlet>
+  `
 })
 export class AppComponent {
   enableCustomization: string = this.configService.get('enableCustomization');

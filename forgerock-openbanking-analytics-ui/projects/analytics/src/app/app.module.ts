@@ -9,38 +9,22 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { EffectsModule } from '@ngrx/effects';
 import { CookieModule } from 'ngx-cookie';
-import { ForgerockSharedModule } from 'forgerock/src/app/forgerock-shared.module';
-import {
-  ForgerockCustomizationModule,
-  ForgerockCustomization
-} from 'forgerock/src/app/modules/customization/customization.module';
-import { ForgerockConfigService } from 'forgerock/src/app/services/forgerock-config/forgerock-config.service';
-import { ForgerockConfigModule } from 'forgerock/src/app/services/forgerock-config/forgerock-config.module';
+import { ForgerockSharedModule } from 'ob-ui-libs/shared';
+import { ForgerockConfigService } from 'ob-ui-libs/services/forgerock-config';
+import { ForgerockConfigModule } from 'ob-ui-libs/services/forgerock-config';
 import { AppComponent } from 'analytics/src/app/app.component';
 import { TranslateSharedModule } from 'analytics/src/app/translate-shared.module';
-// @ts-ignore
-import cssVars from 'analytics/src/scss/cssvars.scss';
 import { AppRoutingModule } from 'analytics/src/app/app-routing.module';
 import { environment } from 'analytics/src/environments/environment';
 import rootReducer from 'analytics/src/store';
 import { RootEffects } from 'analytics/src/store/effects';
-import { ForgerockInterceptorProviders } from 'forgerock/src/app/interceptors';
-import { ForgerockOIDCModule } from 'forgerock/src/app/modules/oidc/oidc.module';
+import { ForgerockInterceptorProviders } from 'ob-ui-libs/interceptors';
+import { ForgerockOIDCModule } from 'ob-ui-libs/oidc';
 
 export const REDUCER_TOKEN = new InjectionToken<ActionReducerMap<{}>>('Registered Reducers');
 
 export function getReducers() {
   return rootReducer;
-}
-
-export function ForgerockCustomizationFactory(): ForgerockCustomization {
-  // /\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/g
-  // this removes the comments in the Sass file (only in dev, in prod there are no comments)
-  // can't find a good wait to remove sourcemap in dev (since we can't eject Webpack config)
-  // this removes the comments and select the CSS vars (way faster than just matching the CSS vars)
-  return {
-    cssVars: cssVars.replace(/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/g, '').match(/[^{\}]+(?=})/g)[0]
-  };
 }
 
 export function createTranslateLoader(http: HttpClient) {
@@ -62,7 +46,6 @@ export function createForgerockOIDCConfigFactory(config: ForgerockConfigService)
   imports: [
     BrowserModule,
     ForgerockSharedModule,
-    ForgerockCustomizationModule.forRoot(ForgerockCustomizationFactory),
     ForgerockOIDCModule.forRoot(createForgerockOIDCConfigFactory),
     ForgerockConfigModule.forRoot(),
     CookieModule.forRoot(),

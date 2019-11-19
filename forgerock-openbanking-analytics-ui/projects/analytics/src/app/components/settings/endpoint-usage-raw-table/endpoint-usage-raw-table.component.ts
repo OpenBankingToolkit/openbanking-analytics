@@ -6,7 +6,7 @@ import { MetricsService } from 'analytics/src/app/services/metrics.service';
 import { AbstractWidgetTableComponent } from 'analytics/src/app/components/abstracts/widget.table';
 import { TranslateService } from '@ngx-translate/core';
 import { DOCUMENT } from '@angular/common';
-import { ForgerockConfirmDialogComponent } from 'forgerock/src/app/components/forgerock-confirm-dialog/forgerock-confirm-dialog.component';
+import { ForgerockConfirmDialogComponent } from 'ob-ui-libs/components/forgerock-confirm-dialog';
 import { MatDialog } from '@angular/material';
 
 const selector = 'app-settings-endpoint-usage-raw-table';

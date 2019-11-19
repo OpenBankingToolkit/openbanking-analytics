@@ -4,8 +4,8 @@ import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { ForgerockConfigModule } from 'forgerock/src/app/services/forgerock-config/forgerock-config.module';
-import { ForgerockAlertModule } from 'forgerock/src/app/components/forgerock-alert/forgerock-alert.module';
+import { ForgerockConfigModule } from 'ob-ui-libs/services/forgerock-config';
+import { ForgerockAlertModule } from 'ob-ui-libs/components/forgerock-alert';
 
 import { AnalyticsDashboardDynamicComponent } from './dynamic.component';
 import { AnalyticsWidgetCardModule } from 'analytics/src/app/components/widget-card/widget-card.module';

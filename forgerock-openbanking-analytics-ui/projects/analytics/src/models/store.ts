@@ -1,7 +1,7 @@
 // tslint:disable-next-line
 import { Chart } from 'chart.js';
 import { ITableFilterList, ITableSortList } from './metrics';
-import { IOIDCState } from 'forgerock/src/app/modules/oidc/models';
+import { IOIDCState } from 'ob-ui-libs/oidc';
 
 export interface IChart {
   isFetching: boolean;

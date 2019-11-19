@@ -2,8 +2,7 @@ import { Action } from '@ngrx/store';
 import { IPDFState, IState, IPdfReportConfig } from 'analytics/src/models';
 import _get from 'lodash-es/get';
 
-import { types as logoutTypes } from 'forgerock/src/app/modules/authentication/store/reducers/logout';
-
+import { OIDCLogoutTypes } from 'ob-ui-libs/oidc';
 export const types = {
   PDF_GET_REQUEST: 'PDF_GET_REQUEST',
   PDF_GET_SUCCESS: 'PDF_GET_SUCCESS',
@@ -48,8 +47,8 @@ export default function pdfReducer(state: IPDFState = DEFAULT_STATE, action: any
         }
       };
     }
-    case logoutTypes.LOGOUT_ERROR:
-    case logoutTypes.LOGOUT_SUCCESS: {
+    case OIDCLogoutTypes.LOGOUT_ERROR:
+    case OIDCLogoutTypes.LOGOUT_SUCCESS: {
       return DEFAULT_STATE;
     }
     default:

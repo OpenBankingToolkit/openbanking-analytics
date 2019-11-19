@@ -8,7 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MetricsService } from '../../../services/metrics.service';
 import { AnaltyticsWidgetTableModule } from '../../widget-table/widget-table.module';
 import { EndpointUsageRawTableComponent } from 'analytics/src/app/components/settings/endpoint-usage-raw-table/endpoint-usage-raw-table.component';
-import { ForgerockConfirmDialogModule } from 'forgerock/src/app/components/forgerock-confirm-dialog/forgerock-confirm-dialog.module';
+import { ForgerockConfirmDialogModule } from 'ob-ui-libs/components/forgerock-confirm-dialog';
 
 const declarations = [EndpointUsageRawTableComponent];
 

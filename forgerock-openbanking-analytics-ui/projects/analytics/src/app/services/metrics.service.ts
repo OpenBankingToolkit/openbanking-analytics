@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { ForgerockConfigService } from 'forgerock/src/app/services/forgerock-config/forgerock-config.service';
+import { ForgerockConfigService } from 'ob-ui-libs/services/forgerock-config';
 import {
   IActivityTypeEndpointParams,
   IChartsEndpointParams,

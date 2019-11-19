@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-import { ForgerockConfigService } from 'forgerock/src/app/services/forgerock-config/forgerock-config.service';
+import { ForgerockConfigService } from 'ob-ui-libs/services/forgerock-config';
 import defaultDashboardsConfig from '../dashboards.config';
 import { IDashboardConfig } from 'analytics/src/models';
 @Component({

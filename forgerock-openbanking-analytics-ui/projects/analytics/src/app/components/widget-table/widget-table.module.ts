@@ -7,7 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { AnaltyticsWidgetTableComponent } from './widget-table.component';
 import { AnalyticsTablePipesModule } from '../../pipes/table.pipes.module';
-import { ForgerockAlertModule } from 'forgerock/src/app/components/forgerock-alert/forgerock-alert.module';
+import { ForgerockAlertModule } from 'ob-ui-libs/components/forgerock-alert';
 
 const declarations = [AnaltyticsWidgetTableComponent];
 

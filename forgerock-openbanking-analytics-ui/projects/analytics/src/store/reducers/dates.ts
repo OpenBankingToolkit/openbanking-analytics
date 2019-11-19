@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { IDatesState, IState, IDatesPeriod } from 'analytics/src/models';
 import _get from 'lodash-es/get';
 
-import { types as logoutTypes } from 'forgerock/src/app/modules/authentication/store/reducers/logout';
+import { OIDCLogoutTypes } from 'ob-ui-libs/oidc';
 import { getFormattedDatesFromPeriod } from 'analytics/src/utils/dates';
 
 export const types = {
@@ -28,8 +28,8 @@ export default function pdfReducer(state: IDatesState = DEFAULT_STATE, action: a
     case types.DATES_SET: {
       return { from: action.payload.from, to: action.payload.to };
     }
-    case logoutTypes.LOGOUT_ERROR:
-    case logoutTypes.LOGOUT_SUCCESS: {
+    case OIDCLogoutTypes.LOGOUT_ERROR:
+    case OIDCLogoutTypes.LOGOUT_SUCCESS: {
       return DEFAULT_STATE;
     }
     default:

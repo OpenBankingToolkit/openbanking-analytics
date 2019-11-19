@@ -4,7 +4,7 @@ import { IChartsState, IState } from 'analytics/src/models';
 import { Chart } from 'chart.js';
 import _get from 'lodash-es/get';
 
-import { types as logoutTypes } from 'forgerock/src/app/modules/authentication/store/reducers/logout';
+import { OIDCLogoutTypes } from 'ob-ui-libs/oidc';
 import { types as datesTypes, selectDateFrom, selectDateTo } from './dates';
 
 export const types = {
@@ -76,8 +76,8 @@ export default function chartsReducer(state: IChartsState = DEFAULT_STATE, actio
       };
     }
     case datesTypes.DATES_SET:
-    case logoutTypes.LOGOUT_ERROR:
-    case logoutTypes.LOGOUT_SUCCESS: {
+    case OIDCLogoutTypes.LOGOUT_ERROR:
+    case OIDCLogoutTypes.LOGOUT_SUCCESS: {
       return DEFAULT_STATE;
     }
     default:

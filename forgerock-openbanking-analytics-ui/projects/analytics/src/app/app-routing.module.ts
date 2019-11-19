@@ -1,23 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ForgerockMainLayoutComponent } from 'forgerock/src/app/layouts/main-layout/main-layout.component';
-import { SimpleLayoutComponent } from 'forgerock/src/app/layouts/simple/simple.component';
-import { ForgerockSimpleLayoutModule } from 'forgerock/src/app/layouts/simple/simple.module';
-import { ForgerockMainLayoutModule } from 'forgerock/src/app/layouts/main-layout/main-layout.module';
 import {
+  ForgerockMainLayoutComponent,
+  ForgerockMainLayoutModule,
   IForgerockMainLayoutConfig,
   IForgerockMainLayoutNavigations
-} from 'forgerock/src/app/layouts/main-layout/models';
-import { ForgerockPDFLayoutModule } from 'forgerock/src/app/layouts/pdf/pdf.module';
-import { PDFLayoutComponent } from 'forgerock/src/app/layouts/pdf/pdf.component';
+} from 'ob-ui-libs/layouts/main-layout';
+import { ForgerockPDFLayoutModule, PDFLayoutComponent } from 'ob-ui-libs/layouts/pdf';
 import { AnalyticsToolbarMenuComponentModule } from './components/toolbar-menu/toolbar-menu.module';
 import { AnalyticsToolbarMenuContainer } from './components/toolbar-menu/toolbar-menu.container';
-import { ForegerockGDPRConsentGuard } from 'forgerock/src/app/modules/gdpr/gdpr.guard.service';
-import { ForgerockGDPRService } from 'forgerock/src/app/modules/gdpr/gdpr.service';
-import { ForgerockCustomerCanAccessGuard } from 'forgerock/src/app/guards/can-customer-load';
-import { ForgerockAuthRedirectOIDCComponent } from 'forgerock/src/app/modules/oidc/oidc.component';
-import { IsConnectedGuard } from 'forgerock/src/app/modules/oidc/oidc.guard.service';
+import { ForgerockCustomerCanAccessGuard } from 'ob-ui-libs/guards';
+import { ForgerockAuthRedirectOIDCComponent, IsOIDCConnectedGuard } from 'ob-ui-libs/oidc';
+import { ForgerockGDPRService, ForegerockGDPRConsentGuard } from 'ob-ui-libs/gdpr';
+import { ForgerockSimpleLayoutModule, SimpleLayoutComponent } from 'ob-ui-libs/layouts/simple';
 
 export const routes: Routes = [
   {
@@ -41,23 +37,18 @@ export const routes: Routes = [
     children: [
       {
         path: '404',
+        pathMatch: 'full',
         loadChildren: () =>
-          import('forgerock/src/app/components/forgerock-not-found/forgerock-not-found.module').then(
-            m => m.ForgerockNotFoundModule
-          )
+          import('forgerock/src/ob-ui-libs-lazy/not-found.module').then(m => m.OBUILibsLazyNotFoundPage)
       },
       {
         path: 'dev/info',
         pathMatch: 'full',
-        loadChildren: () =>
-          import('forgerock/src/app/components/forgerock-dev-info/forgerock-dev-info.module').then(
-            m => m.ForgerockDevInfoModule
-          )
+        loadChildren: () => import('forgerock/src/ob-ui-libs-lazy/dev-info.module').then(m => m.OBUILibsLazyDevInfoPage)
       },
       {
         path: ForgerockGDPRService.gdprDeniedPage,
-        loadChildren: () =>
-          import('forgerock/src/app/modules/gdpr/page/gdpr.page.module').then(m => m.ForgerockGDPRPageModule)
+        loadChildren: () => import('forgerock/src/ob-ui-libs-lazy/gdpr.module').then(m => m.OBUILibsLazyGDPRPage)
       }
     ]
   },
@@ -69,13 +60,13 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: 'analytics/src/app/pages/dashboard/dashboard.module#AnalyticsDashboardModule',
-        canActivate: [IsConnectedGuard]
+        canActivate: [IsOIDCConnectedGuard]
       },
       {
         path: 'pdf-creator',
         loadChildren: 'analytics/src/app/pages/pdf-edition/pdf-edition.module#AnalyticsPdfEditionModule',
         canLoad: [ForgerockCustomerCanAccessGuard],
-        canActivate: [IsConnectedGuard]
+        canActivate: [IsOIDCConnectedGuard]
       },
       {
         path: 'session-lost',
@@ -86,7 +77,7 @@ export const routes: Routes = [
         loadChildren: 'analytics/src/app/pages/settings/settings.module#SettingsModule',
         canLoad: [ForgerockCustomerCanAccessGuard],
         pathMatch: 'full',
-        canActivate: [IsConnectedGuard]
+        canActivate: [IsOIDCConnectedGuard]
       }
     ]
   },

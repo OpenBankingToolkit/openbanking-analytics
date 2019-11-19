@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { ForgerockChartModule } from 'forgerock/src/app/components/forgerock-chart/forgerock-chart.module';
-import { ForgerockSplitFlapModule } from 'forgerock/src/app/components/forgerock-splitflap/forgerock-splitflap.module';
-import { ForgerockAlertModule } from 'forgerock/src/app/components/forgerock-alert/forgerock-alert.module';
+import { ForgerockChartModule } from 'ob-ui-libs/components/forgerock-chart';
+import { ForgerockSplitFlapModule } from 'ob-ui-libs/components/forgerock-splitflap';
+import { ForgerockAlertModule } from 'ob-ui-libs/components/forgerock-alert';
 
 import { MetricsService } from '../../services/metrics.service';
 import { JWKMSValidationContainerComponent } from './jwkms-validation.container';

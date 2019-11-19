@@ -5,7 +5,7 @@ import _set from 'lodash-es/set';
 import _uniq from 'lodash-es/uniq';
 import _findIndex from 'lodash-es/findIndex';
 
-import { types as logoutTypes } from 'forgerock/src/app/modules/authentication/store/reducers/logout';
+import { OIDCLogoutTypes } from 'ob-ui-libs/oidc';
 import { ITableReponseUnion } from 'analytics/src/models/metrics';
 import { types as datesTypes } from './dates';
 import { ITableFilter, ITableSort, ITableSortList, ITableFilterList } from 'analytics/src/models';
@@ -249,8 +249,8 @@ export default function tableReducer(state: IWidgetTableState = DEFAULT_STATE, a
         }
       };
     }
-    case logoutTypes.LOGOUT_ERROR:
-    case logoutTypes.LOGOUT_SUCCESS: {
+    case OIDCLogoutTypes.LOGOUT_ERROR:
+    case OIDCLogoutTypes.LOGOUT_SUCCESS: {
       return DEFAULT_STATE;
     }
     default:

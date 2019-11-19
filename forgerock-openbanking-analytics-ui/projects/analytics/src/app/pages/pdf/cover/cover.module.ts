@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PdfCoverComponent } from './cover.component';
 import { PdfPageModule } from '../page/page.module';
-import { ForgerockCustomerLogoModule } from 'forgerock/src/app/components/forgerock-customer-logo/forgerock-customer-logo.module';
+import { ForgerockCustomerLogoModule } from 'ob-ui-libs/components/forgerock-customer-logo';
 
 @NgModule({
   declarations: [PdfCoverComponent],

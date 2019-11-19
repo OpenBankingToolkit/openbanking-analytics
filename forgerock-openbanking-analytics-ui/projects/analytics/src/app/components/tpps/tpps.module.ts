@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { ForgerockChartModule } from 'forgerock/src/app/components/forgerock-chart/forgerock-chart.module';
+import { ForgerockChartModule } from 'ob-ui-libs/components/forgerock-chart';
 
 import { MetricsService } from '../../services/metrics.service';
 import { TppsNumberContainerComponent } from './tpps.number.container';
@@ -11,7 +11,7 @@ import { TppsRoleContainerComponent } from './tpps.role.container';
 import { TppsOriginContainerComponent } from './tpps.origin.container';
 import { TppsRegistrationContainerComponent } from './tpps.registration.container';
 import { TppsTableModule } from './tpps-table/tpps-table.module';
-import { ForgerockAlertModule } from 'forgerock/src/app/components/forgerock-alert/forgerock-alert.module';
+import { ForgerockAlertModule } from 'ob-ui-libs/components/forgerock-alert';
 import { TppsApiTableModule } from 'analytics/src/app/components/tpps/tpps-apis-table/tpps-api-table.module';
 
 const declarations = [

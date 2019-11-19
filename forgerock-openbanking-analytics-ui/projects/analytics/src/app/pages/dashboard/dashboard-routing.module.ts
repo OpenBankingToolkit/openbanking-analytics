@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AnalyticsDashboardDynamicModule } from './dynamic/dynamic.module';
 import { AnalyticsDashboardDynamicComponent } from './dynamic/dynamic.component';
-import { ForgerockCustomerCanAccessGuard } from 'forgerock/src/app/guards/can-customer-load';
+import { ForgerockCustomerCanAccessGuard } from 'ob-ui-libs/guards';
 
 const routes: Routes = [
   {

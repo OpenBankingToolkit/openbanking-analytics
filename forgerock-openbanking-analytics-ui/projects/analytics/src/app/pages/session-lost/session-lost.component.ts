@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ForgerockAuthRedirectOIDCService } from 'forgerock/src/app/modules/oidc/oidc.service';
+import { ForgerockAuthRedirectOIDCService } from 'ob-ui-libs/oidc';
 
 @Component({
   selector: 'app-session-lost',
