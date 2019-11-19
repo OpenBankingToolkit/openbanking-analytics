@@ -1,0 +1,435 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "analytics": {
+      "root": "projects/analytics/",
+      "sourceRoot": "projects/analytics/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": { "@schematics/angular:component": { "styleext": "scss" } },
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "preserveSymlinks": true,
+            "outputPath": "dist/analytics",
+            "index": "projects/analytics/src/index.html",
+            "main": "projects/analytics/src/main.ts",
+            "polyfills": "projects/analytics/src/polyfills.ts",
+            "tsConfig": "projects/analytics/tsconfig.app.json",
+            "assets": ["projects/analytics/src/favicon.ico", "projects/analytics/src/assets"],
+            "styles": ["node_modules/cookieconsent/build/cookieconsent.min.css", "projects/analytics/src/styles.scss"],
+            "scripts": ["node_modules/cookieconsent/build/cookieconsent.min.js"],
+            "stylePreprocessorOptions": { "includePaths": ["utils/scss", "projects/analytics/src/scss"] },
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/analytics/src/environments/environment.ts",
+                  "with": "projects/analytics/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [{ "type": "initial", "maximumWarning": "2mb", "maximumError": "5mb" }]
+            },
+            "ui-integ": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/analytics/src/environments/environment.ts",
+                  "with": "projects/analytics/src/environments/environment.ui-integ.ts"
+                }
+              ]
+            },
+            "localhost": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/analytics/src/environments/environment.ts",
+                  "with": "projects/analytics/src/environments/environment.localhost.ts"
+                }
+              ]
+            },
+            "ui-integ-hl": {
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "customers/hl/apps/analytics/scss",
+                  "customers/hl/scss",
+                  "utils/scss",
+                  "projects/analytics/src/scss"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "projects/analytics/src/environments/environment.ts",
+                  "with": "projects/analytics/src/environments/environment.ui-integ.ts"
+                },
+                {
+                  "replace": "projects/analytics/src/assets/logos/icon.svg",
+                  "with": "customers/hl/assets/logos/icon.svg"
+                },
+                {
+                  "replace": "projects/analytics/src/assets/logos/logo.svg",
+                  "with": "customers/hl/assets/logos/logo.svg"
+                },
+                {
+                  "replace": "projects/analytics/src/assets/splashscreen.css",
+                  "with": "customers/hl/assets/splashscreen.css"
+                }
+              ]
+            },
+            "ui-integ-bendigobank": {
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "customers/bendigobank/apps/analytics/scss",
+                  "customers/bendigobank/scss",
+                  "utils/scss",
+                  "projects/analytics/src/scss"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "projects/analytics/src/environments/environment.ts",
+                  "with": "projects/analytics/src/environments/environment.ui-integ.ts"
+                },
+                {
+                  "replace": "projects/analytics/src/assets/logos/icon.svg",
+                  "with": "customers/bendigobank/assets/logos/icon.svg"
+                },
+                {
+                  "replace": "projects/analytics/src/assets/logos/logo.svg",
+                  "with": "customers/bendigobank/assets/logos/logo.svg"
+                },
+                {
+                  "replace": "projects/analytics/src/assets/splashscreen.css",
+                  "with": "customers/bendigobank/assets/splashscreen.css"
+                }
+              ]
+            },
+            "ui-integ-citibank": {
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "customers/citibank/apps/analytics/scss",
+                  "customers/citibank/scss",
+                  "utils/scss",
+                  "projects/analytics/src/scss"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "projects/analytics/src/environments/environment.ts",
+                  "with": "projects/analytics/src/environments/environment.ui-integ.ts"
+                },
+                {
+                  "replace": "projects/analytics/src/assets/logos/icon.svg",
+                  "with": "customers/citibank/assets/logos/icon.svg"
+                },
+                {
+                  "replace": "projects/analytics/src/assets/logos/logo.svg",
+                  "with": "customers/citibank/assets/logos/logo.svg"
+                },
+                {
+                  "replace": "projects/analytics/src/assets/splashscreen.css",
+                  "with": "customers/citibank/assets/splashscreen.css"
+                }
+              ]
+            },
+            "ui-integ-jpmorgan": {
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "customers/jpmorgan/apps/analytics/scss",
+                  "customers/jpmorgan/scss",
+                  "utils/scss",
+                  "projects/analytics/src/scss"
+                ]
+              },
+              "fileReplacements": [
+                {
+                  "replace": "projects/analytics/src/environments/environment.ts",
+                  "with": "projects/analytics/src/environments/environment.ui-integ.ts"
+                },
+                {
+                  "replace": "projects/analytics/src/assets/logos/icon.svg",
+                  "with": "customers/jpmorgan/assets/logos/icon.svg"
+                },
+                {
+                  "replace": "projects/analytics/src/assets/logos/logo.svg",
+                  "with": "customers/jpmorgan/assets/logos/logo.svg"
+                },
+                {
+                  "replace": "projects/analytics/src/assets/splashscreen.css",
+                  "with": "customers/jpmorgan/assets/splashscreen.css"
+                }
+              ]
+            },
+            "forgerock": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/analytics/src/environments/environment.ts",
+                  "with": "projects/analytics/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "statsJson": true,
+              "es5BrowserSupport": true
+            },
+            "hackathon": {
+              "main": "projects/analytics/src/index.build.ts",
+              "polyfills": "projects/analytics/src/index.build.ts",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "customers/hackathon/apps/analytics/scss",
+                  "customers/hackathon/scss",
+                  "utils/scss",
+                  "projects/analytics/src/scss"
+                ]
+              },
+              "optimization": true,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            },
+            "lloyds": {
+              "main": "projects/analytics/src/index.build.ts",
+              "polyfills": "projects/analytics/src/index.build.ts",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "customers/lloyds/apps/analytics/scss",
+                  "customers/lloyds/scss",
+                  "utils/scss",
+                  "projects/analytics/src/scss"
+                ]
+              },
+              "optimization": true,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            },
+            "hl": {
+              "main": "projects/analytics/src/index.build.ts",
+              "polyfills": "projects/analytics/src/index.build.ts",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "customers/hl/apps/analytics/scss",
+                  "customers/hl/scss",
+                  "utils/scss",
+                  "projects/analytics/src/scss"
+                ]
+              },
+              "optimization": true,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            },
+            "vanquis": {
+              "main": "projects/analytics/src/index.build.ts",
+              "polyfills": "projects/analytics/src/index.build.ts",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "customers/vanquis/apps/analytics/scss",
+                  "customers/vanquis/scss",
+                  "utils/scss",
+                  "projects/analytics/src/scss"
+                ]
+              },
+              "optimization": true,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            },
+            "westpac": {
+              "main": "projects/analytics/src/index.build.ts",
+              "polyfills": "projects/analytics/src/index.build.ts",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "customers/westpac/apps/analytics/scss",
+                  "customers/westpac/scss",
+                  "utils/scss",
+                  "projects/analytics/src/scss"
+                ]
+              },
+              "optimization": true,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            },
+            "standard-chartered": {
+              "main": "projects/analytics/src/index.build.ts",
+              "polyfills": "projects/analytics/src/index.build.ts",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "customers/standard-chartered/apps/analytics/scss",
+                  "customers/standard-chartered/scss",
+                  "utils/scss",
+                  "projects/analytics/src/scss"
+                ]
+              },
+              "optimization": true,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            },
+            "islandsbanki": {
+              "main": "projects/analytics/src/index.build.ts",
+              "polyfills": "projects/analytics/src/index.build.ts",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "customers/islandsbanki/apps/analytics/scss",
+                  "customers/islandsbanki/scss",
+                  "utils/scss",
+                  "projects/analytics/src/scss"
+                ]
+              },
+              "optimization": true,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": true,
+              "projectNamedChunks": false,
+              "aot": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            },
+            "bendigobank": {
+              "main": "projects/analytics/src/index.build.ts",
+              "polyfills": "projects/analytics/src/index.build.ts",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "customers/bendigobank/apps/analytics/scss",
+                  "customers/bendigobank/scss",
+                  "utils/scss",
+                  "projects/analytics/src/scss"
+                ]
+              },
+              "optimization": true,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": true,
+              "projectNamedChunks": false,
+              "aot": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            },
+            "jpmorgan": {
+              "main": "projects/analytics/src/index.build.ts",
+              "polyfills": "projects/analytics/src/index.build.ts",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "customers/jpmorgan/apps/analytics/scss",
+                  "customers/jpmorgan/scss",
+                  "utils/scss",
+                  "projects/analytics/src/scss"
+                ]
+              },
+              "optimization": true,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": true,
+              "projectNamedChunks": false,
+              "aot": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            },
+            "citibank": {
+              "main": "projects/analytics/src/index.build.ts",
+              "polyfills": "projects/analytics/src/index.build.ts",
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "customers/citibank/apps/analytics/scss",
+                  "customers/citibank/scss",
+                  "utils/scss",
+                  "projects/analytics/src/scss"
+                ]
+              },
+              "optimization": true,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": true,
+              "projectNamedChunks": false,
+              "aot": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": false
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "analytics:build",
+            "host": "analytics.dev-ob.forgerock.financial",
+            "ssl": true,
+            "port": 4206,
+            "sslCert": "ssl/all.dev-ob.forgerock.financial.crt",
+            "sslKey": "ssl/k-all.dev-ob.forgerock.financial.key",
+            "proxyConfig": "projects/analytics/proxy.conf.json"
+          },
+          "configurations": { "production": { "browserTarget": "analytics:build:production" } }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": { "browserTarget": "analytics:build" }
+        },
+        "test": { "builder": "@angular-builders/jest:run", "options": { "no-cache": true, "reporters": ["default"] } },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["projects/analytics/tsconfig.app.json", "projects/analytics/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**", "projects/analytics/server/**"]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "forgerock-openbanking-ui"
+}

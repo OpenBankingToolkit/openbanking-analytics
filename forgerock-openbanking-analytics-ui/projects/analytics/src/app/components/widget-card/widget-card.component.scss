@@ -1,0 +1,75 @@
+@mixin analytics-widget-card-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  $is-dark: map-get($theme, is-dark);
+
+  app-widget-card {
+    display: block;
+    mat-card {
+      height: 100%;
+      flex-direction: column;
+      display: flex !important;
+
+      mat-card-content mat-expansion-panel {
+        margin-bottom: 1em !important;
+        box-shadow: none !important;
+        .mat-expansion-panel-body {
+          background-color: mat-color($accent, 50);
+          color: mat-color(map-get($accent, 'contrast'), 50);
+          padding: 20px;
+          p {
+            margin: 0;
+          }
+        }
+      }
+
+      mat-icon.info {
+        color: mat-color($accent, 500);
+      }
+
+      mat-card-actions {
+        padding: 0 !important;
+      }
+    }
+    mat-card-header {
+      .mat-card-header-text {
+        margin: 0;
+        width: 100%;
+      }
+      mat-card-title {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+    mat-card-content {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &.pdf {
+      mat-card {
+        box-shadow: none !important;
+        padding: 0;
+      }
+      mat-card-title {
+        font-size: 15px;
+        white-space: normal !important;
+      }
+      tr {
+        height: 40px;
+      }
+      td {
+        font-size: 12px;
+      }
+      mat-paginator,
+      .filter-input {
+        display: none;
+      }
+    }
+  }
+}

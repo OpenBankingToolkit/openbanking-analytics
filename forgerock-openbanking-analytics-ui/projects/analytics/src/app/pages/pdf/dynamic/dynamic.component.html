@@ -1,0 +1,27 @@
+<ng-container *ngIf="pdf && !error">
+  <ng-container *ngFor="let page of pdf.pages; index as i">
+    <forgerock-pdf-cover
+      *ngIf="page.type === 'COVER'"
+      [title]="page.title"
+      [from]="from"
+      [to]="to"
+      [orientation]="page.orientation"
+    ></forgerock-pdf-cover>
+    <forgerock-pdf-page
+      *ngIf="page.type === 'PAGE'"
+      [orientation]="page.orientation"
+      fxLayoutGap="5px grid"
+      fxLayout="row wrap"
+    >
+      <app-widget-card
+        *ngFor="let widget of page.widgets"
+        pdf="true"
+        [showInfo]="widget.info"
+        [fxFlex]="widget.width"
+        [type]="widget.type"
+        [attributes]="widget.attributes"
+      ></app-widget-card>
+    </forgerock-pdf-page>
+  </ng-container>
+</ng-container>
+<forgerock-alert *ngIf="error" color="warn">{{ error }}</forgerock-alert>

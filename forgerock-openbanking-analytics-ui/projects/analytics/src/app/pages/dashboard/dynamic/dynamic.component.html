@@ -1,0 +1,17 @@
+<ng-container *ngIf="dashboard; else unknown">
+  <app-dashboard-toolbar-container
+    title="{{ dashboard.title | translate }}"
+    [pdfPath]="route"
+  ></app-dashboard-toolbar-container>
+  <div fxLayoutGap="20px grid" fxLayout.lt-md="column" fxLayout="row wrap">
+    <app-widget-card
+      *ngFor="let widget of dashboard.widgets"
+      fxFlex="100"
+      [fxFlex.gt-sm]="widget.width"
+      [fxFlexOffset.gt-sm]="widget.offset"
+      [type]="widget.type"
+      [attributes]="widget.attributes"
+    ></app-widget-card>
+  </div>
+</ng-container>
+<ng-template #unknown><forgerock-alert color="warn">This dashboard does not exist</forgerock-alert> </ng-template>

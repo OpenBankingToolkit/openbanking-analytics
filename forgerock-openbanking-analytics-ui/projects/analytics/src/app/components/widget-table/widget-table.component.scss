@@ -1,0 +1,78 @@
+@mixin analytics-widget-table-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  $is-dark: map-get($theme, is-dark);
+
+  table.mat-table {
+    width: 100%;
+    .mat-column-response-time-percentile-99,
+    .mat-column-response-time-percentile-95,
+    .mat-column-response-time-percentile-90,
+    .mat-column-response-time-percentile-85,
+    .mat-column-response-time-median,
+    .mat-column-response-time-average,
+    .mat-column-response-time-by-mb-percentile-99,
+    .mat-column-response-time-by-mb-percentile-95,
+    .mat-column-response-time-by-mb-percentile-90,
+    .mat-column-response-time-by-mb-percentile-85,
+    .mat-column-response-time-by-mb-median,
+    .mat-column-response-time-by-mb-average {
+      text-align: right;
+    }
+
+    .mat-header-cell:not([mat-sort-header]) {
+      text-align: left;
+    }
+
+    .mat-sort-header-button {
+      text-align: left;
+      flex-direction: column;
+      align-items: normal;
+    }
+
+    td,
+    th {
+      padding-left: 5px;
+    }
+
+    .method.DELETE {
+      color: if($is-dark, #760002, #cc0100);
+    }
+    .method.POST {
+      color: if($is-dark, #cc860b, #cc860b);
+    }
+    .method.PUT {
+      color: if($is-dark, #3e84f7, #002ecc);
+    }
+    .method.GET {
+      color: if($is-dark, #45f964, #0db92a);
+    }
+
+    .response-time-per-kb-unity,
+    .response-time-unity {
+      font-size: 0.8em;
+      opacity: 0.8;
+    }
+
+    .method {
+      padding-right: 3px;
+      display: inline-block;
+      width: 60px;
+    }
+
+    .tpp-logo-uri {
+      max-width: 100px;
+      max-height: 30px;
+      margin-right: 10px;
+    }
+
+    .filter-input {
+      background-color: mat-color($background, status-bar);
+      padding: 5px;
+      border-radius: 5px;
+    }
+  }
+}

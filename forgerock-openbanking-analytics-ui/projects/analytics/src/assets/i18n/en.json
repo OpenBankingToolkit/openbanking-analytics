@@ -1,0 +1,346 @@
+{
+  "404": "The page you are looking for does not exist",
+  "SIGNOUT": "Sign out",
+  "LOGIN": "Login",
+  "EMPTY": "Empty",
+  "GDPR": {
+    "TITLE": "Access denied",
+    "TEXT": "In order to use this application, you must comply with our cookie policy."
+  },
+  "NAV": {
+    "TPP": "TPP",
+    "GSU": "General Service Usage",
+    "SECURITY": "Security",
+    "DIRECTORY": "Directory",
+    "JWKMS": "JWKMS",
+    "READ_WRITE_API": "Read/Write APIs",
+    "ACCOUNTS": "Accounts APIs",
+    "PAYMENTS": "Payments APIs",
+    "FUNDS_CONFIRMATION": "Confirmation of Funds APIs",
+    "EVENTS_NOTIFICATIONS": "Events notifications APIs",
+    "SETTINGS": "Settings"
+  },
+  "PERIODS": {
+    "TODAY": "Today",
+    "YESTERDAY": "Yesterday",
+    "LAST_3_DAYS": "Last 3 days",
+    "CURRENT_WEEK": "This week",
+    "LAST_WEEK": "Last week",
+    "LAST_3_WEEKS": "Last 3 weeks",
+    "LAST_6_WEEKS": "Last 6 weeks",
+    "LAST_MONTH": "Last month",
+    "LAST_3_MONTHS": "Last 3 months",
+    "LAST_6_MONTHS": "Last 6 months",
+    "CURRENT_YEAR": "This year",
+    "LAST_YEAR": "Last year"
+  },
+  "PDF_CREATOR": {
+    "WIDGET_COUNT": "{{count}} widget",
+    "WIDGETS_COUNT": "{{count}} widgets",
+    "WIDGET_WIDTH": "{{value}}%",
+    "NO_WIDGET": "No widget yet",
+    "WIDGETS": "Widgets",
+    "PAGE": "Page",
+    "PAGES": "Pages",
+    "COVER": "Section",
+    "ERROR_PARSING": "Cannot parse PDF configuration sorry",
+    "ORIENTATION": "Orientation",
+    "TYPE": "Type",
+    "WIDTH": "Width",
+    "ORIENTATION_PORTRAIT": "Portrait",
+    "ORIENTATION_LANDSCAPE": "Landscape"
+  },
+  "WIDGETS": {
+    "TABLE": {
+      "COLUMNS": {
+        "identityId": "Identity",
+        "userType": "User type",
+        "count": "Nb Calls",
+        "responseStatus": "Response status",
+        "endpoint": "Endpoint",
+        "tpp": "TPP",
+        "organisation": "Organisation",
+
+        "response-time-percentile-95": "p95",
+        "response-time-percentile-85": "p85",
+        "response-time-median": "p50",
+        "response-time-average": "avg",
+
+        "response-time-by-mb-percentile-95": "p95 /mb",
+        "response-time-by-mb-percentile-85": "p85 /mb",
+        "response-time-by-mb-median": "p50 /mb",
+        "response-time-by-mb-average": "avg /mb",
+        "FILTER": "Filter",
+
+        "obVersion": "OB version",
+        "endpointType": "Type",
+        "application": "Application",
+        "date": "Date",
+        "ip": "IP",
+
+        "organisationName": "Organisation",
+        "name": "Tpp name",
+        "oidcClientId": "OIDC client ID",
+        "directoryId": "Directory"
+      }
+    },
+    "LEGENDS": {
+      "ACCOUNT_REQUEST": "Account Request",
+      "PAYMENT_SINGLE_REQUEST": "Single Payment Request",
+
+      "ACCOUNT_ACCESS_CONSENT": "Account Access Consent",
+
+      "PAYMENT_DOMESTIC_CONSENT": "Domestic Payment",
+      "PAYMENT_DOMESTIC_SCHEDULED_CONSENT": "Domestic Scheduled Payment",
+      "PAYMENT_DOMESTIC_STANDING_ORDERS_CONSENT": "Domestic Standing Orders",
+      "PAYMENT_INTERNATIONAL_CONSENT": "International Payment",
+      "PAYMENT_INTERNATIONAL_SCHEDULED_CONSENT": "International Schedule Payment",
+      "PAYMENT_INTERNATIONAL_STANDING_ORDERS_CONSENT": "International Standing Orders",
+      "PAYMENT_FILE_CONSENT": "File Payment",
+
+      "FUNDS_CONFIRMATION_CONSENT": "Confirmation of funds",
+
+      "PAYMENT_REQUEST_LEGACY": "Payment Request (old version)",
+      "ACCOUNT_REQUEST_LEGACY": "Account request (old version)",
+
+      "AUTHORISED": "Authorised",
+      "AWAITINGAUTHORISATION": "Awaiting Authorisation",
+      "CONSUMED": "Consumed",
+      "REJECTED": "Rejected",
+      "ACCEPTEDCUSTOMERPROFILE": "Accepted Customer Profile",
+      "ACCEPTEDSETTLEMENTCOMPLETED": "Accepted Settlement Completed",
+      "ACCEPTEDSETTLEMENTINPROCESS": "Accepted Settlement In Process",
+      "ACCEPTEDTECHNICALVALIDATION": "Accepted Technical Validation",
+      "PENDING": "Pending",
+      "REVOKED": "Revoked",
+      "AWAITINGUPLOAD": "Awaiting upload",
+
+      "GET_DOMESTIC_PAYMENT_CONSENTS_CONSENT_ID_FUNDS_CONFIRMATION": "Domestic Payment",
+      "GET_INTERNATIONAL_PAYMENT_CONSENTS_CONSENT_ID_FUNDS_CONFIRMATION": "International Payment",
+      "GET_INTERNATIONAL_SCHEDULED_PAYMENT_CONSENTS_CONSENT_ID_FUNDS_CONFIRMATION": "International Scheduled Payment",
+
+      "PISP": "PISP",
+      "AISP": "AISP",
+      "CBPII": "CBPII",
+      "DATA": "DATA",
+      "ASPSP": "ASPSP",
+
+      "METRIC": "Analytics",
+      "DIRECTORY": "ForgeRock Directory",
+      "BANK": "Bank",
+      "MANUAL_ONBOARDING": "Manual OnBoarding",
+
+      "ForgeRock": "ForgeRock",
+      "Open Banking": "Open Banking",
+
+      "True": "True",
+      "False": "False",
+
+      "1xx": "1xx (Informational)",
+      "2xx": "2xx (Successful)",
+      "3xx": "3xx (Redirection)",
+      "4xx": "4xx (Client Error)",
+      "5xx": "5xx (Server Error)",
+
+      "BY_NB_CALLS": "Number of calls",
+      "BY_RESPONSE_TIME_PERCENTILE_95": "Response time P95",
+      "BY_RESPONSE_TIME_PERCENTILE_85": "Response time P85",
+      "BY_RESPONSE_TIME_MEDIAN": "Response time P50",
+      "BY_RESPONSE_TIME_AVERAGE": "Response time Avg",
+
+      "BY_RESPONSE_TIME_BY_MB_PERCENTILE_95": "Response time / kb P95",
+      "BY_RESPONSE_TIME_BY_MB_PERCENTILE_85": "Response time / kb P85",
+      "BY_RESPONSE_TIME_BY_MB_MEDIAN": "Response time / kb P50",
+      "BY_RESPONSE_TIME_BY_MB_AVERAGE": "Response time / kb Avg"
+    },
+
+    "#": "GSU",
+
+    "COUNTER_GSU_PSUS.TITLE": "Number of new PSUs",
+    "COUNTER_GSU_PSUS.INFO": "PSU represent the bank user customers. They are the one that own the bank resources and give access to them or make payment to TPPs.\n\nThis KPI counts the number of PSU created this period.",
+
+    "COUNTER_GSU_TPPS.TITLE": "Number of new TPPs",
+    "COUNTER_GSU_TPPS.INFO": "TPPs represent the fintech applications/developer that are using the sandbox.\n\nThis KPI counts the number of TPPs that registered during this period. It also represent the number of OIDC clients in the sandbox for that period.\n\nNote that the TPP could delete their OIDC client and therefore would not be count.",
+
+    "DOUGHNUT_GSU_OBRI_SESSIONS.TITLE": "Number of user sessions",
+    "DOUGHNUT_GSU_OBRI_SESSIONS.INFO": "Every UI applications of OBRI manages identity and therefore issue sessions to users.\n\nThis KPI counts the number of session issues for our UI applications, and distribute them by applications.\nThis give you an idea of the number of users that login by applications.",
+
+    "DOUGHNUT_GSU_CALL_BY_STATUS.TITLE": "Number of endpoint calls by response status",
+    "DOUGHNUT_GSU_CALL_BY_STATUS.INFO": "Each time a request is made to the sandbox, it will responde to the user with a HTTP code.\n\nThis KPI gives the distribution of endpoints call by response status.\nAs we are a sandbox, we would expect a higher number of 4xx that you would expect for a production environment.\nThis can easily be explain by the fact that developers uses a sandbox as a learning tool, and therefore are more inclined \nto do bad request than what they would do against a production environment.",
+
+    "DOUGHNUT_GSU_OB_VERSIONS.TITLE": "Number of endpoint calls by Open Banking API versions",
+    "DOUGHNUT_GSU_OB_VERSIONS.INFO": "The sandbox supports multiple versions of Open Banking at the same time. \nThis KPI represents the distribution of the Open Banking APIs calls by versions.",
+
+    "DOUGHNUT_GSU_OB_API_TYPE.TITLE": "Number of endpoint calls by Open Banking API types",
+    "DOUGHNUT_GSU_OB_API_TYPE.INFO": "The Open Banking APIs are divided in 4 different types:\n- AISP: Account and Transaction APIs\n- PISP: Payment Initiation APIs\n- CBPII: Confirmation of Funds APIs\n- EVENT: Event Notification APIs\n\nThis KPI represents the distribution of the Open Banking APIs calls by API types.",
+
+    "LINE_GSU_API_RESPONSE_TIME.TITLE": "Response times performances to any endpoints",
+    "LINE_GSU_API_RESPONSE_TIME.INFO": "This graph gives you the number of requests by response time. This is actually the best way to visualise the response times distributions of your sandbox.",
+
+    "LINE_GSU_API_CALLS_PER_WEEK.TITLE": "Number of requests to any endpoints of the sandbox, distributed by week days",
+    "LINE_GSU_API_CALLS_PER_WEEK.INFO": "The sandbox receives a number of requests over time. \n\nThis KPI graphs the requested received and aggregate them by week days. This gives you the typical week usage\nthat the sandbox has to handle.\nThis KPI is perfect to schedule planned downtime or evalute the impact of an unplanned downtime.",
+
+    "LINE_GSU_API_CALLS.TITLE": "APIs performances of the overall sandbox for this period",
+    "LINE_GSU_API_CALLS.INFO": "The sandbox receives a number of requests over time. \n\nThis KPI graphs the requests received during this period and draw their response time performances.\nWe use different aggregation method for the response time:\n- the average response time. It's the most intuitive aggregation that you would expect to monitor. Although, it turns out to not be the \nbest way to catch up API performance. Mainly due to the disparity of the response time, which can distore the average value.\nThe average is a good method if the response times are consistant\n- The percentiles x th where x is the percentile value. Percentiles are a better approach to visualise the actual performance of your APIs.\nBasically 95 will reflect your worse requests performance that a user experienced and P50 what 50% user are experiencing.\n\n\nIt can be used to see the overall usage of the sandboxand potentially show the usage growing and slowing down over time.",
+
+    "#": "TPP",
+
+    "DOUGHNUT_TPPS_ORIGIN.TITLE": "TPP Origin directory",
+    "DOUGHNUT_TPPS_ORIGIN.INFO": "The ForgeRock OBRI currently support two directories: ForgeRock and Open Banking\nEach TPP is using certificates and SSA coming from one of those two directories.\nThis KPI gives the distribution of TPPs by directory they used.",
+
+    "BAR_TPPS_ROLES.TITLE": "TPP Roles",
+    "BAR_TPPS_ROLES.INFO": "A TPP role defines what kind of APIs a TPP is allowed to used.\nThe attribution of roles is controle by central authorities, which are the directory.\nWhich means that the directory will define the role that the TPP will have. This is done at\nthe registration of the TPP, via the SSA.\nThe 3 roles defined by the Open Banking standard are AISP, PISP and CBPII.\nIn addition of those, ForgeRock directory defines another role called DATA. This role \nDATA is used to protected private OBRI APIs, which are the PSU data endpoints.\n\nThis KPIs gives the number of TPPs by role. Note that a TPP can have more than one role.",
+
+    "LINE_TPPS_REGISTRATION.TITLE": "Number of requests to the Dynamic registration endpoint",
+    "LINE_TPPS_REGISTRATION.INFO": "The dynamic registration endpoint is used by TPP to register their applications. They can create, update, read and delete their applications via this endpoint.\nThis KPI gives an overview of the calls made to the dynamic registration endpoint.\nIt gives you a view of the calls by response types. As this is a sandbox, we would expect more 4xx response than you would\npotentially expect on a production environment.",
+
+    "TABLE_TPPS_API_USAGE.TITLE": "APIs performances per TPP",
+    "TABLE_TPPS_API_USAGE.INFO": "Each calls made by TPPs to the sandbox are registered. This table gives you the list of the APIs, group by TPP, with their performance associated:\n- pX: gives the percentile Xth of the response time\n- avg: gives the average the response time\n- pX / mb: gives the percentile Xth of the response time per MB\n- avg / mb: gives the average of the response time per MB",
+
+    "TABLE_TPPS_ENTRIES.TITLE": "List of TPPs",
+    "TABLE_TPPS_ENTRIES.INFO": "List of TPPs that registered for this period",
+
+    "#": "Security",
+
+    "COUNTER_SECURITY_ACCESS_TOKEN_GENERATED.TITLE": "Number of access token generated",
+    "COUNTER_SECURITY_ACCESS_TOKEN_GENERATED.INFO": "Access token are generated by ASPSP to give access to resources to TPPs.\nEach time a TPP is executing the authorisation flow successfully, it will generate 2 access tokens.\nAn access token can also generated each time the TPP is using his refresh token to get a new access token.\nAs those token are short life, it's expected that TPP would refresh it in a regular basis.\n\nThis KPI is fundamental for Open Banking, as it gives you a good overview of the usage of our Open Banking APIs.",
+
+    "COUNTER_SECURITY_ID_TOKEN_GENERATED.TITLE": "Number of Id Token generated",
+    "COUNTER_SECURITY_ID_TOKEN_GENERATED.INFO": "ID token are generated by ASPSP at two differents time of the flow. The first use-case is during the authentication flow.\nIt is used mainly for its signature, it's an additional security layer which allows TPP to verify the validity of the response received by the ASPSP via the fragment.\nThe second use-case would be after a call to the access token. This time, the ID token is used for what you would intuitivily think: identity. It can represent the identity of the PSU, although in Open Banking, it is more used to represent the identity of the consent.\nThis KPI is generally a good one to monitor for any OIDC environment. Although its value would dramatically increase if one day,\nthe ID token is more used to represent the PSU than the consent.",
+
+    "LINE_SECURITY_AUTHORISE_REQUESTS.TITLE": "Number of requests to the /authorise endpoint",
+    "LINE_SECURITY_AUTHORISE_REQUESTS.INFO": "The /authorise is a key endpoint for the security of Open Banking. It is the one that is responsable of making sure the PSU has authenticate successfully and have given consent or not to the TPP authorisation request.\nThis endpoint is usually called multiple times (approximatively 3 times) for each authorisation flow.\n\nThis KPI is fundamental for Open Banking.\n",
+
+    "LINE_SECURITY_ACCESS_TOKEN_REQUESTS.TITLE": "Number of requests to the /access_token endpoint",
+    "LINE_SECURITY_ACCESS_TOKEN_REQUESTS.INFO": "The /access_token is a key endpoint for the security of Open Banking. It is used by TPP to get an access token and potentially ID token from the sandbox.\nDirectly related to the number of access token generated, as each access token is a result of a successful request to the /access_token, this KPI gives you still some nice additional informations:\nIt gives you the success rate of your TPP to use this endpoint. For a sandbox, it's important to monitor the difficulty that your TPP may have with some crucial endpoint like /access_token. Therefore, following the success vs failure response is a good KPI to monitor.\n",
+
+    "LINE_SECURITY_AUTHORISE_RESPONSE_TIMES.TITLE": "Response times performances of the /authorise endpoint",
+    "LINE_SECURITY_AUTHORISE_RESPONSE_TIMES.INFO": "This graph gives you the number of requests by response time for the /authorise endpoint. This is actually the best way to visualise the response times distributions for this endpoint.",
+
+    "LINE_SECURITY_ACCESS_TOKEN_RESPONSE_TIMES.TITLE": "Response times performances of the /access_token endpoint",
+    "LINE_SECURITY_ACCESS_TOKEN_RESPONSE_TIMES.INFO": "This graph gives you the number of requests by response time for the /authorise endpoint. This is actually the best way to visualise the response times distributions for this endpoint.",
+
+    "TABLE_SECURITY_USAGE.TITLE": "Security APIs performances",
+    "TABLE_SECURITY_USAGE.INFO": "This table gives you the list of the APIs related to key security feature, with their performance associated:\n- pX: gives the percentile Xth of the response time\n- avg: gives the average the response time\n- pX / mb: gives the percentile Xth of the response time per MB\n- avg / mb: gives the average of the response time per MB",
+
+    "#": "Accounts",
+
+    "DOUGHNUT_ACCOUNTS_CONSENT_TYPE.TITLE": "New account consents by consent type",
+    "DOUGHNUT_ACCOUNTS_CONSENT_TYPE.INFO": "With the different versions of Open Banking, TPP can create different consent type.\nThis KPI represent the new account consents created during this period, distributed by consent type.\n",
+
+    "DOUGHNUT_ACCOUNTS_FLOW_COMPLETED.TITLE": "Account access consent activities by status",
+    "DOUGHNUT_ACCOUNTS_FLOW_COMPLETED.INFO": "Consents are created by TPP and are never deleted for audit reason.\nConsents got their own lifecycle, represented by their status. \nDuring the lifetime of the consent, they are presented to the PSU, owner of the resource, to get his authorisation.\nThe status of the consent is fundamental, as it would define if the TPP can access or not the requested resource.\n\nThis KPI gives the distribution, by status, of the account access consent that has been active during the requested period.\nIn another word, if a account consent has move to a new status during this period, it will be counted and associated to the right status.\n\nWe are talking of activity as a consent can have been created a long time ago, but had a new status, like revoked for example, during the period requested. This means that the sum of all the status doesn't represent the number of consent created during this period.",
+
+    "DOUGHNUT_ACCOUNTS_REQUEST_FLOW_COMPLETED.TITLE": "Account request consent activities by status (< v3.0.0)",
+    "DOUGHNUT_ACCOUNTS_REQUEST_FLOW_COMPLETED.INFO": "Account request is the old name of the account access consent. This name was used before the version 3.0.0 of OB UK standard.\nRead the account access consent for more info",
+
+    "DOUGHNUT_ACCOUNTS_OB_VERSIONS.TITLE": "Number of endpoint calls by Open Banking API versions",
+    "DOUGHNUT_ACCOUNTS_OB_VERSIONS.INFO": "The sandbox supports multiple versions of Open Banking at the same time. \nThis KPI represents the distribution of the Open Banking APIs calls by versions.",
+
+    "TABLE_ACCOUNTS_USAGE.TITLE": "Accounts APIs performances",
+    "TABLE_ACCOUNTS_USAGE.INFO": "This table gives you the list of the APIs related to accounts resources, with their performance associated:\n- pX: gives the percentile Xth of the response time\n- avg: gives the average the response time\n- pX / mb: gives the percentile Xth of the response time per MB\n- avg / mb: gives the average of the response time per MB",
+
+    "#": "Payments",
+
+    "DOUGHNUT_PAYMENTS_OB_VERSIONS.TITLE": "Number of endpoint calls by Open Banking API versions",
+    "DOUGHNUT_PAYMENTS_OB_VERSIONS.INFO": "The sandbox supports multiple versions of Open Banking at the same time. \nThis KPI represents the distribution of the Open Banking APIs calls by versions.",
+
+    "DOUGHNUT_PAYMENTS_CONSENT_TYPE.TITLE": "New payments consents by consent type",
+    "DOUGHNUT_PAYMENTS_CONSENT_TYPE.INFO": "Each kind of payments got their own consent schema.\nThis KPI represent the new payment consents created during this period, distributed by type of payments.",
+
+    "DOUGHNUT_PAYMENTS_COF.TITLE": "Number of payments confirmation of funds by API",
+    "DOUGHNUT_PAYMENTS_COF.INFO": "The Open Banking standard covers the use-case of confirming for the PSU funds during a payment.\nWe call this use-case the payments confirmation of funds.\n\nThis APIs shows the number of confirmation of funds called during a payment, distributed by type of payment.\nNote: do not confuse payment confirmation of funds with the CBPII APIs, which are separared APIs covered in another section.",
+
+    "DOUGHNUT_PAYMENTS_DOMESTIC_CONSENTS_ACTIVITIES.TITLE": "Domestic payments consents activities by status",
+    "DOUGHNUT_PAYMENTS_DOMESTIC_CONSENTS_ACTIVITIES.INFO": "Consents are created by TPP and are never deleted for audit reason.\nConsents got their own lifecycle, represented by their status. \nDuring the lifetime of the consent, they are presented to the PSU, owner of the resource, to get his authorisation.\nThe status of the consent is fundamental, as it would define if the TPP can access or not the requested resource.\n\nThis KPI gives the distribution, by status, of the domestic payment consent that has been active during the requested period.\nIn another word, if a domestic payment consent has move to a new status during this period, it will be counted and associated to the right status.\n\nWe are talking of activity as a consent can have been created a long time ago, but had a new status, like revoked for example, during the period requested. This means that the sum of all the status doesn't represent the number of consent created during this period.\n",
+
+    "DOUGHNUT_PAYMENTS_SINGLE_CONSENTS_ACTIVITIES.TITLE": "Single payments consents activities by status",
+    "DOUGHNUT_PAYMENTS_SINGLE_CONSENTS_ACTIVITIES.INFO": "Single payments consent is the consent used for payment before version 3.0.0 of the OBIE standard.\nRead the domestic payment consent for more information.",
+
+    "DOUGHNUT_PAYMENTS_DOMESTIC_SCHEDULED_CONSENTS_ACTIVITIES.TITLE": "Domestic Scheduled payments consent activities by status",
+    "DOUGHNUT_PAYMENTS_DOMESTIC_SCHEDULED_CONSENTS_ACTIVITIES.INFO": "Similar KPI than Domestic payments but for domestic scheduled payments.\nRead the domestic payment consent for more information.",
+
+    "DOUGHNUT_PAYMENTS_DOMESTIC_STANDING_ORDERS_CONSENTS_ACTIVITIES.TITLE": "Domestic Standing Orders payments consent activities by status",
+    "DOUGHNUT_PAYMENTS_DOMESTIC_STANDING_ORDERS_CONSENTS_ACTIVITIES.INFO": "Similar KPI than Domestic payments but for Domestic Standing Orders payments.\nRead the domestic payment consent for more information.",
+
+    "DOUGHNUT_PAYMENTS_INTERNATIONAL_CONSENTS_ACTIVITIES.TITLE": "International payments consent activities by status",
+    "DOUGHNUT_PAYMENTS_INTERNATIONAL_CONSENTS_ACTIVITIES.INFO": "Similar KPI than Domestic payments but for International Scheduled Orders payments.\nRead the domestic payment consent for more information.",
+
+    "DOUGHNUT_PAYMENTS_INTERNATIONAL_SCHEDULED_CONSENTS_ACTIVITIES.TITLE": "International Scheduled payments consent activities by status",
+    "DOUGHNUT_PAYMENTS_INTERNATIONAL_SCHEDULED_CONSENTS_ACTIVITIES.INFO": "Similar KPI than Domestic payments but for International Scheduled Orders payments.\nRead the domestic payment consent for more information.",
+
+    "DOUGHNUT_PAYMENTS_INTERNATIONAL_STANDING_ORDER_CONSENTS_ACTIVITIES.TITLE": "International Standing Orders payments consent activities by status",
+    "DOUGHNUT_PAYMENTS_INTERNATIONAL_STANDING_ORDER_CONSENTS_ACTIVITIES.INFO": "Similar KPI than Domestic payments but for International Standing Orders payments.\nRead the domestic payment consent for more information.",
+
+    "DOUGHNUT_PAYMENTS_FILE_CONSENTS_ACTIVITIES.TITLE": "Payments endpoints called by OIDC clients",
+    "DOUGHNUT_PAYMENTS_FILE_CONSENTS_ACTIVITIES.INFO": "Similar KPI than Domestic payments but for file payments.\nRead the domestic payment consent for more information.\n",
+
+    "TABLE_PAYMENTS_USAGE.TITLE": "Payments APIs performances",
+    "TABLE_PAYMENTS_USAGE.INFO": "This table gives you the list of the APIs related to payments resources, with their performance associated:\n- pX: gives the percentile Xth of the response time\n- avg: gives the average the response time\n- pX / mb: gives the percentile Xth of the response time per MB\n- avg / mb: gives the average of the response time per MB",
+
+    "#": "Confirmation of funds",
+
+    "DOUGHNUT_CONFIRMATION_OF_FUNDS_CONSENT_TYPE.TITLE": "New confirmation of funds consents by consent type",
+    "DOUGHNUT_CONFIRMATION_OF_FUNDS_CONSENT_TYPE.INFO": "With the different versions of Open Banking, TPP can create different consent type.\nThis KPI represent the new confirmation of funds consents created during this period, distributed by consent type.\n",
+
+    "DOUGHNUT_CONFIRMATION_OF_FUNDS_FLOW_COMPLETED.TITLE": "Confirmation of Funds consents activities by status",
+    "DOUGHNUT_CONFIRMATION_OF_FUNDS_FLOW_COMPLETED.INFO": "Consents are created by TPP and are never deleted for audit reason.\nConsents got their own lifecycle, represented by their status. \nDuring the lifetime of the consent, they are presented to the PSU, owner of the resource, to get his authorisation.\nThe status of the consent is fundamental, as it would define if the TPP can access or not the requested resource.\n\nThis KPI gives the distribution, by status, of the Confirmation of Funds consent that has been active during the requested period.\nIn another word, if a Confirmation of Funds has move to a new status during this period, it will be counted and associated to the right status.\n\nWe are talking of activity as a consent can have been created a long time ago, but had a new status, like revoked for example, during the period requested. This means that the sum of all the status doesn't represent the number of consent created during this period.\n",
+
+    "DOUGHNUT_CONFIRMATION_OF_FUNDS_OB_VERSIONS.TITLE": "Number of endpoint calls by Open Banking API versions",
+    "DOUGHNUT_CONFIRMATION_OF_FUNDS_OB_VERSIONS.INFO": "The sandbox supports multiple versions of Open Banking at the same time. \nThis KPI represents the distribution of the Open Banking APIs calls by versions.",
+
+    "TABLE_CONFIRMATION_OF_FUNDS_USAGE.TITLE": "Confirmation of funds APIs performances",
+    "TABLE_CONFIRMATION_OF_FUNDS_USAGE.INFO": "\nThis table gives you the list of the APIs related to confirmations of funds resources, with their performance associated:\n- pX: gives the percentile Xth of the response time\n- avg: gives the average the response time\n- pX / mb: gives the percentile Xth of the response time per MB\n- avg / mb: gives the average of the response time per MB",
+
+    "#": "Events",
+
+    "COUNTER_EVENTS_NOTIF_FLOW_COMPLETED.TITLE": "Number of events notification created",
+    "COUNTER_EVENTS_NOTIF_FLOW_COMPLETED.INFO": "TPPs can register their callback endpoint, in order to receive event notifications.\nIf a payment is completed, every TPPs listening to that payment would received a notification.\n\nThis KPI counts the number of callbacks registered by TPPs.",
+
+    "DOUGHNUT_EVENTS_NOTIF_CALLBACK_SENT.TITLE": "Number of notifications send to TPPss",
+    "DOUGHNUT_EVENTS_NOTIF_CALLBACK_SENT.INFO": "This KPI counts the number of notifications that the sandbox success or not to send to TPPs.\nAs we are not controlling the availability of the callback, the failure counter represent the\nnumber of notifications send to a callback that didn't response.\nIn other word, the failures are not the one from the sandbox but from the TPPs.",
+
+    "DOUGHNUT_EVENTS_NOTIF_OB_VERSIONS.TITLE": "Number of endpoint calls by Open Banking API versions",
+    "DOUGHNUT_EVENTS_NOTIF_OB_VERSIONS.INFO": "The sandbox supports multiple versions of Open Banking at the same time. \nThis KPI represents the distribution of the Open Banking APIs calls by versions.",
+
+    "TABLE_EVENTS_NOTIF_USAGE.TITLE": "Events APIs performances",
+    "TABLE_EVENTS_NOTIF_USAGE.INFO": "This table gives you the list of the APIs related to events resources, with their performance associated:\n- pX: gives the percentile Xth of the response time\n- avg: gives the average the response time\n- pX / mb: gives the percentile Xth of the response time per MB\n- avg / mb: gives the average of the response time per MB",
+
+    "#": "Directory",
+
+    "COUNTER_DIRECTORY_ORGANISATION_REGISTERED.TITLE": "Number of new organisations",
+    "COUNTER_DIRECTORY_ORGANISATION_REGISTERED.INFO": "Each TPPs that login to the ForgeRock directory get automatically an organisation.\nThis KPI counts the number of organisation that has been created during this period. ",
+
+    "COUNTER_DIRECTORY_SOFTWARE_STATEMENTS_REGISTERED.TITLE": "Number of new software statements",
+    "COUNTER_DIRECTORY_SOFTWARE_STATEMENTS_REGISTERED.INFO": "TPPs can created software statements on demands. \n\nThis KPI counts the number of software statement that has been created during this period. \nNote: TPP can also delete software statements and those would not be count part of this KPI.",
+
+    "COUNTER_DIRECTORY_SSA_GENERATED.TITLE": "Number of new SSA",
+    "COUNTER_DIRECTORY_SSA_GENERATED.INFO": "TPPs can request the directory to issue a new SSA. This token is then used during the dynamic registration.\n\nThis KPI counts the number of SSA that the ForgeRock directory has issued during this period.",
+
+    "COUNTER_DIRECTORY_DOWLOADING_KEYS.TITLE": "Number of downloading keys",
+    "COUNTER_DIRECTORY_DOWLOADING_KEYS.INFO": "TPPs can download their software statement keys.\n\nThis KPI counts the number of time a TPP requested to download a keys from the ForgeRock directory.",
+
+    "#": "JWKMS",
+
+    "COUNTER_JWKMS_GENERATED.TITLE": "Number of JWTS generated",
+    "COUNTER_JWKMS_GENERATED.INFO": "The JWKMS is in charge of generating JWTS for each applications. It can also be used by TPP that uses the \nForgeRock directory.\n\nThis KPI gives the overall JWTs generated during this period, by the ASPSP microservices (including the ForgeRock directory for example) but also the potential TPPs\nthat uses the JWKMS.\nIt gives an idea of the volume of JWTs that the jwkms has to handle.",
+
+    "COUNTER_JWKMS_VALIDATION.TITLE": "Number of JWTS/Detached signature validated by the JWKMS",
+    "COUNTER_JWKMS_VALIDATION.INFO": "The JWKMS is in charge of verifying any JWTS and Detached signatures received by the sandbox.\n\nThis KPI counts the number of JWTs/Detached signature that the JWKMS has validated and distribute them by validation response.\nTrue would count the valid token and False the invalid one. By seeing the number of False against the True, we can get\na feeling of the TPP learning curves.",
+
+    "DOUGHNUT_JWKMS_NUMBER_OF_KEYS.TITLE": "Number of new keys",
+    "DOUGHNUT_JWKMS_NUMBER_OF_KEYS.INFO": "The JWKMS is in charge of all the keys, including the one behind the ForgeRock directory software statements.\n\nThis KPIs counts the number of keys created during this period.",
+
+    "TABLE_JWKMS_USAGE.TITLE": "JWKMS APIs performances",
+    "TABLE_JWKMS_USAGE.INFO": "This table gives you the list of the APIs related to JWKMS resources, with their performance associated:\n- pX: gives the percentile Xth of the response time\n- avg: gives the average the response time\n- pX / mb: gives the percentile Xth of the response time per MB\n- avg / mb: gives the average of the response time per MB\n\nJWKMS endpoints called by users\n\nFilter all the endpoints related to the JWKMS resources.\nIt is ordered by number of calls.\n\nThis KPI gives you the popularity of the JWKMS endpoints by users.",
+
+    "#": "Settings",
+    "TABLE_SETTINGS_ENDPOINT_USAGE_RAW.TITLE": "Endpoints usage raw data",
+    "TABLE_SETTINGS_ENDPOINT_USAGE_RAW.INFO": "Raw endpoint usage data used for APIs KPIs"
+  },
+  "ERROR": "An error occured: {{message}}",
+  "SETTINGS": {
+    "TITLE": "Settings",
+    "DELETE_ENDPOINT_USAGE_CONFIRM": "You are about to delete the endpoint usage metrics for the period from  \"{{fromDate}}\" to \"{{toDate}}\"."
+  }
+}

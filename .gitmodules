@@ -1,0 +1,3 @@
+[submodule "forgerock-openbanking-analytics-ui/customers"]
+	path = forgerock-openbanking-analytics-ui/customers
+	url = git@github.com:ForgeCloud/ob-customers.git
