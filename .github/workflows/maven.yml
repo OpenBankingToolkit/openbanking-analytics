@@ -15,14 +15,14 @@ jobs:
         maven-repo-server-id: forgerock-private-releases
         maven-repo-server-username: ${{ secrets.FR_PRIVATE_REPO_USER }}
         maven-repo-server-password: ${{ secrets.FR_PRIVATE_REPO_PASSWORD }}
-        maven-args: "license:check"
+        maven-args: "license:check -DskipITs -Ddockerfile.skip -DdockerCompose.skip"
     - name: Build and Test
       uses: qcastel/github-actions-maven-cmd@master
       with:
         maven-repo-server-id: forgerock-private-releases
         maven-repo-server-username: ${{ secrets.FR_PRIVATE_REPO_USER }}
         maven-repo-server-password: ${{ secrets.FR_PRIVATE_REPO_PASSWORD }}
-        maven-args: "verify"
+        maven-args: "verify -DskipITs -Ddockerfile.skip -DdockerCompose.skip"
     - name: Temporarily disable "include administrators" branch protection
       uses: benjefferies/branch-protection-bot@master
       if: always()
