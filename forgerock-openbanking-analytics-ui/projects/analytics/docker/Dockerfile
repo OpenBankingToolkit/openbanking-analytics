@@ -1,5 +1,5 @@
 # Stage 1 - the build process
-FROM r.cfcr.io/openbanking/obri/build-ui as build-ui
+FROM r.cfcr.io/openbanking/obri/build-analytics-ui as build-ui
 RUN npm run build.analytics.all
 
 # Stage 2 - the production environment

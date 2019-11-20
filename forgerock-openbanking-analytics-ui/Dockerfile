@@ -5,6 +5,8 @@ ADD package.json package-lock.json /src/
 
 ARG OB_UI_LIBS_SSH_KEY
 ENV OB_UI_LIBS_SSH_KEY ${OB_UI_LIBS_SSH_KEY}
+ARG GITHUB_ACCESS_TOKEN
+ENV GITHUB_ACCESS_TOKEN ${GITHUB_ACCESS_TOKEN}
 
 RUN mkdir -p ~/.ssh
 RUN chmod -R 700 ~/.ssh
@@ -16,3 +18,6 @@ RUN echo "Host github.com\n  IdentityFile ~/.ssh/id_rsa" > ~/.ssh/config
 RUN NG_CLI_ANALYTICS=ci npm ci
 
 ADD . /src
+
+RUN sed -i "s/git@github.com:/https:\/\/$GITHUB_ACCESS_TOKEN@github.com\//g" .gitmodules
+RUN git submodule init && git submodule update customers
