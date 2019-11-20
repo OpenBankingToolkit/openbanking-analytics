@@ -180,11 +180,11 @@ compile 'com.forgerock.openbanking.analytics:forgerock-openbanking-analytics-cli
 #### Install
 
 ```
+cd forgerock-openbanking-analytics-ui
+
 git submodule init
 git submodule update forgerock-openbanking-analytics-ui/customers
-
-cd forgerock-openbanking-analytics-ui
-npm ci
+cd forgerock-openbanking-analytics-ui && npm ci
 ```
 
 ### How to push metrics to the analytics server?
