@@ -20,6 +20,7 @@ RUN NG_CLI_ANALYTICS=ci npm ci
 ADD . /src
 
 # git init here is to be able to use submodules. .git being in the parent directory 
-RUN git init && \ 
+RUN rm -fr customers && \
+    git init && \ 
     git submodule add "https://${GITHUB_ACCESS_TOKEN}@github.com/ForgeCloud/ob-customers.git" customers && \
     git submodule init
