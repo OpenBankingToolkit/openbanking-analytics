@@ -1,3 +1,0 @@
-[submodule "customers"]
-	path = customers
-	url = git@github.com:ForgeCloud/ob-customers.git
