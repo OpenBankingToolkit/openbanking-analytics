@@ -1,0 +1,13 @@
+{
+  "video": true,
+  "chromeWebSecurity": false,
+  "env": {
+    "testUser": {
+      "username": "test-user",
+      "firstname": "test-user-firstname",
+      "lastname": "test-user-lastname",
+      "email": "test-user@gmail.com",
+      "password": "test-password"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+// We still cannot replace a sass file by another with the CLI
+// only way to apply clients variables is to include variables here
+// and point to the client styles.scss as style entry point
+// https://github.com/angular/angular-cli/issues/11451
+// @import "projects/bank/src/clients/hackathon/scss/variables";
+@import '_variables';
+@import '_core';
+
+forgerock-customer-logo {
+  display: block;
+  padding: 10px 10px 30px 10px;
+  text-align: center;
+}
+
+body.pdf {
+  &,
+  mat-sidenav-container {
+    background-color: white !important;
+  }
+
+  button.theme-options-button {
+    display: none;
+  }
+}
+
+@media print {
+  body {
+    height: initial;
+    overflow: visible;
+  }
+
+  forgerock-pdf-page.LANDSCAPE {
+    margin-top: 11.685in !important;
+    transform: rotate(-90deg);
+    transform-origin: 0 0;
+  }
+  forgerock-pdf-page.LANDSCAPE + forgerock-pdf-page.LANDSCAPE {
+    page-break-after: none;
+  }
+
+  forgerock-pdf-page.LANDSCAPE + forgerock-pdf-page.PORTRAIT,
+  forgerock-pdf-page.LANDSCAPE + forgerock-pdf-cover {
+    margin-top: -8.25in !important;
+  }
+}
+
+body.pdf-creator {
+  content,
+  content > layout-container,
+  content > layout-container > .outlet-wrapper {
+    height: 100%;
+  }
+}

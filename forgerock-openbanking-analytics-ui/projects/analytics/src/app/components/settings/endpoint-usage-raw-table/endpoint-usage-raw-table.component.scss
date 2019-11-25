@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  table {
+    width: 100%;
+  }
+
+  .table-options {
+    float: right;
+  }
+}
+
+.downloadCSV {
+  text-decoration: none;
+  color: inherit;
+}

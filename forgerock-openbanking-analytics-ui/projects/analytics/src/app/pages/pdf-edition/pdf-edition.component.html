@@ -1,0 +1,144 @@
+<forgerock-alert *ngIf="error" color="warn" [translate]="error"></forgerock-alert>
+<div class="container" *ngIf="!error">
+  <div fxFlex="33" class="form-container">
+    <mat-toolbar>
+      {{ 'PDF_CREATOR.PAGES' | translate }}
+      <div fxFlex></div>
+      <div fxLayout="row" fxLayoutAlign="space-evenly center">
+        <button mat-button class="add-page" type="button" (click)="addNewPage('PAGE')">
+          <mat-icon>add_circle_outline</mat-icon> {{ 'PDF_CREATOR.PAGE' | translate }}
+        </button>
+        <button mat-button class="add-cover" type="button" (click)="addNewPage('COVER')">
+          <mat-icon>add_circle_outline</mat-icon> {{ 'PDF_CREATOR.COVER' | translate }}
+        </button>
+      </div>
+    </mat-toolbar>
+
+    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+      <mat-accordion formArrayName="pages" cdkDropList (cdkDropListDropped)="pageDrop($event)">
+        <mat-expansion-panel
+          cdkDrag
+          cdkDragLockAxis="y"
+          [cdkDragDisabled]="openedPanel >= 0"
+          [expanded]="openedPanel === i"
+          (opened)="openPanel(i)"
+          (closed)="closePanel(i)"
+          [formGroupName]="i"
+          *ngFor="let pageControl of formGroup.get('pages').controls; index as i"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon *ngIf="openedPanel < 0" cdkDragHandle>drag_handle</mat-icon>
+              {{ (pageControl.get('type').value === 'PAGE' ? 'PDF_CREATOR.PAGE' : 'PDF_CREATOR.COVER') | translate }}
+            </mat-panel-title>
+            <mat-panel-description
+              *ngIf="pageControl.get('type').value === 'PAGE' && pageControl.get('widgets')?.value"
+            >
+              <span
+                [translate]="
+                  pageControl.get('widgets').value.length > 1 ? 'PDF_CREATOR.WIDGETS_COUNT' : 'PDF_CREATOR.WIDGET_COUNT'
+                "
+                [translateParams]="{ count: pageControl.get('widgets').value.length }"
+              ></span>
+            </mat-panel-description>
+            <mat-panel-description *ngIf="pageControl.get('type').value === 'COVER'">
+              {{ pageControl.get('title').value }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="page">
+            <div class="page-meta">
+              <mat-form-field *ngIf="pageControl.get('type').value === 'COVER'">
+                <input matInput formControlName="title" placeholder="Enter name" required />
+              </mat-form-field>
+              <input formControlName="type" required hidden />
+              <mat-form-field *ngIf="pageControl.get('type').value === 'PAGE'">
+                <mat-label>{{ 'PDF_CREATOR.ORIENTATION' | translate }}</mat-label>
+                <mat-select formControlName="orientation" required>
+                  <mat-option *ngFor="let val of orientationValues" [value]="val">{{
+                    'PDF_CREATOR.ORIENTATION_' + val | translate
+                  }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div
+              class="widgets-container"
+              formArrayName="widgets"
+              *ngIf="pageControl.get('widgets')"
+              cdkDropList
+              (cdkDropListDropped)="widgetDrop(i, $event)"
+            >
+              <mat-toolbar class="widget-toolbar">
+                {{ 'PDF_CREATOR.WIDGETS' | translate }}
+                <div fxFlex></div>
+                <button
+                  mat-button
+                  class="add-widget"
+                  type="button"
+                  (click)="addNewWidget(i, pageControl.get('widgets').controls.length)"
+                >
+                  <mat-icon>add_circle_outline</mat-icon> Add widget
+                </button>
+              </mat-toolbar>
+              <forgerock-alert
+                *ngIf="pageControl.get('widgets').length === 0"
+                [translate]="'PDF_CREATOR.NO_WIDGET'"
+              ></forgerock-alert>
+              <div
+                cdkDrag
+                cdkDragLockAxis="y"
+                class="widget-meta"
+                [formGroupName]="j"
+                *ngFor="let widgetControl of pageControl.get('widgets').controls; index as j"
+              >
+                <mat-icon class="drag_handle" cdkDragHandle>drag_handle</mat-icon>
+                <mat-icon *cdkDragPreview>swap_vert</mat-icon>
+                <mat-form-field class="widget-type">
+                  <mat-label>{{ 'PDF_CREATOR.TYPE' | translate }}</mat-label>
+                  <mat-select formControlName="type" required>
+                    <mat-optgroup *ngFor="let group of widgetTypeValues" [label]="group.name">
+                      <mat-option *ngFor="let val of group.list" [value]="val">{{
+                        'WIDGETS.' + val + '.TITLE' | translate
+                      }}</mat-option>
+                    </mat-optgroup>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field class="widget-width">
+                  <mat-label>{{ 'PDF_CREATOR.WIDTH' | translate }}</mat-label>
+                  <mat-select formControlName="width" required>
+                    <mat-option *ngFor="let val of widgetWidthValues" [value]="val">{{
+                      'PDF_CREATOR.WIDGET_WIDTH' | translate: { value: val }
+                    }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-checkbox formControlName="info">Info</mat-checkbox>
+                <button mat-icon-button class="remove-widget" color="warn" type="button" (click)="removeWidget(i, j)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <mat-action-row>
+            <div fxFlex></div>
+            <button mat-flat-button class="duplicate-page" color="accent" type="button" (click)="duplicatePage(i)">
+              <mat-icon>file_copy</mat-icon> Duplicate
+            </button>
+            <button mat-flat-button class="remove-page" color="warn" type="button" (click)="removePage(i)">
+              <mat-icon>delete</mat-icon> Remove
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <button mat-raised-button color="primary" type="submit" [disabled]="isPdfLoading">
+        <mat-icon *ngIf="isPdfLoading"
+          ><mat-progress-spinner diameter="24" color="accent" mode="indeterminate"></mat-progress-spinner
+        ></mat-icon>
+        <mat-icon *ngIf="!isPdfLoading" aria-label="Download PDF">picture_as_pdf</mat-icon>
+        <span *ngIf="!isPdfLoading">{{ 'DOWNLOAD' | translate }}</span>
+      </button>
+    </form>
+  </div>
+  <div fxFlex="66" class="pdf-container">
+    <app-pdf-dynamic #pdfContainer [pdf]="pdf" [from]="dates.from" [to]="dates.to"></app-pdf-dynamic>
+  </div>
+</div>

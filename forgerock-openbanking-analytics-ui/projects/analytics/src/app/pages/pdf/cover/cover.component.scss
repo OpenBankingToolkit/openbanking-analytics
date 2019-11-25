@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  forgerock-pdf-page {
+    display: flex;
+    flex-direction: column;
+    .content {
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      h1 {
+        font-size: 40px;
+      }
+    }
+
+    .footer {
+      text-align: right;
+    }
+  }
+}
