@@ -106,7 +106,7 @@ The KPIs organised as per the Open Banking UK standard.
 ### Directory
 
 KPIs related to your directory. You may not have one and therefore this section is not relevant for you.
-We do also provide a directory capability, that you can find here: https://github.com/ForgeCloud/ob-directory
+We do also provide a directory capability, that you can find here: https://github.com/OpenBankingToolkit/openbanking-directory
 
 #### KPIs
 
@@ -117,7 +117,7 @@ We do also provide a directory capability, that you can find here: https://githu
 
 ### JWKMS
 
-KPIs related to your centralised JWKMS. The JWKMS application is available here: https://github.com/ForgeCloud/ob-jwkms
+KPIs related to your centralised JWKMS. The JWKMS application is available here: https://github.com/OpenBankingToolkit/openbanking-jwkms
 The JWKMS is an optional application. This section of analytics is therefore not relevant if you don't have a centralised JWKMS
 
 #### KPIs

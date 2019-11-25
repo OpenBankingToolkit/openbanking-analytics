@@ -12,7 +12,7 @@ steps:
   main_clone:
     type: git-clone
     title: Git Clone OB UI
-    repo: ForgeCloud/ob-analytics
+    repo: ForgeRock/ob-analytics
     revision: '${{CF_REVISION}}'
     git: github-bot
 
