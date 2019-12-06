@@ -28,7 +28,7 @@ jobs:
       if: always()
       with:
         access-token: ${{ secrets.ACCESS_TOKEN }}
-        owner: forgerock
+        owner: OpenBankingToolkit
         repo: openbanking-analytics
     - name: Release
       uses: qcastel/github-actions-maven-release@master
@@ -49,5 +49,5 @@ jobs:
       if: always()
       with:
         access-token: ${{ secrets.ACCESS_TOKEN }}
-        owner: forgerock
+        owner: OpenBankingToolkit
         repo: openbanking-analytics
