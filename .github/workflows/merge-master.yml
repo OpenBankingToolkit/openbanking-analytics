@@ -41,9 +41,9 @@ jobs:
         owner: openbanking-toolkit
         repo: OpenBankingToolKit
 
-        package-name: openbanking-common
-        package-description: Common dependencies for all the openbanking-* repos
-        package-url: https://github.com/OpenBankingToolkit/openbanking-common
+        package-name: openbanking-analytics
+        package-description: Open banking analytics
+        package-url: https://github.com/OpenBankingToolkit/openbanking-analytics
         package-license: Apache-2.0
 
     - name: Temporarily disable "include administrators" branch protection
