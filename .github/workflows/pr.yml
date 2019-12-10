@@ -22,6 +22,7 @@ jobs:
       run: curl https://raw.githubusercontent.com/ForgeCloud/ob-release/master/src/settings.xml > $M2_HOME/conf/settings.xml
     - name: Build and Test
       run: |
+        sudo bash -c 'echo "127.0.0.1   metrics-services" >> /etc/hosts'
         docker login r.cfcr.io -u fropenbanking -p ${{ secrets.CODEFRESH_DOCKER_REGISTRY_API_KEY }}
         mvn -ntp verify
       env:
