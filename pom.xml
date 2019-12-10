@@ -83,14 +83,9 @@
                 <artifactId>forgerock-openbanking-jwkms-embedded</artifactId>
                 <version>${ob-jwkms.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.forgerock.openbanking.jwkms</groupId>
-                <artifactId>forgerock-openbanking-jwkms-client</artifactId>
-                <version>${ob-jwkms.version}</version>
-            </dependency>
 
             <dependency>
-                <groupId>com.forgerock.openbanking.analytics</groupId>
+                <groupId>com.forgerock.openbanking.clients</groupId>
                 <artifactId>forgerock-openbanking-analytics-client</artifactId>
                 <version>${client.version}</version>
             </dependency>
