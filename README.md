@@ -1,4 +1,11 @@
-[<img src="https://raw.githubusercontent.com/ForgeRock/forgerock-logo-dev/master/forgerock-logo-dev.png" align="right" width="220px"/>](https://developer.forgerock.com/)
+[<img src="https://raw.githubusercontent.com/ForgeRock/forgerock-logo-dev/master/Logo-fr-dev.png" align="right" width="220px"/>](https://developer.forgerock.com/)
+
+| |Current Status|
+|---|---|
+|Build|[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FOpenBankingToolkit%2Fopenbanking-analytics%2Fbadge%3Fref%3Dmaster&style=flat)](https://actions-badge.atrox.dev/OpenBankingToolkit/openbanking-analytics/goto?ref=master)|
+|Code coverage|[![codecov](https://codecov.io/gh/OpenBankingToolkit/openbanking-analytics/branch/master/graph/badge.svg)](https://codecov.io/gh/OpenBankingToolkit/openbanking-analytics)
+|Bintray|[![Bintray](https://img.shields.io/bintray/v/openbanking-toolkit/OpenBankingToolkit/openbanking-analytics.svg?maxAge=2592000)](https://bintray.com/openbanking-toolkit/OpenBankingToolkit/openbanking-analytics)|
+|License|![license](https://img.shields.io/github/license/ACRA/acra.svg)|
 
 # ForgeRock OpenBanking Analytics
 

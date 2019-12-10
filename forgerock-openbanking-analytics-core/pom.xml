@@ -47,7 +47,7 @@
             <artifactId>forgerock-openbanking-upgrade</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.forgerock.openbanking.analytics</groupId>
+            <groupId>com.forgerock.openbanking.clients</groupId>
             <artifactId>forgerock-openbanking-analytics-client</artifactId>
         </dependency>
         <dependency>

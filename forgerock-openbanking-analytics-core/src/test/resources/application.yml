@@ -44,6 +44,7 @@ ob:
       cookie:
         domains: ${dns.hosts.root}
     oidc:
+      acr: ob-analytics
       idp:
         issuerid: "https://am.${dns.hosts.root}/oauth2/realms/root/realms/auth"
         jwk-uri: ${am.internal.root}/oauth2/realms/root/realms/auth/connect/jwk_uri

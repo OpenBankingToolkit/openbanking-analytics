@@ -25,7 +25,7 @@
     <groupId>com.forgerock.openbanking.analytics</groupId>
     <artifactId>forgerock-openbanking-analytics-sample</artifactId>
     <packaging>jar</packaging>
-    <name>analytics-client</name>
+    <name>analytics-sample</name>
 
     <parent>
         <groupId>com.forgerock.openbanking.analytics</groupId>
@@ -43,7 +43,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.forgerock</groupId>
+            <groupId>dev.openbanking4.spring.security</groupId>
             <artifactId>spring-security-multi-auth-starter</artifactId>
         </dependency>
         <dependency>
