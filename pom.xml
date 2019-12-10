@@ -44,13 +44,13 @@
     <url>http://www.forgerock.org</url>
 
     <properties>
-        <ob-common.version>1.0.43</ob-common.version>
-        <ob-auth.version>1.0.33</ob-auth.version>
+        <ob-common.version>1.0.45</ob-common.version>
+        <ob-auth.version>1.0.38</ob-auth.version>
         <ob-jwkms.version>1.1.16</ob-jwkms.version>
+        <client.version>1.0.0</client.version>
     </properties>
 
     <modules>
-        <module>forgerock-openbanking-analytics-client</module>
         <module>forgerock-openbanking-analytics-core</module>
         <module>forgerock-openbanking-analytics-sample</module>
     </modules>
@@ -92,7 +92,7 @@
             <dependency>
                 <groupId>com.forgerock.openbanking.analytics</groupId>
                 <artifactId>forgerock-openbanking-analytics-client</artifactId>
-                <version>${project.version}</version>
+                <version>${client.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.forgerock.openbanking.analytics</groupId>
@@ -110,6 +110,14 @@
     </scm>
 
     <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-openbanking-toolkit-OpenBankingToolKit</id>
+            <name>bintray</name>
+            <url>https://dl.bintray.com/openbanking-toolkit/OpenBankingToolKit</url>
+        </repository>
         <repository>
             <id>jcenter</id>
             <url>https://jcenter.bintray.com/</url>
