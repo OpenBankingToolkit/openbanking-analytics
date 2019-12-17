@@ -27,7 +27,9 @@
     "serve.ui-integ.analytics.jpmorgan.client": "ng serve analytics --host dev.analytics.ui-integ.forgerock.financial --browserTarget analytics:build:ui-integ-jpmorgan --sslCert ssl/all.ui-integ.forgerock.financial.crt --sslKey ssl/k-all.ui-integ.forgerock.financial.key",
     "serve.ui-integ.analytics.client": "ng serve analytics --host dev.analytics.ui-integ.forgerock.financial --browserTarget analytics:build:ui-integ --sslCert ssl/all.ui-integ.forgerock.financial.crt --sslKey ssl/k-all.ui-integ.forgerock.financial.key",
     "================= LOCALHOST =================": "",
-    "serve.localhost.analytics.client": "ng serve analytics --host localhost --browserTarget analytics:build:localhost --ssl false"
+    "serve.localhost.analytics.client": "ng serve analytics --host localhost --browserTarget analytics:build:localhost --ssl false",
+    "serve.localhost.analytics": "run-p serve.localhost.analytics.client serve.analytics.server",
+    "start": "npm run serve.localhost.analytics"
   },
   "private": true,
   "dependencies": {

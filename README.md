@@ -188,8 +188,8 @@ compile 'com.forgerock.openbanking.analytics:forgerock-openbanking-analytics-cli
 
 ```
 cd forgerock-openbanking-analytics-ui
-
 npm ci
+npm --prefix projects/analytics/server ci
 ```
 
 ## Backend
@@ -200,11 +200,12 @@ mvn clean install
 
 # Run the analytics locally.
 
-You need three things to have analytics locally:
+You need four things to have analytics locally:
 
 - mongo, as that's what we use as a database
 - the analytics backend, which is a spring app
 - the analytics front end, which is an angular app
+- the analytics pdf backend, which is a nodejs app
 
 PS: if you use intellij, we shared some run configuration committed to that repo
 
@@ -226,11 +227,11 @@ Run the sample app jar
 java -jar forgerock-openbanking-analytics-sample/target/forgerock-openbanking-analytics-sample-1.1.17-SNAPSHOT.jar com.forgerock.openbanking.analytics.ForgerockOpenbankingAnalyticsApplication
 ```
 
-### UI
+### UI + nodejs
 
 ```bash
 cd forgerock-openbanking-analytics-ui;
-npm run serve.localhost.analytics.client
+npm start
 ```
 
 ## Go the app
