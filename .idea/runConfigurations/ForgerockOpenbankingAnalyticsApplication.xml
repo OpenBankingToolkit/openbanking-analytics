@@ -1,0 +1,22 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ForgerockOpenbankingAnalyticsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <module name="forgerock-openbanking-analytics-sample" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="com.forgerock.openbanking.analytics.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.forgerock.openbanking.analytics.ForgerockOpenbankingAnalyticsApplication" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <additionalParameters>
+      <param>
+        <option name="name" value="upgrade.force" />
+        <option name="value" value="true" />
+      </param>
+    </additionalParameters>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

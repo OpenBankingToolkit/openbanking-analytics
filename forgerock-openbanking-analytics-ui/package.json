@@ -70,7 +70,7 @@
     "ngx-cookie": "^4.0.2",
     "ngx-cookieconsent": "^2.2.3",
     "ngx-file-drop": "^5.0.0",
-    "node-sass": "^4.9.4",
+    "node-sass": "^4.13.0",
     "ob-ui-libs": "git+ssh://git@github.com/ForgeCloud/ob-ui-libs.git#v0.1.20",
     "perfect-scrollbar": "^1.4.0",
     "polyfill-array-includes": "^2.0.0",

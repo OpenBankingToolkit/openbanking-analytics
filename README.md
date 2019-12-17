@@ -1,11 +1,11 @@
 [<img src="https://raw.githubusercontent.com/ForgeRock/forgerock-logo-dev/master/Logo-fr-dev.png" align="right" width="220px"/>](https://developer.forgerock.com/)
 
-| |Current Status|
-|---|---|
-|Build|[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FOpenBankingToolkit%2Fopenbanking-analytics%2Fbadge%3Fref%3Dmaster&style=flat)](https://actions-badge.atrox.dev/OpenBankingToolkit/openbanking-analytics/goto?ref=master)|
-|Code coverage|[![codecov](https://codecov.io/gh/OpenBankingToolkit/openbanking-analytics/branch/master/graph/badge.svg)](https://codecov.io/gh/OpenBankingToolkit/openbanking-analytics)
-|Bintray|[![Bintray](https://img.shields.io/bintray/v/openbanking-toolkit/OpenBankingToolKit/openbanking-analytics.svg?maxAge=2592000)](https://bintray.com/openbanking-toolkit/OpenBankingToolKit/openbanking-analytics)|
-|License|![license](https://img.shields.io/github/license/ACRA/acra.svg)|
+|               | Current Status                                                                                                                                                                                                                                                            |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Build         | [![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FOpenBankingToolkit%2Fopenbanking-analytics%2Fbadge%3Fref%3Dmaster&style=flat)](https://actions-badge.atrox.dev/OpenBankingToolkit/openbanking-analytics/goto?ref=master) |
+| Code coverage | [![codecov](https://codecov.io/gh/OpenBankingToolkit/openbanking-analytics/branch/master/graph/badge.svg)](https://codecov.io/gh/OpenBankingToolkit/openbanking-analytics)                                                                                                |
+| Bintray       | [![Bintray](https://img.shields.io/bintray/v/openbanking-toolkit/OpenBankingToolKit/openbanking-analytics.svg?maxAge=2592000)](https://bintray.com/openbanking-toolkit/OpenBankingToolKit/openbanking-analytics)                                                          |
+| License       | ![license](https://img.shields.io/github/license/ACRA/acra.svg)                                                                                                                                                                                                           |
 
 # ForgeRock OpenBanking Analytics
 
@@ -182,17 +182,61 @@ For Gradle:
 compile 'com.forgerock.openbanking.analytics:forgerock-openbanking-analytics-client'
 ```
 
-### UI
+# Compiling the project
 
-#### Install
+## UI
 
 ```
 cd forgerock-openbanking-analytics-ui
 
-git submodule init
-git submodule update forgerock-openbanking-analytics-ui/customers
-cd forgerock-openbanking-analytics-ui && npm ci
+npm ci
 ```
+
+## Backend
+
+```
+mvn clean install
+```
+
+# Run the analytics locally.
+
+You need three things to have analytics locally:
+
+- mongo, as that's what we use as a database
+- the analytics backend, which is a spring app
+- the analytics front end, which is an angular app
+
+PS: if you use intellij, we shared some run configuration committed to that repo
+
+## Run the app
+
+### Mongo
+
+We have a docker compose for it
+
+```bash
+docker-compose up
+```
+
+### Backend
+
+Run the sample app jar
+
+```bash
+java -jar forgerock-openbanking-analytics-sample/target/forgerock-openbanking-analytics-sample-1.1.17-SNAPSHOT.jar com.forgerock.openbanking.analytics.ForgerockOpenbankingAnalyticsApplication
+```
+
+### UI
+
+```bash
+cd forgerock-openbanking-analytics-ui;
+npm run serve.localhost.analytics.client
+```
+
+## Go the app
+
+The app is hosted under http://localhost:4206/
+Enjoy!
 
 ### How to push metrics to the analytics server?
 
