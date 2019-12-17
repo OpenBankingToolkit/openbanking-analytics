@@ -10,7 +10,7 @@ export const environment = {
   ...defaultEnv,
   production: false,
   client: {
-    name: 'Forgerock loooooooong name because we need to test that it is contained correctly you know!',
+    name: 'OpenBanking Analytics',
     adminContact: 'openbanking-support@forgerock.com',
     iconWidth: 35,
     iconHeight: 39,
