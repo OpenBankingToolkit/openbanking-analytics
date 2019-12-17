@@ -10,8 +10,8 @@ import * as fs from 'fs';
 
 async function run() {
   const {
-    cookieDomain: COOKIE_DOMAIN = '.ui-integ.forgerock.financial',
-    appAddress: ORIGIN = 'https://dev.analytics.ui-integ.forgerock.financial:4206'
+    cookieDomain: COOKIE_DOMAIN = '.localhost',
+    appAddress: ORIGIN = 'http://localhost:4206'
   } = getDeploymentSetting();
 
   const PORT = process.env.PORT || 5000;
