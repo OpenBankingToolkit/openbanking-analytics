@@ -33,4 +33,8 @@ public interface TokenUsageEntryRepository extends MongoRepository<TokenUsageEnt
     List<TokenUsageEntry> findByDayBetween(
             @Param("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime fromDate,
             @Param("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime toDate);
+
+    void deleteByDayBetween(
+            @Param("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime fromDate,
+            @Param("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime toDate);
 }

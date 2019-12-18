@@ -59,6 +59,10 @@ export class TppsApiTableComponent extends AbstractWidgetTableComponent implemen
     {
       field: 'userType',
       regex: 'OIDC_CLIENT'
+    },
+    {
+      field: 'tppEntry',
+      notNull: true
     }
   ];
 

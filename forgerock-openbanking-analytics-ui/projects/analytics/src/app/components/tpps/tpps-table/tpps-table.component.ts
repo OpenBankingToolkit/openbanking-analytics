@@ -16,10 +16,10 @@ const selector = 'app-tpps-table';
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
+        <a mat-menu-item [href]="downloadCSV()" target="_blank">
           <mat-icon>cloud_download</mat-icon>
-          <a class="downloadCSV" [href]="downloadCSV()" target="_blank">Download as CSV</a>
-        </button>
+          Download as CSV
+        </a>
       </mat-menu>
     </div>
 
@@ -80,6 +80,7 @@ export class TppsTableComponent extends AbstractWidgetTableComponent implements 
   }
 
   downloadCSV() {
+    console.log('URL: ' + this.metricsService.getTppEntriesCSVUrl(this.getDates()));
     return this.metricsService.getTppEntriesCSVUrl(this.getDates());
   }
 }

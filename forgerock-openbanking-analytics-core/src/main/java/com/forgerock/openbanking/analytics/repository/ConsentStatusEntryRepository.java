@@ -22,8 +22,14 @@ package com.forgerock.openbanking.analytics.repository;
 
 
 import com.forgerock.openbanking.analytics.model.entries.ConsentStatusEntry;
+import org.joda.time.DateTime;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public interface ConsentStatusEntryRepository extends MongoRepository<ConsentStatusEntry, String>, ConsentStatusEntryRepositoryCustom {
 
+    void deleteByDateBetween(
+            @Param("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime fromDate,
+            @Param("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime toDate);
 }

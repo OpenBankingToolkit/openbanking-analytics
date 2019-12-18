@@ -34,4 +34,8 @@ public interface JwtsValidationEntriesRepository extends MongoRepository<JwtsVal
     List<JwtsValidationEntry> findByDateBetween(
             @Param("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime fromDate,
             @Param("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime toDate);
+
+    void deleteByDateBetween(
+            @Param("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime fromDate,
+            @Param("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime toDate);
 }

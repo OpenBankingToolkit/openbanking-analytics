@@ -38,7 +38,13 @@ import java.util.stream.Stream;
 
 public interface EndpointUsageAggregateRepository extends MongoRepository<EndpointUsageAggregate, Date>, EndpointUsageAggregateRepositoryCustom {
 
+    void deleteByDateIsNull();
+
     void deleteByDateBetween(
+            @Param("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime fromDate,
+            @Param("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime toDate);
+
+    void deleteByDateBetweenAndTppEntryIsNotNull(
             @Param("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime fromDate,
             @Param("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime toDate);
 
@@ -47,8 +53,11 @@ public interface EndpointUsageAggregateRepository extends MongoRepository<Endpoi
             @Param("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime toDate,
             @Param("page") Pageable pageable
     );
-
     Stream<EndpointUsageAggregate> findByDateBetween(
+            @Param("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime fromDate,
+            @Param("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime toDate);
+
+    Stream<EndpointUsageAggregate> findByDateBetweenAndTppEntryIsNotNull(
             @Param("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime fromDate,
             @Param("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime toDate);
 
@@ -110,5 +119,4 @@ public interface EndpointUsageAggregateRepository extends MongoRepository<Endpoi
             @Param("identityIds") List<String> identityIds,
             @Param("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime fromDate,
             @Param("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime toDate);
-
 }

@@ -33,4 +33,8 @@ public interface SessionCounterEntryRepository extends MongoRepository<SessionCo
     List<SessionCounterEntry> findByDayBetween(
             @Param("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime fromDate,
             @Param("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime toDate);
+
+    void deleteByDayBetween(
+            @Param("from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime fromDate,
+            @Param("to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) DateTime toDate);
 }
