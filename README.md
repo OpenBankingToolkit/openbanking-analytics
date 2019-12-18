@@ -219,6 +219,18 @@ We have a docker compose for it
 docker-compose up
 ```
 
+#### Use the sample data
+
+If you want to load the analytics with the sample data provided in this repo, you need to:
+
+```bash
+unzip sample-data.zip
+mongorestore --db test --drop ./sample-data
+```
+
+Note: the sample data covers metrics from September 2019 to December 2019. They have been extracted from the
+ForgeRock OBRI instance and anonymize.
+
 ### Backend
 
 Run the sample app jar

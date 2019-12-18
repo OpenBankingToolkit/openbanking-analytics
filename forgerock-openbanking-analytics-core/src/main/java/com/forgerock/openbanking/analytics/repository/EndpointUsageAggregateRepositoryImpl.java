@@ -188,8 +188,14 @@ public class EndpointUsageAggregateRepositoryImpl implements EndpointUsageAggreg
                 ).lt(request.getTo().plusMinutes(1)
                 )));
         for(EndpointTableFilter filter: request.getFilters()) {
-            aggregationOperations.add(Aggregation.match(
-                    Criteria.where(filter.getField()).regex(filter.getRegex())));
+            if (filter.getRegex() != null) {
+                aggregationOperations.add(Aggregation.match(
+                        Criteria.where(filter.getField()).regex(filter.getRegex())));
+            }
+            if (filter.getNotNull() != null) {
+                aggregationOperations.add(Aggregation.match(
+                        Criteria.where(filter.getField()).exists(filter.getNotNull())));
+            }
         }
 
         //Grouping
@@ -260,8 +266,14 @@ public class EndpointUsageAggregateRepositoryImpl implements EndpointUsageAggreg
                 ).lt(request.getTo().plusMinutes(1)
                 )));
         for(EndpointTableFilter filter: request.getFilters()) {
-            aggregationOperations.add(Aggregation.match(
-                    Criteria.where(filter.getField()).regex(filter.getRegex())));
+            if (filter.getRegex() != null) {
+                aggregationOperations.add(Aggregation.match(
+                        Criteria.where(filter.getField()).regex(filter.getRegex())));
+            }
+            if (filter.getNotNull() != null) {
+                aggregationOperations.add(Aggregation.match(
+                        Criteria.where(filter.getField()).exists(filter.getNotNull())));
+            }
         }
 
         //Grouping

@@ -11,6 +11,7 @@
     <option name="ALTERNATIVE_JRE_PATH" />
     <additionalParameters>
       <param>
+        <option name="enabled" value="true" />
         <option name="name" value="upgrade.force" />
         <option name="value" value="true" />
       </param>

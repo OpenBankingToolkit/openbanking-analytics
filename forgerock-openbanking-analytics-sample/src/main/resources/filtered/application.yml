@@ -33,7 +33,6 @@ metrics:
     jwts-validation:
       add-entries: ${metrics.endpoints.root}/api/kpi/jwts/jwts-validation/add-entries
 
-
 ob:
   auth:
     session:
@@ -42,6 +41,7 @@ ob:
       cookie:
         domains: ${dns.hosts.root}
     oidc:
+      acr: sca
       idp:
         issuerid: "https://am.${dns.hosts.root}/oauth2/realms/root/realms/auth"
         jwk-uri: ${am.internal.root}/oauth2/realms/root/realms/auth/connect/jwk_uri
@@ -49,7 +49,6 @@ ob:
       client:
         client-id: metrics
         redirect-uri: "https://${dns.hosts.root}:4206/redirectOpenId"
-
 
 #JKWMS configuration
 jwkms:
@@ -81,7 +80,6 @@ jwkms:
   forgerock-applications:
     - name: aspsp
       group: as.aspsp.${dns.hosts.root}, rs.aspsp.${dns.hosts.root}, rcs.aspsp.${dns.hosts.root}, simulator.rs.${dns.hosts.root}, service.bank.${dns.hosts.root}, rs-store.aspsp.${dns.hosts.root}
-
 
 ## TO DELETE
 am:
@@ -147,4 +145,3 @@ swagger:
     email: "openbanking-support@forgerock.com"
   title: "Analytics"
   description: "Analytics"
-

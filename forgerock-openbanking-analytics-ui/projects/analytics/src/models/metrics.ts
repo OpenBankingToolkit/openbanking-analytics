@@ -93,7 +93,8 @@ export type ITableSortList = ITableSort[];
 
 export interface ITableFilter {
   field: string;
-  regex: string;
+  regex?: string;
+  notNull?: boolean;
 }
 
 export type ITableFilterList = ITableFilter[];
