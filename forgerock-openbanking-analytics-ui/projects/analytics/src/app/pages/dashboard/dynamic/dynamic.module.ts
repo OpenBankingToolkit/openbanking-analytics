@@ -4,8 +4,8 @@ import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { ForgerockConfigModule } from 'ob-ui-libs/services/forgerock-config';
-import { ForgerockAlertModule } from 'ob-ui-libs/components/forgerock-alert';
+import { ForgerockConfigModule } from '@forgerock/openbanking-ngx-common/services/forgerock-config';
+import { ForgerockAlertModule } from '@forgerock/openbanking-ngx-common/components/forgerock-alert';
 
 import { AnalyticsDashboardDynamicComponent } from './dynamic.component';
 import { AnalyticsWidgetCardModule } from 'analytics/src/app/components/widget-card/widget-card.module';

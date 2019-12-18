@@ -17,8 +17,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-import { ForgerockConfigModule } from 'ob-ui-libs/services/forgerock-config';
-import { ForgerockAlertModule } from 'ob-ui-libs/components/forgerock-alert';
+import { ForgerockConfigModule } from '@forgerock/openbanking-ngx-common/services/forgerock-config';
+import { ForgerockAlertModule } from '@forgerock/openbanking-ngx-common/components/forgerock-alert';
 
 import { AnalyticsPdfEditionRoutingModule } from './pdf-edition.routing.module';
 import { AnalyticsPdfEditionComponent } from './pdf-edition.component';

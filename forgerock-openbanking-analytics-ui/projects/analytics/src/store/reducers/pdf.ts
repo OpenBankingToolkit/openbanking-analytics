@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { IPDFState, IState, IPdfReportConfig } from 'analytics/src/models';
 import _get from 'lodash-es/get';
 
-import { OIDCLogoutTypes } from 'ob-ui-libs/oidc';
+import { OIDCLogoutTypes } from '@forgerock/openbanking-ngx-common/oidc';
 export const types = {
   PDF_GET_REQUEST: 'PDF_GET_REQUEST',
   PDF_GET_SUCCESS: 'PDF_GET_SUCCESS',

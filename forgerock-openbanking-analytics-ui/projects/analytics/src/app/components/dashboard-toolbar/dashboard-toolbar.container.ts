@@ -7,7 +7,7 @@ import { selectPdfIsFetching, GetPdfRequestAction } from 'analytics/src/store/re
 import { Platform } from '@angular/cdk/platform';
 import { Router } from '@angular/router';
 import { AnalyticsPDFService } from '../../services/pdf.service';
-import { ForgerockMessagesService } from 'ob-ui-libs/services/forgerock-messages';
+import { ForgerockMessagesService } from '@forgerock/openbanking-ngx-common/services/forgerock-messages';
 
 const selector = 'app-dashboard-toolbar-container';
 

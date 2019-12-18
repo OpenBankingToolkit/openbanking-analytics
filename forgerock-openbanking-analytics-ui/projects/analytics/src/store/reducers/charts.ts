@@ -4,7 +4,7 @@ import { IChartsState, IState } from 'analytics/src/models';
 import { Chart } from 'chart.js';
 import _get from 'lodash-es/get';
 
-import { OIDCLogoutTypes } from 'ob-ui-libs/oidc';
+import { OIDCLogoutTypes } from '@forgerock/openbanking-ngx-common/oidc';
 import { types as datesTypes, selectDateFrom, selectDateTo } from './dates';
 
 export const types = {

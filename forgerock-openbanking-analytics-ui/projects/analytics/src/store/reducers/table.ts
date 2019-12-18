@@ -5,7 +5,7 @@ import _set from 'lodash-es/set';
 import _uniq from 'lodash-es/uniq';
 import _findIndex from 'lodash-es/findIndex';
 
-import { OIDCLogoutTypes } from 'ob-ui-libs/oidc';
+import { OIDCLogoutTypes } from '@forgerock/openbanking-ngx-common/oidc';
 import { ITableReponseUnion } from 'analytics/src/models/metrics';
 import { types as datesTypes } from './dates';
 import { ITableFilter, ITableSort, ITableSortList, ITableFilterList } from 'analytics/src/models';

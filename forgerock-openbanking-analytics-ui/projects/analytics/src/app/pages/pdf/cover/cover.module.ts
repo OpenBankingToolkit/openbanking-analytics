@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PdfCoverComponent } from './cover.component';
 import { PdfPageModule } from '../page/page.module';
-import { ForgerockCustomerLogoModule } from 'ob-ui-libs/components/forgerock-customer-logo';
+import { ForgerockCustomerLogoModule } from '@forgerock/openbanking-ngx-common/components/forgerock-customer-logo';
 
 @NgModule({
   declarations: [PdfCoverComponent],

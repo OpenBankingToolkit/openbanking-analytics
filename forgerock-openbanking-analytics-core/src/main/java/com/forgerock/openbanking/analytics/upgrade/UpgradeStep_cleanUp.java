@@ -24,12 +24,9 @@ import com.forgerock.openbanking.analytics.model.entries.EndpointUsageAggregate;
 import com.forgerock.openbanking.analytics.model.entries.TppEntry;
 import com.forgerock.openbanking.analytics.repository.*;
 import com.forgerock.openbanking.upgrade.exceptions.UpgradeException;
-import com.forgerock.openbanking.upgrade.model.UpgradeMeta;
 import com.forgerock.openbanking.upgrade.model.UpgradeStep;
 import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -51,9 +48,7 @@ import java.util.stream.Collectors;
 //@UpgradeMeta(version = "1.1.23")
 @Slf4j
 public class UpgradeStep_cleanUp implements UpgradeStep {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(UpgradeStep.class);
-
+    
     @Autowired
     private EndpointUsageAggregateRepository endpointUsageAggregateRepository;
     @Autowired
@@ -84,9 +79,9 @@ public class UpgradeStep_cleanUp implements UpgradeStep {
 
     @Override
     public boolean upgrade() throws UpgradeException {
-        LOGGER.debug("Start cleaning up data");
+        log.debug("Start cleaning up data");
         try {
-            deleteOldMetrics();
+            //deleteOldMetrics();
 
             anonymiseData();
         } catch (Exception e) {
@@ -99,7 +94,7 @@ public class UpgradeStep_cleanUp implements UpgradeStep {
 
     private void deleteOldMetrics() {
         DateTime from = DateTime.now().minusYears(3);
-        DateTime to = DateTime.now().minusMonths(2);
+        DateTime to = DateTime.now().minusMonths(3);
 
         endpointUsageAggregateRepository.deleteByDateIsNull();
 
@@ -159,10 +154,10 @@ public class UpgradeStep_cleanUp implements UpgradeStep {
                 tpp -> tpp));
 
         DateTime current = DateTime.now();
-        DateTime stop = DateTime.now().minusMonths(2);
+        DateTime stop = DateTime.now().minusMonths(3);
 
         while (current.isAfter(stop)) {
-            LOGGER.debug("From {} to {}", current.minusDays(1), current);
+            log.debug("From {} to {}", current.minusDays(1), current);
 
             List<EndpointUsageAggregate> entries = endpointUsageAggregateRepository.findByDateBetween(current.minusDays(1), current).collect(Collectors.toList());
             endpointUsageAggregateRepository.deleteByDateBetween(current.minusDays(1), current);
@@ -173,7 +168,7 @@ public class UpgradeStep_cleanUp implements UpgradeStep {
                     if (tppEntry != null) {
                         entry.setTppEntry(tppEntry);
                     } else {
-                        LOGGER.warn("OIDC client {} not found!", entry.getTppEntry().getOidcClientId());
+                        log.warn("OIDC client {} not found!", entry.getTppEntry().getOidcClientId());
                         int k = ThreadLocalRandom.current().nextInt(names.size());
                         String company = k + " - " + companies.get(ThreadLocalRandom.current().nextInt(companies.size()));
                         String name = k + " - " + names.get(ThreadLocalRandom.current().nextInt(names.size()));
@@ -197,12 +192,12 @@ public class UpgradeStep_cleanUp implements UpgradeStep {
             current = current.minusDays(1);
         }
 
-        LOGGER.debug("Upgrade done!");
+        log.debug("Upgrade done!");
     }
 
     private List<String> loadCSV(Resource resource) throws IOException {
 
-        LOGGER.debug("Load resource {}", resource);
+        log.debug("Load resource {}", resource);
         List<String> content = new ArrayList<>();
 
         String line;
@@ -214,7 +209,7 @@ public class UpgradeStep_cleanUp implements UpgradeStep {
                     content.add(line);
                 }
             } catch (IOException e) {
-                LOGGER.error("Can't load resource '{}'", resource, e);
+                log.error("Can't load resource '{}'", resource, e);
             }
         } finally {
             if (inputStream != null) {

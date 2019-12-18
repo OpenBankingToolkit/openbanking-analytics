@@ -1,7 +1,7 @@
 // tslint:disable-next-line
 import { Chart } from 'chart.js';
 import { ITableFilterList, ITableSortList } from './metrics';
-import { IOIDCState } from 'ob-ui-libs/oidc';
+import { IOIDCState } from '@forgerock/openbanking-ngx-common/oidc';
 
 export interface IChart {
   isFetching: boolean;

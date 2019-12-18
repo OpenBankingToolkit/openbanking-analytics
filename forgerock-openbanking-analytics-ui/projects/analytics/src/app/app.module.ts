@@ -9,17 +9,17 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { EffectsModule } from '@ngrx/effects';
 import { CookieModule } from 'ngx-cookie';
-import { ForgerockSharedModule } from 'ob-ui-libs/shared';
-import { ForgerockConfigService } from 'ob-ui-libs/services/forgerock-config';
-import { ForgerockConfigModule } from 'ob-ui-libs/services/forgerock-config';
+import { ForgerockSharedModule } from '@forgerock/openbanking-ngx-common/shared';
+import { ForgerockConfigService } from '@forgerock/openbanking-ngx-common/services/forgerock-config';
+import { ForgerockConfigModule } from '@forgerock/openbanking-ngx-common/services/forgerock-config';
 import { AppComponent } from 'analytics/src/app/app.component';
 import { TranslateSharedModule } from 'analytics/src/app/translate-shared.module';
 import { AppRoutingModule } from 'analytics/src/app/app-routing.module';
 import { environment } from 'analytics/src/environments/environment';
 import rootReducer from 'analytics/src/store';
 import { RootEffects } from 'analytics/src/store/effects';
-import { ForgerockInterceptorProviders } from 'ob-ui-libs/interceptors';
-import { ForgerockOIDCModule } from 'ob-ui-libs/oidc';
+import { ForgerockInterceptorProviders } from '@forgerock/openbanking-ngx-common/interceptors';
+import { ForgerockOIDCModule } from '@forgerock/openbanking-ngx-common/oidc';
 
 export const REDUCER_TOKEN = new InjectionToken<ActionReducerMap<{}>>('Registered Reducers');
 

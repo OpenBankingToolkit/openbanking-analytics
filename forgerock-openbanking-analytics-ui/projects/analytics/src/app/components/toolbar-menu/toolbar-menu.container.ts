@@ -5,7 +5,11 @@ import { Store, select } from '@ngrx/store';
 import { IState } from 'analytics/src/models';
 import { selectDateTo, selectDateFrom, SetDatesAction } from 'analytics/src/store/reducers/dates';
 import { formatDateForMetricsServer } from 'analytics/src/utils/dates';
-import { ForgerockOIDCLogoutRequestAction, selectOIDCConnected, selectOIDCUserId } from 'ob-ui-libs/oidc';
+import {
+  ForgerockOIDCLogoutRequestAction,
+  selectOIDCConnected,
+  selectOIDCUserId
+} from '@forgerock/openbanking-ngx-common/oidc';
 
 @Component({
   // tslint:disable-next-line

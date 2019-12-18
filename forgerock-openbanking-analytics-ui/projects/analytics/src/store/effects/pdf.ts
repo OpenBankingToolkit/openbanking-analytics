@@ -10,7 +10,7 @@ import _get from 'lodash-es/get';
 import { types, GetPdfRequestAction, GetPdfSuccessAction, GetPdfErrorAction } from 'analytics/src/store/reducers/pdf';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MetricsService } from 'analytics/src/app/services/metrics.service';
-import { ForgerockMessagesService } from 'ob-ui-libs/services/forgerock-messages';
+import { ForgerockMessagesService } from '@forgerock/openbanking-ngx-common/services/forgerock-messages';
 import { selectDates } from '../reducers/dates';
 import { IState, IDatesState } from 'analytics/src/models';
 
