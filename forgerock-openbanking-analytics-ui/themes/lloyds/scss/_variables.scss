@@ -1,0 +1,8 @@
+@import 'themes';
+
+$is-dark: map-get($mat-lloyds, is-dark);
+$primary-palette: map-get($mat-lloyds, primary);
+$accent-palette: map-get($mat-lloyds, accent);
+$warn-palette: map-get($mat-lloyds, warn);
+$foreground-palette: map-get($mat-lloyds, foreground);
+$background-palette: map-get($mat-lloyds, background);

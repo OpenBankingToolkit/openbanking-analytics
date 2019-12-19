@@ -21,7 +21,7 @@ steps:
     image: jess/jq
     stage: 'prepare'
     title: 'Set up global variables'
-    working-directory: ${{main_clone}}/forgerock-openbanking-analytics-ui
+    working-directory: ${{main_clone}}/forgerock-openbanking-ui
     commands:
       - 'export PROJECT_VERSION=$(jq -r ".project_version" package.json)'
       - 'cf_export PROJECT_VERSION'
@@ -33,7 +33,7 @@ steps:
     stage: 'build'
     title: 'Build UI docker image, used for docker caching'
     image_name: obri/build-analytics-ui
-    working-directory: ${{main_clone}}/forgerock-openbanking-analytics-ui
+    working-directory: ${{main_clone}}/forgerock-openbanking-ui
     tag: 'latest'
     build_arguments:
       - OB_UI_LIBS_SSH_KEY=${{GITHUB_OB_UI_LIBS_SSH_KEY}}
@@ -72,7 +72,7 @@ steps:
         stage: 'docker-ui'
         title: 'Build analytics ui docker image'
         image_name: obri/analytics-ui
-        working-directory: ${{main_clone}}/forgerock-openbanking-analytics-ui
+        working-directory: ${{main_clone}}/forgerock-openbanking-ui
         build_arguments:
           - BUILD_VERSION=${{BUILD_VERSION}}
         dockerfile: projects/analytics/docker/Dockerfile
@@ -82,7 +82,7 @@ steps:
         stage: 'docker-ui'
         title: 'Build analytics node server docker image'
         image_name: obri/analytics-node
-        working-directory: ${{main_clone}}/forgerock-openbanking-analytics-ui
+        working-directory: ${{main_clone}}/forgerock-openbanking-ui
         build_arguments:
           - BUILD_VERSION=${{BUILD_VERSION}}
         dockerfile: projects/analytics/docker/Dockerfile-server
