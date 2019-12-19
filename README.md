@@ -209,7 +209,7 @@ You need four things to have analytics locally:
 
 PS: if you use intellij, we shared some run configuration committed to that repo
 
-## Run the app via docker-compose
+## Run the app
 
 We created a docker compose to run all the services easily. All you need to do is:
 
@@ -220,50 +220,10 @@ docker-compose up
 Note: it transfers a lot of files to the docker and compiles the project from there. Therefore,
 this is a bit slow to turn up the service the first time.
 
-## Run the app individually
-
-### Mongo
-
-We have a docker compose for it
-
-```bash
-docker-compose up
-```
-
 And once it's done, go to:
 
 [http://localhost:4206/][http://localhost:4206/]
 
-#### Use the sample data
-
-If you want to load the analytics with the sample data provided in this repo, you need to:
-
-```bash
-unzip sample-data.zip
-mongorestore --db test --drop ./sample-data
-```
-
-Note: the sample data covers metrics from September 2019 to December 2019. They have been extracted from the
-ForgeRock OBRI instance and anonymize.
-
-### Backend
-
-Run the sample app jar
-
-```bash
-java -jar forgerock-openbanking-analytics-sample/target/forgerock-openbanking-analytics-*.jar
-```
-
-### UI + nodejs
-
-```bash
-cd forgerock-openbanking-analytics-ui;
-npm start
-```
-
-## Go the app
-
-The app is hosted under http://localhost:4206/
 Enjoy!
 
 ### How to push metrics to the analytics server?
