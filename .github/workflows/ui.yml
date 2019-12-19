@@ -54,10 +54,10 @@ jobs:
         working-directory: ./forgerock-openbanking-ui
         run: |
           export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
-          echo "Building docker image r.cfcr.io/openbanking/obri/analytics-ui${BUILD_VERSION}"
+          echo "Building docker image r.cfcr.io/openbanking/obri/analytics-ui:${BUILD_VERSION}"
           docker login r.cfcr.io -u fropenbanking -p ${{ secrets.CODEFRESH_DOCKER_REGISTRY_API_KEY }}
-          docker build -f projects/analytics/docker/Dockerfile -t r.cfcr.io/openbanking/obri/analytics-ui$BUILD_VERSION .
-          docker push r.cfcr.io/openbanking/obri/analytics-ui$BUILD_VERSION
+          docker build -f projects/analytics/docker/Dockerfile -t r.cfcr.io/openbanking/obri/analytics-ui:$BUILD_VERSION .
+          docker push r.cfcr.io/openbanking/obri/analytics-ui:$BUILD_VERSION
   build_analytics_backend:
     name: Build Analytics Backend
     runs-on: ubuntu-latest
