@@ -1,6 +1,6 @@
 # Stage 1 - the build process
 FROM r.cfcr.io/openbanking/obri/build-analytics-ui as build-ui
-RUN npm run build.analytics.all
+RUN npm run build.analytics.themes
 
 # Stage 2 - the production environment
 FROM nginx:1.13.9-alpine
