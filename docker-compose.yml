@@ -9,7 +9,7 @@ services:
       - ./mongo/:/docker-entrypoint-initdb.d/
   ui:
     build:
-      context: ./forgerock-openbanking-analytics-ui
+      context: ./forgerock-openbanking-ui
       dockerfile: Dockerfile-sample
     ports:
       - "4206:4206"

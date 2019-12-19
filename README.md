@@ -187,7 +187,7 @@ compile 'com.forgerock.openbanking.analytics:forgerock-openbanking-analytics-cli
 ## UI
 
 ```
-cd forgerock-openbanking-analytics-ui
+cd forgerock-openbanking-ui
 npm ci
 npm --prefix projects/analytics/server ci
 ```
