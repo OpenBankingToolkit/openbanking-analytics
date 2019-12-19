@@ -407,7 +407,7 @@
           "builder": "ngx-build-plus:dev-server",
           "options": {
             "browserTarget": "analytics:build",
-            "host": "analytics.dev-ob.forgerock.financial",
+            "host": "0.0.0.0",
             "ssl": true,
             "port": 4206,
             "sslCert": "ssl/all.dev-ob.forgerock.financial.crt",

@@ -1,10 +1,27 @@
-version: '3'
+version: "3"
 services:
   mongo:
     container_name: mongo
     image: mongo
     ports:
-    - "27017:27017"
+      - "27017:27017"
     volumes:
-    - ./mongo/:/docker-entrypoint-initdb.d/:ro
-    - ~/mongo:/data/db  # Persist mongo data to $HOME/mongo
+      - ./mongo/:/docker-entrypoint-initdb.d/
+      - ~/mongo:/data/db # Persist mongo data to $HOME/mongo
+  ui:
+    build:
+      context: ./forgerock-openbanking-analytics-ui
+      dockerfile: Dockerfile-sample
+    ports:
+      - "4206:4206"
+      - "5000:5000"
+  spring:
+    build:
+      context: .
+      dockerfile: ./forgerock-openbanking-analytics-sample/Dockerfile-sample
+    ports:
+      - "9443:9443"
+    environment:
+      SPRING_DATA_MONGODB_HOST: mongo
+    volumes:
+      - $HOME/.m2/repository:/root/.m2/repository

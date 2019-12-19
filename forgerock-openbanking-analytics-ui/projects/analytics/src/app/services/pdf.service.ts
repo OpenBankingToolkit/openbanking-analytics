@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ForgerockConfigService } from 'ob-ui-libs/services/forgerock-config';
+import { ForgerockConfigService } from '@forgerock/openbanking-ngx-common/services/forgerock-config';
 import defaultPdfsConfig from '../pages/pdf/dynamic/pdfs.config';
 
 @Injectable({

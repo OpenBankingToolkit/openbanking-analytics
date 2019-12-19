@@ -209,7 +209,18 @@ You need four things to have analytics locally:
 
 PS: if you use intellij, we shared some run configuration committed to that repo
 
-## Run the app
+## Run the app via docker-compose
+
+We created a docker compose to run all the services easily. All you need to do is:
+
+```bash
+docker-compose up
+```
+
+Note: it transfers a lot of files to the docker and compiles the project from there. Therefore,
+this is a bit slow to turn up the service the first time.
+
+## Run the app individually
 
 ### Mongo
 
@@ -218,6 +229,10 @@ We have a docker compose for it
 ```bash
 docker-compose up
 ```
+
+And once it's done, go to:
+
+[http://localhost:4206/][http://localhost:4206/]
 
 #### Use the sample data
 
@@ -236,7 +251,7 @@ ForgeRock OBRI instance and anonymize.
 Run the sample app jar
 
 ```bash
-java -jar forgerock-openbanking-analytics-sample/target/forgerock-openbanking-analytics-sample-1.1.17-SNAPSHOT.jar com.forgerock.openbanking.analytics.ForgerockOpenbankingAnalyticsApplication
+java -jar forgerock-openbanking-analytics-sample/target/forgerock-openbanking-analytics-*.jar
 ```
 
 ### UI + nodejs
@@ -259,3 +274,5 @@ Those APIs are convenient as you can easily integrate them inside your existent 
 ### Do I need to use all the ForgeRock Open Banking platform to have analytics?
 
 No, analytics is a separated apps that offers REST APIs. It can therefore integrate with any kind of Open Banking solutions.
+
+[http://localhost:4206/]: http://localhost:4206/

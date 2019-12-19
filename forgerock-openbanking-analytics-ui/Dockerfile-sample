@@ -1,0 +1,10 @@
+FROM node:10
+
+ADD . /src
+
+WORKDIR /src
+
+RUN npm ci
+RUN npm --prefix projects/analytics/server ci
+
+CMD npm start

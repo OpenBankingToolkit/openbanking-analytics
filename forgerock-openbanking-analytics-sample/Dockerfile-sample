@@ -1,0 +1,8 @@
+FROM qcastel/maven-git-gpg:latest
+
+ADD . /build/
+
+WORKDIR /build
+RUN mvn install -DskipTests -DskipITs -DdockerCompose.skip -Ddockerfile.skip
+
+CMD java -jar forgerock-openbanking-analytics-sample/target/forgerock-openbanking-analytics-*.jar

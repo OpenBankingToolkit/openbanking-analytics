@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { ForgerockChartModule } from 'ob-ui-libs/components/forgerock-chart';
-import { ForgerockSplitFlapModule } from 'ob-ui-libs/components/forgerock-splitflap';
-import { ForgerockAlertModule } from 'ob-ui-libs/components/forgerock-alert';
+import { ForgerockChartModule } from '@forgerock/openbanking-ngx-common/components/forgerock-chart';
+import { ForgerockSplitFlapModule } from '@forgerock/openbanking-ngx-common/components/forgerock-splitflap';
+import { ForgerockAlertModule } from '@forgerock/openbanking-ngx-common/components/forgerock-alert';
 
 import { MetricsService } from '../../services/metrics.service';
 import { SecurityAccessTokenRequestsContainerComponent } from './security-access-token-requests.container';

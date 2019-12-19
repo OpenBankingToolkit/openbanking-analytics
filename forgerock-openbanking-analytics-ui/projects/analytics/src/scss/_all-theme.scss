@@ -7,9 +7,9 @@
 @import 'projects/analytics/src/app/components/widget-card/widget-card.component.scss';
 @import 'projects/analytics/src/app/components/widget-table/widget-table.component.scss';
 @import 'projects/analytics/src/app/pages/pdf-edition/pdf-edition.component.scss';
-@import '~ob-ui-libs/layouts/main.scss';
-@import '~ob-ui-libs/components/main.scss';
-@import '~ob-ui-libs/gdpr/main.scss';
+@import '~@forgerock/openbanking-ngx-common/layouts/main.scss';
+@import '~@forgerock/openbanking-ngx-common/components/main.scss';
+@import '~@forgerock/openbanking-ngx-common/gdpr/main.scss';
 
 @mixin foregrock-material-theme($theme) {
   // Including only the components that we use:

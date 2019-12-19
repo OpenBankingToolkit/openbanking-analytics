@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { IDatesState, IState, IDatesPeriod } from 'analytics/src/models';
 import _get from 'lodash-es/get';
 
-import { OIDCLogoutTypes } from 'ob-ui-libs/oidc';
+import { OIDCLogoutTypes } from '@forgerock/openbanking-ngx-common/oidc';
 import { getFormattedDatesFromPeriod } from 'analytics/src/utils/dates';
 
 export const types = {
