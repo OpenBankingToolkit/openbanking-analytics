@@ -47,7 +47,7 @@
         <ob-common.version>1.0.55</ob-common.version>
         <ob-auth.version>1.0.47</ob-auth.version>
         <ob-jwkms.version>1.1.41</ob-jwkms.version>
-        <client.version>1.0.11</client.version>
+        <client.version>1.0.12</client.version>
     </properties>
 
     <modules>
