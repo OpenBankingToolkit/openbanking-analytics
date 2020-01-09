@@ -13,6 +13,7 @@ import { ReplaySubject } from 'rxjs';
 import { of } from 'rxjs';
 import { throwError } from 'rxjs';
 import * as fileSaver from 'file-saver';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 import { GetPdfRequestAction, GetPdfSuccessAction, GetPdfErrorAction } from 'analytics/src/store/reducers/pdf';
 import { PdfEffects } from './pdf';
@@ -42,7 +43,8 @@ describe('PdfEffects', () => {
         RouterTestingModule.withRoutes([]),
         NoopAnimationsModule,
         CommonModule,
-        StoreModule.forRoot(rootReducer)
+        StoreModule.forRoot(rootReducer),
+        DeviceDetectorModule.forRoot()
       ],
       providers: [PdfEffects, MetricsService, ForgerockMessagesService, provideMockActions(() => actions)]
     });
