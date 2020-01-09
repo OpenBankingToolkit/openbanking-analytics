@@ -20,7 +20,7 @@ export const routes: Routes = [
     path: 'pdf',
     component: PDFLayoutComponent,
     canLoad: [ForgerockCustomerCanAccessGuard],
-    loadChildren: 'analytics/src/app/pages/pdf/pdf.module#AnalyticsPdfModule'
+    loadChildren: () => import('analytics/src/app/pages/pdf/pdf.module').then(m => m.AnalyticsPdfModule)
   },
   {
     path: 'redirectOpenId',
@@ -59,22 +59,25 @@ export const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        loadChildren: 'analytics/src/app/pages/dashboard/dashboard.module#AnalyticsDashboardModule',
+        loadChildren: () =>
+          import('analytics/src/app/pages/dashboard/dashboard.module').then(m => m.AnalyticsDashboardModule),
         canActivate: [IsOIDCConnectedGuard]
       },
       {
         path: 'pdf-creator',
-        loadChildren: 'analytics/src/app/pages/pdf-edition/pdf-edition.module#AnalyticsPdfEditionModule',
+        loadChildren: () =>
+          import('analytics/src/app/pages/pdf-edition/pdf-edition.module').then(m => m.AnalyticsPdfEditionModule),
         canLoad: [ForgerockCustomerCanAccessGuard],
         canActivate: [IsOIDCConnectedGuard]
       },
       {
         path: 'session-lost',
-        loadChildren: 'analytics/src/app/pages/session-lost/session-lost.module#SessionLostModule'
+        loadChildren: () =>
+          import('analytics/src/app/pages/session-lost/session-lost.module').then(m => m.SessionLostModule)
       },
       {
         path: 'settings',
-        loadChildren: 'analytics/src/app/pages/settings/settings.module#SettingsModule',
+        loadChildren: () => import('analytics/src/app/pages/settings/settings.module').then(m => m.SettingsModule),
         canLoad: [ForgerockCustomerCanAccessGuard],
         pathMatch: 'full',
         canActivate: [IsOIDCConnectedGuard]
