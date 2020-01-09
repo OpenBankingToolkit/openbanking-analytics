@@ -14,6 +14,7 @@
     "bundleSize.analytics": "openbanking-ui-cli appSize --theme forgerock --project analytics",
     "serve.analytics": "ng serve analytics",
     "serve.analytics.server": "cd ./projects/analytics/server && npm start",
+    "build.analytics.server": "cd ./projects/analytics/server && npm run build",
     "report.analytics": "npm run build.analytics.forgerock && webpack-bundle-analyzer dist/forgerock/stats.json",
     "build.analytics.forgerock": "ng build --project=analytics --prod --configuration=forgerock --output-path dist/forgerock --statsJson --extra-webpack-config webpack.extra.js",
     "build.analytics.themes": "openbanking-ui-cli buildThemes --project analytics",
@@ -28,7 +29,9 @@
     "================= LOCALHOST =================": "",
     "serve.localhost.analytics.client": "ng serve analytics --host 0.0.0.0 --browserTarget analytics:build:localhost --ssl false",
     "serve.localhost.analytics": "run-p serve.localhost.analytics.client serve.analytics.server",
-    "start": "npm run serve.localhost.analytics"
+    "serve.compose.analytics.client": "ng serve analytics --host 0.0.0.0 --browserTarget analytics:build:compose --ssl false",
+    "serve.compose.analytics": "run-p serve.compose.analytics.client serve.analytics.server",
+    "start.compose": "npm run serve.compose.analytics"
   },
   "private": true,
   "dependencies": {
@@ -71,6 +74,7 @@
     "ngx-color-picker": "^6.7.0",
     "ngx-cookie": "^4.0.2",
     "ngx-cookieconsent": "^2.2.3",
+    "ngx-device-detector": "^1.3.20",
     "ngx-file-drop": "^5.0.0",
     "node-sass": "^4.13.0",
     "perfect-scrollbar": "^1.4.0",

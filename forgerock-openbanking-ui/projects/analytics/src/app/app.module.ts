@@ -5,6 +5,7 @@ import { StoreModule, ActionReducerMap } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { EffectsModule } from '@ngrx/effects';
@@ -54,6 +55,7 @@ export function createForgerockOIDCConfigFactory(config: ForgerockConfigService)
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    DeviceDetectorModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

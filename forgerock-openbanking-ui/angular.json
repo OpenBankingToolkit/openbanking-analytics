@@ -60,6 +60,14 @@
                 }
               ]
             },
+            "compose": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/analytics/src/environments/environment.ts",
+                  "with": "projects/analytics/src/environments/environment.compose.ts"
+                }
+              ]
+            },
             "ui-integ-hl": {
               "stylePreprocessorOptions": {
                 "includePaths": [

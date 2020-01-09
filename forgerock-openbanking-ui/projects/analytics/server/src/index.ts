@@ -23,8 +23,8 @@ async function run() {
   app.use(
     cors({
       credentials: true,
-      methods: 'GET, HEAD',
-      origin: NODE_ENV === 'production' ? ORIGIN : '*'
+      methods: 'GET, POST, HEAD',
+      origin: ORIGIN
     })
   );
   app.set('port', PORT);
@@ -51,32 +51,6 @@ async function run() {
         sessionCookies,
         `${ORIGIN}/pdf/?config=${encodeURIComponent(JSON.stringify(req.body))}`
       );
-      const finalPDFPath = path.join(os.tmpdir(), `${uuid()}.pdf`);
-      await page.pdf({
-        format: 'A4',
-        path: finalPDFPath,
-        printBackground: true
-      });
-      await page.close();
-      await browser.close();
-
-      // force download and cleanup
-      res.download(finalPDFPath, () => fs.unlinkSync(finalPDFPath));
-    } catch (error) {
-      next(error);
-    }
-  });
-
-  app.get('/pdf', async (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    try {
-      const { id } = req.query;
-      if (!id) {
-        throw new Error('id missing from query params');
-      }
-
-      const browser = await createBrowser();
-      const sessionCookies = getSessionCookies(req.cookies, COOKIE_DOMAIN);
-      const page = await createPage(browser, sessionCookies, `${ORIGIN}/pdf${encodeQueryData(req.query)}`);
       const finalPDFPath = path.join(os.tmpdir(), `${uuid()}.pdf`);
       await page.pdf({
         format: 'A4',
