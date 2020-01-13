@@ -1,11 +1,6 @@
 #!/usr/bin/env sh
 set -e
 
-if [[ -z "${TEMPLATE}" ]]; then
-  echo "TEMPLATE environment variable should be set to 'hackathon' or 'forgerock'"
-  exit 1
-fi
-
 if [[ -z "${DOMAIN}" ]]; then
   echo "DOMAIN environment variable should be set"
   exit 1
