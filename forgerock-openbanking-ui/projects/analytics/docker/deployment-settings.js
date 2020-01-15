@@ -3,9 +3,8 @@ module.exports = {
     version: 'BUILD_VERSION',
     template: 'TEMPLATE'
   },
-  appAddress: 'https://analytics.DOMAIN',
   cookieDomain: '.DOMAIN',
-  nodeBackend: 'https://node.analytics.DOMAIN',
-  metricsBackend: 'https://service.metrics.DOMAIN',
-  enableCustomization: 'ENABLE_CUSTOMIZATION'
+  appAddress: 'APP_URL',
+  nodeBackend: 'NODE_BACKEND_URL',
+  metricsBackend: 'METRICS_BACKEND_URL'
 };
