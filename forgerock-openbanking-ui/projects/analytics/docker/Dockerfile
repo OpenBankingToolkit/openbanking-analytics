@@ -17,9 +17,12 @@ EXPOSE 80
 
 ARG BUILD_VERSION
 ENV BUILD_VERSION ${BUILD_VERSION}
-ENV DOMAIN ""
+
 ENV TEMPLATE "forgerock"
-ENV ENABLE_CUSTOMIZATION "false"
+ENV DOMAIN ""
+ENV APP_URL "https://analytics.DOMAIN"
+ENV NODE_BACKEND_URL "https://node.analytics.DOMAIN"
+ENV METRICS_BACKEND_URL "https://service.metrics.DOMAIN"
 
 RUN rm -rf /etc/nginx/conf.d
 COPY --from=build-ui /src/dist /usr/share/nginx
