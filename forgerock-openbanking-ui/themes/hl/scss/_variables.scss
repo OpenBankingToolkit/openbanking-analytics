@@ -1,8 +1,0 @@
-@import 'themes';
-
-$is-dark: map-get($mat-hl, is-dark);
-$primary-palette: map-get($mat-hl, primary);
-$accent-palette: map-get($mat-hl, accent);
-$warn-palette: map-get($mat-hl, warn);
-$foreground-palette: map-get($mat-hl, foreground);
-$background-palette: map-get($mat-hl, background);
