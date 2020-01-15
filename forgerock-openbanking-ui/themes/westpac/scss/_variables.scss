@@ -1,8 +1,0 @@
-@import 'themes';
-
-$is-dark: map-get($mat-westpac, is-dark);
-$primary-palette: map-get($mat-westpac, primary);
-$accent-palette: map-get($mat-westpac, accent);
-$warn-palette: map-get($mat-westpac, warn);
-$foreground-palette: map-get($mat-westpac, foreground);
-$background-palette: map-get($mat-westpac, background);
