@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 import { ReplaySubject } from 'rxjs';
 import { of } from 'rxjs';
 import { throwError } from 'rxjs';
-import * as fileSaver from 'file-saver';
+import { saveAs } from 'file-saver';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 
 import { GetPdfRequestAction, GetPdfSuccessAction, GetPdfErrorAction } from 'analytics/src/store/reducers/pdf';
@@ -54,7 +54,7 @@ describe('PdfEffects', () => {
     effects = TestBed.get(PdfEffects);
     messsageService = TestBed.get(ForgerockMessagesService);
     // mock fileSaver.saveAs as we do not test that.
-    fileSaver.saveAs = () => {};
+    saveAs = () => {};
 
     store.pipe(first()).subscribe(state => {
       fromDate = state.dates.from;

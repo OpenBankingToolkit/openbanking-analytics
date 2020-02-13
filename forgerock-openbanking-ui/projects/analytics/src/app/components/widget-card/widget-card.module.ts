@@ -5,7 +5,9 @@ import { MatCardModule } from '@angular/material/card';
 
 import { AnalyticsWidgetCardComponent } from './widget-card.component';
 import { PdfWidgetModule } from '../widget/widget.module';
-import { MatDividerModule, MatExpansionModule, MatIconModule } from '@angular/material';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   imports: [

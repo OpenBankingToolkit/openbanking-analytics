@@ -7,7 +7,7 @@ import { AbstractWidgetTableComponent } from 'analytics/src/app/components/abstr
 import { TranslateService } from '@ngx-translate/core';
 import { DOCUMENT } from '@angular/common';
 import { ForgerockConfirmDialogComponent } from '@forgerock/openbanking-ngx-common/components/forgerock-confirm-dialog';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 const selector = 'app-settings-endpoint-usage-raw-table';
 

@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';
-import {
-  MatSelectModule,
-  MatButtonModule,
-  MatIconModule,
-  MatExpansionModule,
-  MatInputModule,
-  MatCheckboxModule,
-  MatProgressSpinnerModule,
-  MatToolbarModule
-} from '@angular/material';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -27,7 +25,7 @@ import { AnalyticsWidgetCardModule } from 'analytics/src/app/components/widget-c
 import { PdfCoverModule } from '../pdf/cover/cover.module';
 import { PdfPageModule } from '../pdf/page/page.module';
 import { AnalyticsPdfDynamicModule } from '../pdf/dynamic/dynamic.module';
-import { ScrollDispatchModule } from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AnalyticsPdfEditionContainer } from './pdf-edition.container';
 
 @NgModule({
@@ -49,7 +47,7 @@ import { AnalyticsPdfEditionContainer } from './pdf-edition.container';
     MatProgressSpinnerModule,
     MatToolbarModule,
     DragDropModule,
-    ScrollDispatchModule,
+    ScrollingModule,
     PdfPageModule,
     PdfCoverModule,
     AnalyticsPdfEditionRoutingModule,

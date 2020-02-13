@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import * as format from 'date-fns/format';
+import format from 'date-fns/format';
 
 @Pipe({
   name: 'analyticsTableTimeFormat',
