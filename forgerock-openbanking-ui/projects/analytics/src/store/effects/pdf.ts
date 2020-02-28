@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
-import * as fileSaver from 'file-saver';
+import { saveAs } from 'file-saver';
 import { Store } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
@@ -42,7 +42,7 @@ export class PdfEffects {
 
       return httpObservable.pipe(
         map((blob: any) => {
-          fileSaver.saveAs(blob, `${Date.now()}-${id}.pdf`);
+          saveAs(blob, `${Date.now()}-${id}.pdf`);
           return new GetPdfSuccessAction({
             id
           });
@@ -50,6 +50,7 @@ export class PdfEffects {
         catchError((er: HttpErrorResponse) => {
           const error = _get(er, 'error.Message') || _get(er, 'error.message') || _get(er, 'message') || er;
           this.message.error(error);
+          console.error(error)
           return of(new GetPdfErrorAction({ id }));
         })
       );

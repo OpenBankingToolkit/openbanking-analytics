@@ -1,24 +1,24 @@
-import * as format from 'date-fns/format';
-import * as subDays from 'date-fns/sub_days';
-import * as startOfDay from 'date-fns/start_of_day';
-import * as endOfDay from 'date-fns/end_of_day';
-import * as subWeeks from 'date-fns/sub_weeks';
-import * as startOfWeek from 'date-fns/start_of_week';
-import * as endOfWeek from 'date-fns/end_of_week';
-import * as startOfMonth from 'date-fns/start_of_month';
-import * as endOfMonth from 'date-fns/end_of_month';
-import * as subMonths from 'date-fns/sub_months';
-import * as startOfQuarter from 'date-fns/start_of_quarter';
-import * as endOfQuarter from 'date-fns/end_of_quarter';
-import * as subQuarters from 'date-fns/sub_quarters';
-import * as startOfYear from 'date-fns/start_of_year';
-import * as endOfYear from 'date-fns/end_of_year';
-import * as subYears from 'date-fns/sub_years';
+import format from 'date-fns/format';
+import subDays from 'date-fns/subDays';
+import startOfDay from 'date-fns/startOfDay';
+import endOfDay from 'date-fns/endOfDay';
+import subWeeks from 'date-fns/subWeeks';
+import startOfWeek from 'date-fns/startOfWeek';
+import endOfWeek from 'date-fns/endOfWeek';
+import startOfMonth from 'date-fns/startOfMonth';
+import endOfMonth from 'date-fns/endOfMonth';
+import subMonths from 'date-fns/subMonths';
+import startOfQuarter from 'date-fns/startOfQuarter';
+import endOfQuarter from 'date-fns/endOfQuarter';
+import subQuarters from 'date-fns/subQuarters';
+import startOfYear from 'date-fns/startOfYear';
+import endOfYear from 'date-fns/endOfYear';
+import subYears from 'date-fns/subYears';
 
 import { IDatesPeriod } from '../models';
 
-export const dateMetricsServerFormat = 'YYYY-MM-DDTHH:mm:ss.SSSZ';
-export const dateUIFormat = 'MMM D, YYYY';
+export const dateMetricsServerFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
+export const dateUIFormat = 'MMM d, yyyy';
 
 export function formatDateForMetricsServer(date: Date): string {
   return format(date, dateMetricsServerFormat);

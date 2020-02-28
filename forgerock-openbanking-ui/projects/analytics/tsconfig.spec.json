@@ -4,7 +4,8 @@
     "outDir": "../../out-tsc/spec",
     "module": "commonjs",
     "types": ["jest"],
-    "allowJs": true
+    "allowJs": true,
+    "esModuleInterop": true
   },
   "files": ["src/test.ts", "src/polyfills.ts"],
   "include": ["**/*.spec.ts", "**/*.d.ts"]

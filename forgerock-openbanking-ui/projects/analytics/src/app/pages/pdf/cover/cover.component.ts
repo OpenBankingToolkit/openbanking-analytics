@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import * as format from 'date-fns/format';
+import format from 'date-fns/format';
 import { formatDateUI } from 'analytics/src/utils/dates';
 
 @Component({
@@ -24,7 +24,7 @@ export class PdfCoverComponent implements OnInit {
   @Input() from: '';
   @Input() to: '';
   period = '';
-  date: string = format(Date.now(), 'YYYY-MM-DDT HH:mm:ss');
+  date: string = format(Date.now(), 'yyyy-MM-ddT HH:mm:ss');
 
   constructor() {}
 
