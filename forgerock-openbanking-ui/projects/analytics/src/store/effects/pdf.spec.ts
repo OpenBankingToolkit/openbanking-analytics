@@ -12,7 +12,6 @@ import { Observable } from 'rxjs';
 import { ReplaySubject } from 'rxjs';
 import { of } from 'rxjs';
 import { throwError } from 'rxjs';
-import { saveAs } from 'file-saver';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 
 import { GetPdfRequestAction, GetPdfSuccessAction, GetPdfErrorAction } from 'analytics/src/store/reducers/pdf';
