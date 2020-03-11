@@ -6,8 +6,6 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@ang
 
 declare const require: any;
 
-window.URL.createObjectURL = function() {};
-
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
 // Then we find all the tests.

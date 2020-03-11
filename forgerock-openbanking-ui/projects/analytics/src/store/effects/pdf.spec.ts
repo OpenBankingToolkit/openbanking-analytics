@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 import { ReplaySubject } from 'rxjs';
 import { of } from 'rxjs';
 import { throwError } from 'rxjs';
-import { saveAs } from 'file-saver';
+import * as fileSaver from 'file-saver';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 
 import { GetPdfRequestAction, GetPdfSuccessAction, GetPdfErrorAction } from 'analytics/src/store/reducers/pdf';
@@ -22,6 +22,8 @@ import { ForgerockMessagesService } from '@forgerock/openbanking-ngx-common/serv
 import rootReducer from 'analytics/src/store';
 import { IState } from 'analytics/src/models';
 import { first } from 'rxjs/operators';
+
+jest.mock('file-saver');
 
 describe('PdfEffects', () => {
   let effects: PdfEffects;
@@ -33,6 +35,16 @@ describe('PdfEffects', () => {
   let messsageServiceSpy;
   let fromDate: string;
   let toDate: string;
+
+  beforeAll(() => {
+    fileSaver.mockImplementation(() => {
+      return {
+        saveAs: () => {
+          throw new Error('Test error');
+        }
+      };
+    });
+  });
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -53,8 +65,6 @@ describe('PdfEffects', () => {
     metricsService = TestBed.get(MetricsService);
     effects = TestBed.get(PdfEffects);
     messsageService = TestBed.get(ForgerockMessagesService);
-    // mock fileSaver.saveAs as we do not test that.
-    saveAs = () => {};
 
     store.pipe(first()).subscribe(state => {
       fromDate = state.dates.from;
