@@ -27,7 +27,7 @@
     <name>ForgeRock OpenBanking Reference Implementation - Analytics</name>
     <groupId>com.forgerock.openbanking.analytics</groupId>
     <artifactId>forgerock-openbanking-reference-implementation-analytics</artifactId>
-    <version>1.1.42-SNAPSHOT</version>
+    <version>1.1.42</version>
     <packaging>pom</packaging>
 
     <parent>
@@ -101,7 +101,7 @@
         <connection>scm:git:https://github.com/OpenBankingToolkit/openbanking-analytics.git</connection>
         <developerConnection>scm:git:https://github.com/OpenBankingToolkit/openbanking-analytics.git</developerConnection>
         <url>https://github.com/OpenBankingToolkit/ob-analytics.git</url>
-        <tag>HEAD</tag>
+        <tag>forgerock-openbanking-reference-implementation-analytics-1.1.42</tag>
     </scm>
 
     <repositories>
