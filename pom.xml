@@ -98,8 +98,8 @@
     </dependencyManagement>
 
     <scm>
-        <connection>scm:git:https://github.com/OpenBankingToolkit/openbanking-analytics.git</connection>
-        <developerConnection>scm:git:https://github.com/OpenBankingToolkit/openbanking-analytics.git</developerConnection>
+        <connection>scm:git:git@github.com:OpenBankingToolkit/openbanking-analytics.git</connection>
+        <developerConnection>scm:git:git@github.com:OpenBankingToolkit/openbanking-analytics.git</developerConnection>
         <url>https://github.com/OpenBankingToolkit/ob-analytics.git</url>
         <tag>HEAD</tag>
     </scm>
