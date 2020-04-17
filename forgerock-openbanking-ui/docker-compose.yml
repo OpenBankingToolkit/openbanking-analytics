@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+  analytics-ui:
+    image: r.cfcr.io/openbanking/obri/analytics-ui:latest
+    ports:
+      - "4206:443"
+    environment:
+      DOMAIN: ui-integ.forgerock.financial
+      TEMPLATE: hsbc
+      # The following env vars are all based on DOMAIN but can be set with any value (interesting locally with different ports)
+      # APP_URL: "https://analytics.DOMAIN"
+      NODE_BACKEND_URL: "http://localhost:5000" # "https://node.analytics.DOMAIN"
+      # METRICS_BACKEND_URL: "https://service.metrics.DOMAIN"
+    volumes:
+      - ./ssl/k-all.ui-integ.forgerock.financial.key:/etc/nginx/certs/ui-integ.forgerock.financial.key
+      - ./ssl/all.ui-integ.forgerock.financial.crt:/etc/nginx/certs/ui-integ.forgerock.financial.crt
+      - ./ssl/ui-integ.forgerock.financial.conf:/etc/nginx/conf.d/default.conf
+  analytics-node:
+    image: r.cfcr.io/openbanking/obri/analytics-node:latest
+    ports:
+      - "5000:443"
+    environment:
+      DOMAIN: ui-integ.forgerock.financial
+      TEMPLATE: hsbc
+      # The following env vars are all based on DOMAIN but can be set with any value (interesting locally with different ports)
+      # APP_URL: "https://analytics.DOMAIN"

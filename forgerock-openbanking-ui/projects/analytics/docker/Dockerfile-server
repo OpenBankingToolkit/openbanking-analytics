@@ -16,6 +16,7 @@ RUN npm run build
 EXPOSE 80
 
 ENV DOMAIN ""
+ENV APP_URL "https://analytics.DOMAIN"
 ENV NODE_ENV "production"
 
 COPY projects/analytics/docker/start-server.sh /opt/start-server.sh
