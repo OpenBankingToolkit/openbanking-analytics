@@ -6,7 +6,8 @@ import * as bodyParser from 'body-parser';
 import * as uuid from 'uuid/v4';
 import * as os from 'os';
 import * as path from 'path';
-import * as fs from 'fs';
+import * as fs from 'fs-extra';
+import * as https from 'https';
 
 async function run() {
   const {
@@ -15,7 +16,11 @@ async function run() {
   } = getDeploymentSetting();
 
   const PORT = process.env.PORT || 5000;
+  // const HTTPS_PORT = process.env.HTTPS_PORT || 443;
   const NODE_ENV = process.env.NODE_ENV;
+  const CORS_ORIGIN = process.env.CORS_ORIGIN;
+  const keyPath = process.env.HTTPS_KEY_PATH || '/src/dist/server.key';
+  const certPath = process.env.HTTPS_CRT_PATH || '/src/dist/server.crt';
   const app = express();
 
   app.use(cookieParser());
@@ -24,7 +29,7 @@ async function run() {
     cors({
       credentials: true,
       methods: 'GET, POST, HEAD',
-      origin: ORIGIN
+      origin: CORS_ORIGIN || ORIGIN
     })
   );
   app.set('port', PORT);
@@ -73,9 +78,27 @@ async function run() {
     });
   });
 
-  app.listen(app.get('port'), () => {
-    console.log(`Web server listening on port ${app.get('port')}`);
-  });
+  if (fs.pathExistsSync(keyPath) && fs.pathExistsSync(certPath)) {
+    // self signed certs
+    const key = fs.readFileSync(keyPath, 'utf8');
+    const cert = fs.readFileSync(certPath, 'utf8');
+
+    https
+      .createServer(
+        {
+          key,
+          cert
+        },
+        app
+      )
+      .listen(app.get('port'), () => {
+        console.log(`HTTPS server listening on port ${app.get('port')}`);
+      });
+  } else {
+    app.listen(app.get('port'), () => {
+      console.log(`HTTP server listening on port ${app.get('port')}`);
+    });
+  }
 }
 
 async function createBrowser() {
