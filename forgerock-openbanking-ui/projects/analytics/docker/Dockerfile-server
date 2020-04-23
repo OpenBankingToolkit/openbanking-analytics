@@ -1,6 +1,10 @@
 FROM timbru31/java-node
 
 WORKDIR /src
+ADD ./projects/analytics/server/package.json ./projects/analytics/server/package-lock.json /src/
+
+RUN npm ci
+
 ADD ./projects/analytics/server /src
 
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
@@ -9,13 +13,11 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
     && apt-get install -y google-chrome-unstable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf \
       --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
-RUN npm ci
 ENV PORT 80
 RUN npm run build
 
-EXPOSE 80
-
 ENV DOMAIN ""
+ENV APP_URL "https://analytics.DOMAIN"
 ENV NODE_ENV "production"
 
 COPY projects/analytics/docker/start-server.sh /opt/start-server.sh

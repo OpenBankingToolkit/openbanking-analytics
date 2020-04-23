@@ -20,7 +20,6 @@ ENV BUILD_VERSION ${BUILD_VERSION}
 
 ENV TEMPLATE "forgerock"
 ENV DOMAIN ""
-ENV APP_URL "https://analytics.DOMAIN"
 ENV NODE_BACKEND_URL "https://node.analytics.DOMAIN"
 ENV METRICS_BACKEND_URL "https://service.metrics.DOMAIN"
 
