@@ -25,3 +25,4 @@ Thumbs.db
 target/
 sample-data/
 .factorypath
+*.versionsBackup
