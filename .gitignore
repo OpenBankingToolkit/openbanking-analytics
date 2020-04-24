@@ -26,3 +26,5 @@ target/
 sample-data/
 .factorypath
 *.versionsBackup
+*.releaseBackup
+release.properties

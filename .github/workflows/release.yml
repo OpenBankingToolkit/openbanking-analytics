@@ -5,6 +5,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    name: Deploy release
     steps:
       - uses: actions/checkout@v2
         with:
@@ -15,7 +16,7 @@ jobs:
         with: # running setup-java and overwrites the settings.xml
           java-version: '11'
           architecture: x64
-          server-id: central # Value of the distributionManagement/repository/id field of the pom.xml
+          server-id: maven.forgerock.org-community # Value of the distributionManagement/repository/id field of the pom.xml
           server-username: MAVEN_USERNAME # env variable for username in deploy
           server-password: MAVEN_CENTRAL_TOKEN # env variable for token in deploy
 
@@ -25,10 +26,9 @@ jobs:
         with: # running setup-java and overwrites the settings.xml
           java-version: '11'
           architecture: x64
-          server-id: snapshots # Value of the distributionManagement/repository/id field of the pom.xml
+          server-id: maven.forgerock.org-community-snapshots # Value of the distributionManagement/repository/id field of the pom.xml
           server-username: MAVEN_USERNAME # env variable for username in deploy
           server-password: MAVEN_CENTRAL_TOKEN # env variable for token in deploy
-
 
       - name: Release package
         run:  mvn -B deploy
