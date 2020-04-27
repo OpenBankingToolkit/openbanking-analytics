@@ -5,11 +5,11 @@ on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    name: Check PR Itegrity
     steps:
     - uses: actions/checkout@v1
       
-    - name: Check Copyright	
+    - name: Check Copyright
       uses: qcastel/github-actions-maven-cmd@master
       with:
         maven-args: "license:check"
@@ -18,8 +18,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.11
+
+    - name: Cache Maven packages
+      uses: actions/cache@v1
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven2-${{ hashFiles('**/pom.xml') }}
+
     - name: Set up maven
       run: curl https://raw.githubusercontent.com/ForgeCloud/ob-release/master/src/settings.xml > $M2_HOME/conf/settings.xml
+
     - name: Build and Test
       run: |
         sudo bash -c 'echo "127.0.0.1   metrics-services" >> /etc/hosts'
@@ -28,17 +36,7 @@ jobs:
       env:
         FR_PRIVATE_REPO_USER: ${{ secrets.FR_PRIVATE_REPO_USER }}
         FR_PRIVATE_REPO_PASSWORD: ${{ secrets.FR_PRIVATE_REPO_PASSWORD }}
+
     - uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        
-  auto-merge:
-    name: Auto merge
-    runs-on: ubuntu-latest
-    needs:
-      - build
-    steps:
-      - name: Auto merge
-        uses: ridedott/dependabot-auto-merge-action@master
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
