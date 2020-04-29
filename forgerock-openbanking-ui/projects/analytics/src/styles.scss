@@ -13,6 +13,7 @@ forgerock-customer-logo {
 }
 
 body.pdf {
+  color: black;
   &,
   mat-sidenav-container {
     background-color: white !important;
@@ -45,6 +46,7 @@ body.pdf {
 }
 
 body.pdf-creator {
+  color: black;
   content,
   content > layout-container,
   content > layout-container > .outlet-wrapper {

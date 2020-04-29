@@ -12,6 +12,8 @@
 @import '~@forgerock/openbanking-ngx-common/gdpr/main.scss';
 
 @mixin foregrock-material-theme($theme) {
+  // https://github.com/OpenBankingToolkit/openbanking-analytics/issues/122
+  $forceLightTheme: mat-light-theme(map_get($theme, 'primary'), map_get($theme, 'accent'), map_get($theme, 'warn'));
   // Including only the components that we use:
   // https://material.angular.io/guide/theming
   // https://github.com/angular/material2/blob/master/src/lib/core/theming/_all-theme.scss
@@ -21,10 +23,10 @@
   // @include mat-bottom-sheet-theme($theme);
   @include mat-button-theme($theme);
   // @include mat-button-toggle-theme($theme);
-  @include mat-card-theme($theme);
+  @include mat-card-theme($forceLightTheme);
   @include mat-checkbox-theme($theme);
   // @include mat-chips-theme($theme);
-  @include mat-table-theme($theme);
+  @include mat-table-theme($forceLightTheme);
   @include mat-datepicker-theme($theme);
   @include mat-dialog-theme($theme);
   // @include mat-divider-theme($theme);
@@ -35,7 +37,7 @@
   // @include mat-input-theme($theme);
   // @include mat-list-theme($theme);
   @include mat-menu-theme($theme);
-  @include mat-paginator-theme($theme);
+  @include mat-paginator-theme($forceLightTheme);
   @include mat-progress-bar-theme($theme);
   @include mat-progress-spinner-theme($theme);
   // @include mat-radio-theme($theme);
