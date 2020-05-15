@@ -39,7 +39,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j
-
+@PreAuthorize("hasAnyAuthority('GROUP_ANALYTICS')")
 @RequestMapping("/api/kpi/payments")
 @RestController
 public class PaymentsKPIController {

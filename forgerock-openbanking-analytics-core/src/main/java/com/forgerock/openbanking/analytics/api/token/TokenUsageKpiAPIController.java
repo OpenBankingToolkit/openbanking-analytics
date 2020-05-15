@@ -42,7 +42,7 @@ import static org.springframework.data.mongodb.core.query.Criteria.byExample;
 
 
 @Slf4j
-
+@PreAuthorize("hasAnyAuthority('GROUP_ANALYTICS')")
 @RequestMapping("/api/kpi/token-usage")
 @RestController
 public class TokenUsageKpiAPIController {

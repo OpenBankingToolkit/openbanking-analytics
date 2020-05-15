@@ -44,6 +44,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Api(tags = "Callback", description = "Callbacks KPIs related to the Open Banking UK Event notification APIs")
+@PreAuthorize("hasAnyAuthority('GROUP_ANALYTICS')")
 @RequestMapping("/api/kpi/callbacks")
 @RestController
 public class CallBackController {

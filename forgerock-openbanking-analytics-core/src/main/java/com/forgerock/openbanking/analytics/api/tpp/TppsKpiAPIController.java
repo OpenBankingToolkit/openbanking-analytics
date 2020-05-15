@@ -51,8 +51,8 @@ import java.util.stream.Stream;
 
 
 @RestController
+@PreAuthorize("hasAnyAuthority('GROUP_ANALYTICS')")
 @RequestMapping("/api/kpi/tpps")
-
 @Slf4j
 public class TppsKpiAPIController {
 

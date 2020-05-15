@@ -39,7 +39,7 @@ import static org.springframework.data.mongodb.core.query.Criteria.byExample;
 
 
 @RestController
-
+@PreAuthorize("hasAnyAuthority('GROUP_ANALYTICS')")
 @RequestMapping("/api/kpi/psu")
 @Slf4j
 public class PSUKpiAPIController {

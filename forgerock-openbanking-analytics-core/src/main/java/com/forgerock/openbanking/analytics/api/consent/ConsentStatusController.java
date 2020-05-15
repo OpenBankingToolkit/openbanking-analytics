@@ -38,7 +38,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-
+@PreAuthorize("hasAnyAuthority('GROUP_ANALYTICS')")
 @RequestMapping("/api/kpi/consent")
 @RestController
 public class ConsentStatusController {

@@ -49,8 +49,8 @@ import java.util.stream.Collectors;
 import static org.springframework.data.mongodb.core.query.Criteria.byExample;
 
 @RestController
+@PreAuthorize("hasAnyAuthority('GROUP_ANALYTICS')")
 @RequestMapping("/api/kpi/jwts")
-
 @Slf4j
 public class JwtsKpiAPIController {
 
