@@ -25,7 +25,9 @@ jobs:
         key: ${{ runner.os }}-maven2-${{ hashFiles('**/pom.xml') }}
 
     - name: Build and Test
-      run: mvn -B clean verify # this command executes each default lifecycle phase in order (validate, compile, test, package, etc), before executing verify.
+      run: |
+        sudo bash -c 'echo "127.0.0.1   metrics-services" >> /etc/hosts'
+        mvn -B clean verify # this command executes each default lifecycle phase in order (validate, compile, test, package, etc), before executing verify.
 
     - uses: codecov/codecov-action@v1
       with:
