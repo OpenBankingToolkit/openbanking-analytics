@@ -53,6 +53,8 @@
     <modules>
         <module>forgerock-openbanking-analytics-core</module>
         <module>forgerock-openbanking-analytics-sample</module>
+        <!-- hack to build the docker images ui isn't a maven java module -->
+        <module>forgerock-openbanking-ui</module>
     </modules>
 
     <dependencyManagement>
@@ -101,7 +103,7 @@
         <connection>scm:git:git@github.com:OpenBankingToolkit/openbanking-analytics.git</connection>
         <developerConnection>scm:git:git@github.com:OpenBankingToolkit/openbanking-analytics.git</developerConnection>
         <url>https://github.com/OpenBankingToolkit/openbanking-analytics.git</url>
-        <tag>forgerock-openbanking-reference-implementation-analytics-1.1.48</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <repositories>
@@ -114,18 +116,6 @@
             <id>maven.forgerock.org-community-snapshots</id>
             <name>maven.forgerock.org-snapshots</name>
             <url>https://maven.forgerock.org:443/repo/community</url>
-        </repository>
-        <repository>
-            <id>jcenter</id>
-            <url>https://jcenter.bintray.com/</url>
-        </repository>
-        <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>bintray-openbanking-toolkit-OpenBankingToolKit</id>
-            <name>bintray</name>
-            <url>https://dl.bintray.com/openbanking-toolkit/OpenBankingToolKit</url>
         </repository>
     </repositories>
 
