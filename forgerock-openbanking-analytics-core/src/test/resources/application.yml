@@ -27,7 +27,7 @@ server:
 metrics:
   port: 8444
   endpoints:
-    root: https://metrics-services:${metrics.port}
+    root: https://${server.hostname}:${metrics.port}
     endpoint-usage:
       add-entries: ${metrics.endpoints.root}/api/kpi/endpoint-usage/add-entries
     jwts-generation:
