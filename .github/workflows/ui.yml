@@ -1,7 +1,11 @@
 name: Build-UI
 
 on:
+  # Trigger the workflow on push
+  # Only for the master branch
   push:
+    branches:
+      - master
     paths:
       - ".github/workflows/ui.yml"
       - "forgerock-openbanking-ui/**"
@@ -38,11 +42,6 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-      - working-directory: ./forgerock-openbanking-ui
-        id: version
-        run: |
-          export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
-          echo "::set-output name=BUILD_VERSION::$BUILD_VERSION"
       - name: Download Artifact
         uses: actions/download-artifact@master
         with:
@@ -53,13 +52,18 @@ jobs:
       - name: Build Analytics UI docker image
         working-directory: ./forgerock-openbanking-ui
         run: |
+          export REGISTRY=eu.gcr.io/openbanking-214714/obri/analytics-ui
           export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
-
-          echo "Building docker image eu.gcr.io/openbanking-214714/obri/analytics-ui:${BUILD_VERSION}"
+          export PROJECT_VERSION_JSON=$(jq -r ".project_version" package.json)
+          export PROJECT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "Building docker image ${REGISTRY}:${BUILD_VERSION}"
           echo "${{ secrets.GCR_JSON_KEY_BASE64 }}" | base64 -d | docker login eu.gcr.io -u _json_key --password-stdin
-          docker build --build-arg BUILD_VERSION=$BUILD_VERSION -f projects/analytics/docker/Dockerfile -t eu.gcr.io/openbanking-214714/obri/analytics-ui:latest -t eu.gcr.io/openbanking-214714/obri/analytics-ui:$BUILD_VERSION .
-          docker push eu.gcr.io/openbanking-214714/obri/analytics-ui:latest
-          docker push eu.gcr.io/openbanking-214714/obri/analytics-ui:$BUILD_VERSION
+          docker build --build-arg BUILD_VERSION=$BUILD_VERSION -f projects/analytics/docker/Dockerfile \
+          -t $REGISTRY:latest -t $REGISTRY:$BUILD_VERSION -t $REGISTRY:$PROJECT_VERSION_JSON -t $REGISTRY:$PROJECT_VERSION .
+          docker push $REGISTRY:latest
+          docker push $REGISTRY:$BUILD_VERSION
+          docker push $REGISTRY:$PROJECT_VERSION
+          docker push $REGISTRY:$PROJECT_VERSION_JSON
   build_analytics_backend:
     name: Build Analytics Backend
     runs-on: ubuntu-latest
@@ -67,11 +71,6 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-      - working-directory: ./forgerock-openbanking-ui
-        id: version
-        run: |
-          export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
-          echo "::set-output name=BUILD_VERSION::$BUILD_VERSION"
       - name: Download Artifact
         uses: actions/download-artifact@master
         with:
@@ -82,12 +81,18 @@ jobs:
       - name: Build analytics backend docker image
         working-directory: ./forgerock-openbanking-ui
         run: |
+          export REGISTRY=eu.gcr.io/openbanking-214714/obri/analytics-node
           export BUILD_VERSION=$(jq -r ".project_version" package.json)-${GITHUB_SHA::7}
-          echo "Building docker image eu.gcr.io/openbanking-214714/obri/analytics-node:${BUILD_VERSION}"
+          export PROJECT_VERSION_JSON=$(jq -r ".project_version" package.json)
+          export PROJECT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "Building docker image ${REGISTRY}:${BUILD_VERSION}"
           echo "${{ secrets.GCR_JSON_KEY_BASE64 }}" | base64 -d | docker login eu.gcr.io -u _json_key --password-stdin
-          docker build --build-arg BUILD_VERSION=$BUILD_VERSION -f projects/analytics/docker/Dockerfile-server -t eu.gcr.io/openbanking-214714/obri/analytics-node:latest -t eu.gcr.io/openbanking-214714/obri/analytics-node:$BUILD_VERSION .
-          docker push eu.gcr.io/openbanking-214714/obri/analytics-node:latest
-          docker push eu.gcr.io/openbanking-214714/obri/analytics-node:$BUILD_VERSION
+          docker build --build-arg BUILD_VERSION=$BUILD_VERSION -f projects/analytics/docker/Dockerfile-server \
+          -t $REGISTRY:latest -t $REGISTRY:$BUILD_VERSION -t $REGISTRY:$PROJECT_VERSION_JSON -t $REGISTRY:$PROJECT_VERSION .
+          docker push $REGISTRY:latest
+          docker push $REGISTRY:$BUILD_VERSION
+          docker push $REGISTRY:$PROJECT_VERSION
+          docker push $REGISTRY:$PROJECT_VERSION_JSON
   update_ob_deploy:
     name: Update ob-deploy
     runs-on: ubuntu-latest

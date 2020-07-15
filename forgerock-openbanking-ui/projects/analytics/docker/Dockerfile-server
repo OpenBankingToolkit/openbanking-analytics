@@ -1,11 +1,10 @@
-FROM timbru31/java-node
+FROM node:10
 
 WORKDIR /src
-ADD ./projects/analytics/server/package.json ./projects/analytics/server/package-lock.json /src/
+
+ADD ./projects/analytics/server /src/
 
 RUN npm ci
-
-ADD ./projects/analytics/server /src
 
 RUN apt-get -qq update && apt-get -qq -y install wget
 
