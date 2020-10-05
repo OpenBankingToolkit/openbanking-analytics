@@ -82,7 +82,7 @@ public class JwkmsKpiAPIControllerIT {
     }
 
     @Test
-    public void testGeneratedJWTsKPI() throws Exception {
+    public void testGeneratedJWTsKPI() throws JOSEException, ParseException {
         DateTime now = DateTime.now();
         // Given
         addGenerationJwtEntries(ImmutableList.builder()
