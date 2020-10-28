@@ -23,6 +23,7 @@ package com.forgerock.openbanking.analytics.upgrade;
 import com.forgerock.openbanking.analytics.model.entries.EndpointUsageAggregate;
 import com.forgerock.openbanking.analytics.model.entries.TppEntry;
 import com.forgerock.openbanking.analytics.repository.*;
+import com.forgerock.openbanking.repositories.TppRepository;
 import com.forgerock.openbanking.upgrade.exceptions.UpgradeException;
 import com.forgerock.openbanking.upgrade.model.UpgradeStep;
 import lombok.extern.slf4j.Slf4j;

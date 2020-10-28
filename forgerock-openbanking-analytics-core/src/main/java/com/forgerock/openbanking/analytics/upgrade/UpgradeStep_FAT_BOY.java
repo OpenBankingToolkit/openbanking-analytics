@@ -28,7 +28,7 @@ import com.forgerock.openbanking.analytics.model.openbanking.OBGroupName;
 import com.forgerock.openbanking.analytics.repository.EndpointUsageAggregateRepository;
 import com.forgerock.openbanking.analytics.repository.EndpointUsageEntryRepository;
 import com.forgerock.openbanking.analytics.repository.TppEntryRepository;
-import com.forgerock.openbanking.analytics.repository.TppRepository;
+import com.forgerock.openbanking.repositories.TppRepository;
 import com.forgerock.openbanking.constants.OpenBankingConstants;
 import com.forgerock.openbanking.model.Tpp;
 import com.forgerock.openbanking.model.UserContext;
