@@ -24,7 +24,7 @@ import com.forgerock.openbanking.analytics.api.endpoint.EndpointUsageKpiAPIContr
 import com.forgerock.openbanking.analytics.api.tpp.TppsKpiAPIController;
 import com.forgerock.openbanking.analytics.model.entries.EndpointUsageEntry;
 import com.forgerock.openbanking.analytics.model.entries.TppEntry;
-import com.forgerock.openbanking.analytics.model.openbanking.OBGroupName;
+import com.forgerock.openbanking.api.annotations.OBGroupName;
 import com.forgerock.openbanking.analytics.repository.EndpointUsageAggregateRepository;
 import com.forgerock.openbanking.analytics.repository.EndpointUsageEntryRepository;
 import com.forgerock.openbanking.analytics.repository.TppEntryRepository;

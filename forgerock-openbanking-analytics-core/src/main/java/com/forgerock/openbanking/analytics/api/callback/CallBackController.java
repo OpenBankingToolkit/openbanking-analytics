@@ -25,7 +25,7 @@ import com.forgerock.openbanking.analytics.charts.Donut;
 import com.forgerock.openbanking.analytics.model.entries.EndpointUsageAggregate;
 import com.forgerock.openbanking.analytics.model.entries.callback.CallBackCounterEntry;
 import com.forgerock.openbanking.analytics.model.entries.callback.CallBackResponseStatus;
-import com.forgerock.openbanking.analytics.model.openbanking.OBReference;
+import com.forgerock.openbanking.api.annotations.OBReference;
 import com.forgerock.openbanking.analytics.repository.CallBackCounterEntryRepository;
 import com.forgerock.openbanking.analytics.repository.EndpointUsageAggregateRepository;
 import com.google.common.collect.ImmutableList;

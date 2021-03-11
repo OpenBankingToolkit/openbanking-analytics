@@ -27,7 +27,7 @@ import com.forgerock.openbanking.analytics.model.entries.EndpointUsageEntry;
 import com.forgerock.openbanking.analytics.model.entries.GeoIP;
 import com.forgerock.openbanking.analytics.model.entries.TppEntry;
 import com.forgerock.openbanking.analytics.model.kpi.*;
-import com.forgerock.openbanking.analytics.model.openbanking.OBGroupName;
+import com.forgerock.openbanking.api.annotations.OBGroupName;
 import com.forgerock.openbanking.analytics.models.ApplicationType;
 import com.forgerock.openbanking.analytics.repository.EndpointUsageAggregateRepository;
 import com.forgerock.openbanking.analytics.repository.TppEntryRepository;
