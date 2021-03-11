@@ -36,11 +36,16 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
+import static com.forgerock.openbanking.analytics.upgrade.UpgradeStep_4_1_4.VERSION;
 
 @Service
-@UpgradeMeta(version = "4.1.4")
+@UpgradeMeta(version = VERSION)
 @Slf4j
 public class UpgradeStep_4_1_4 implements UpgradeStep {
+
+    // The release version of openbanking-reference-implementation
+    // Need to comply with => (VERSION >= versionFrom && VERSION <= versionTo)
+    protected static final String VERSION = "4.1.4";
 
     @Autowired
     private MongoTemplate mongoTemplate;
@@ -50,7 +55,7 @@ public class UpgradeStep_4_1_4 implements UpgradeStep {
         StopWatch elapsedTime = new StopWatch();
         elapsedTime.start();
         log.info("-----------------------------------------------------------------------");
-        log.debug("Start "+this.getClass().getName()+" to upgrading to version " + this.getClass().getDeclaredAnnotation(UpgradeMeta.class).version());
+        log.debug("Start {} to upgrading to version {}", this.getClass().getName(), VERSION);
         try {
             upgradeEntries(TppEntry.class);
             upgradeEntries(ConsentStatusEntry.class);
@@ -62,17 +67,17 @@ public class UpgradeStep_4_1_4 implements UpgradeStep {
             upgradeEntries(SessionCounterEntry.class);
             upgradeEntries(TokenUsageEntry.class);
             elapsedTime.stop();
-            log.info("Upgraded executed in " + elapsedTime.getTotalTimeSeconds() + " seconds.");
+            log.info("Upgraded executed in {} seconds.", elapsedTime.getTotalTimeSeconds());
             log.info("-----------------------------------------------------------------------");
         } catch (Exception e) {
-            throw new UpgradeException("Could not upgrade to " + this.getClass().getDeclaredAnnotation(UpgradeMeta.class).version(), e);
+            throw new UpgradeException("Could not upgrade to " + VERSION, e);
         } finally {
             SecurityContextHolder.clearContext();
         }
         return true;
     }
 
-    private void upgradeEntries(Class clazz) throws Exception {
+    private <T> void upgradeEntries(Class<T> clazz) {
         StopWatch elapsedTime = start(clazz);
 
         BulkOperations bulkOperations = mongoTemplate.bulkOps(BulkOperations.BulkMode.UNORDERED, clazz);
@@ -81,7 +86,7 @@ public class UpgradeStep_4_1_4 implements UpgradeStep {
 
         Update update = new Update()
                 .set("_class", clazz.getName())
-                .set("upgradedVersion", this.getClass().getDeclaredAnnotation(UpgradeMeta.class).version())
+                .set("upgradedVersion", VERSION)
                 .set("upgradedDate", DateTime.now());
 
         bulkOperations.updateOne(query, update);
@@ -91,17 +96,17 @@ public class UpgradeStep_4_1_4 implements UpgradeStep {
         stop(clazz,i,elapsedTime);
     }
 
-    private StopWatch start(Class clazz){
+    private <T> StopWatch start(Class<T> clazz){
         StopWatch elapsedTime = new StopWatch();
         elapsedTime.start();
         log.info("-----------------------------------------------------------------------");
-        log.info("Upgrading " + clazz.getName());
+        log.info("Upgrading {}", clazz.getName());
         return elapsedTime;
     }
 
-    private void stop(Class clazz, int entriesModified, StopWatch elapsedTime){
+    private <T> void stop(Class<T> clazz, int entriesModified, StopWatch elapsedTime){
         elapsedTime.stop();
-        log.info("Upgraded [" + entriesModified +"] "+ clazz.getName() + "objects in " + elapsedTime.getTotalTimeSeconds() + " seconds.");
+        log.info("Upgraded [{}] {} objects in {} seconds.",entriesModified, clazz.getName(), elapsedTime.getTotalTimeSeconds());
         log.info("-----------------------------------------------------------------------");
     }
 
