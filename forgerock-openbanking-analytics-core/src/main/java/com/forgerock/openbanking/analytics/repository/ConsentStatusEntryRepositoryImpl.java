@@ -22,7 +22,7 @@ package com.forgerock.openbanking.analytics.repository;
 
 import com.forgerock.openbanking.analytics.model.IntentType;
 import com.forgerock.openbanking.analytics.model.entries.ConsentStatusEntry;
-import com.forgerock.openbanking.analytics.model.openbanking.OBGroupName;
+import com.forgerock.openbanking.api.annotations.OBGroupName;
 import com.forgerock.openbanking.analytics.models.ConsentActivities;
 import com.forgerock.openbanking.analytics.models.ConsentTypeCounter;
 import org.joda.time.DateTime;

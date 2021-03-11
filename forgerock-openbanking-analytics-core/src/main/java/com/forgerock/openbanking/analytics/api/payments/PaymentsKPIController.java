@@ -22,7 +22,7 @@ package com.forgerock.openbanking.analytics.api.payments;
 
 import com.forgerock.openbanking.analytics.charts.Donut;
 import com.forgerock.openbanking.analytics.model.entries.EndpointUsageAggregate;
-import com.forgerock.openbanking.analytics.model.openbanking.OBReference;
+import com.forgerock.openbanking.api.annotations.OBReference;
 import com.forgerock.openbanking.analytics.repository.EndpointUsageAggregateRepository;
 import com.google.common.collect.ImmutableList;
 import lombok.extern.slf4j.Slf4j;

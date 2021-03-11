@@ -1,3 +1,44 @@
+## Run local with CLI
+### Prepare
+```shell
+# working directory => forgerock-openbanking-ui
+npm ci
+```
+```shell
+# Build analytics backend server
+# working directory => forgerock-openbanking-ui
+cd projects/analytics/server
+npm ci
+```
+### Build Analytics backend server and front end
+```shell
+# Build analytics backend server
+# working directory => forgerock-openbanking-ui
+npm run build.analytics.server
+```
+```shell
+# build analytics front end
+# working directory => forgerock-openbanking-ui
+npm run build.analytics.forgerock
+```
+### Run analytics backend server and front end
+```shell
+# Run analytics backend server
+# working directory => forgerock-openbanking-ui
+npm run build.analytics.server
+```
+```shell
+# Run front end 
+npm run serve.analytics
+```
+### Access
+| app | url | port |
+| --- | --- | --- |
+| backend | http://localhost | 5000 |
+| front end | http://localhost | 0000 |
+
+> GO TO http://localhost:4206
+
 ## Running docker image
 
 <https://hub.docker.com/repository/docker/openbankingtoolkit/openbanking-analytics-ui> is a built version of the Analytics app with only the Forgerock template.

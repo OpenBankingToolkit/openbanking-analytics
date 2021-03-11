@@ -236,3 +236,19 @@ Those APIs are convenient as you can easily integrate them inside your existent 
 No, analytics is a separated apps that offers REST APIs. It can therefore integrate with any kind of Open Banking solutions.
 
 [http://localhost:4206/]: http://localhost:4206/
+
+# Run analytics localy against dev-ob.forgerock.financial services
+- Run first the docker-compose of reference-implementation
+```shell
+# Run all services (this runs also the latest images of analytics-ui and analytics-node
+docker-compose --profile all up
+# Run only the metrics services
+docker-compose --profile metrics up
+```
+- Run the below commands only if you are running the profile `metrics` of ref-implementation
+```shell
+cd forgerock-openbanking-ui
+npm ci
+npm run server.dev-ob.analytics
+```
+- [https://analytics.dev-ob.forgerock.financial:4206](https://analytics.dev-ob.forgerock.financial:4206)

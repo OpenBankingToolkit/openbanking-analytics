@@ -22,8 +22,8 @@ package com.forgerock.openbanking.analytics.repository;
 
 import com.forgerock.openbanking.analytics.model.entries.EndpointUsageAggregate;
 import com.forgerock.openbanking.analytics.model.kpi.EndpointUsageAggregateRepositoryCustom;
-import com.forgerock.openbanking.analytics.model.openbanking.OBGroupName;
-import com.forgerock.openbanking.analytics.model.openbanking.OBReference;
+import com.forgerock.openbanking.api.annotations.OBGroupName;
+import com.forgerock.openbanking.api.annotations.OBReference;
 import org.joda.time.DateTime;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

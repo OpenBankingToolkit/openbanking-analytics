@@ -33,6 +33,7 @@ import { IDatesState, IState, ITableServiceParams, ITableReponseUnion } from 'an
 import { MetricsService } from '../../services/metrics.service';
 import { selectDateFrom, selectDates, selectDateTo } from 'analytics/src/store/reducers/dates';
 import { ITableFilter, ITableSort, ITableFilterList, ITableSortList } from 'analytics/src/models';
+import {GetChartErrorAction} from "analytics/src/store/reducers/charts";
 
 const log = debug('AbstractWidgetTableComponent');
 
@@ -140,8 +141,13 @@ export abstract class AbstractWidgetTableComponent implements OnInit, OnDestroy 
           return of(response);
         }),
         catchError((er: HttpErrorResponse | Error) => {
-          const error = _get(er, 'error.Message') || _get(er, 'error.message') || _get(er, 'message') || er;
-          this.store.dispatch(new GetTableErrorAction({ id: this.id, error }));
+          if(_get(er, 'error.status') === 403 && _get(er, 'error.error') === 'Forbidden'){
+            console.log("Missing roles to access")
+            this.store.dispatch(new GetChartErrorAction({ id: this.id, error: "You do not have permission to view the analytics data. Please contact your administrator to ask for permissions." }));
+          }else {
+            const error = _get(er, 'error.Message') || _get(er, 'error.message') || _get(er, 'message') || er;
+            this.store.dispatch(new GetTableErrorAction({id: this.id, error}));
+          }
           return of(er);
         }),
         finalize(() => {

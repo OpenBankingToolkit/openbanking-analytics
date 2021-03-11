@@ -42,6 +42,7 @@ export class GSUOBVersionsContainerComponent extends AbstractWidgetChartComponen
   }
 
   getService({ fromDate: from, toDate: to }: IChartsEndpointParams) {
+    try{
     return this.metricsService.readStats({
       aggregations: ['BY_OB_VERSIONS'],
       from,
@@ -50,6 +51,11 @@ export class GSUOBVersionsContainerComponent extends AbstractWidgetChartComponen
         obGroupNames: ['AISP', 'PISP', 'CBPII', 'EVENT']
       }
     });
+    } catch (e) {
+      if(e.message.contains("Forbidden")){
+        console.log("SHIIIIIT")
+      }
+    }
   }
 
   responseTransform(response: ILineChartResponse) {

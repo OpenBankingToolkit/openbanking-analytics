@@ -31,7 +31,10 @@
     "serve.localhost.analytics": "run-p serve.localhost.analytics.client serve.analytics.server",
     "serve.compose.analytics.client": "ng serve analytics --host 0.0.0.0 --browserTarget analytics:build:compose --ssl false",
     "serve.compose.analytics": "run-p serve.compose.analytics.client serve.analytics.server",
-    "start.compose": "npm run serve.compose.analytics"
+    "start.compose": "npm run serve.compose.analytics",
+    "================= DEV-OB =================": "",
+    "serve.dev-ob.analytics.client": "ng serve analytics --host analytics.dev-ob.forgerock.financial --browserTarget analytics:build:dev-ob --sslCert ssl/all.dev-ob.forgerock.financial.crt --sslKey ssl/all.dev-ob.forgerock.financial.key",
+    "serve.dev-ob.analytics": "run-p serve.dev-ob.analytics.client serve.analytics.server"
   },
   "private": true,
   "dependencies": {
