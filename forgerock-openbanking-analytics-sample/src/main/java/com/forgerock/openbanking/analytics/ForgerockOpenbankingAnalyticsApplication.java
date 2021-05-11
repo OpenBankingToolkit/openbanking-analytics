@@ -20,9 +20,9 @@
  */
 package com.forgerock.openbanking.analytics;
 
-import dev.openbanking4.spring.security.multiauth.configurers.MultiAuthenticationCollectorConfigurer;
-import dev.openbanking4.spring.security.multiauth.configurers.collectors.CustomJwtCookieCollector;
-import dev.openbanking4.spring.security.multiauth.configurers.collectors.StaticUserCollector;
+import com.forgerock.spring.security.multiauth.configurers.MultiAuthenticationCollectorConfigurer;
+import com.forgerock.spring.security.multiauth.configurers.collectors.CustomJwtCookieCollector;
+import com.forgerock.spring.security.multiauth.configurers.collectors.StaticUserCollector;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
