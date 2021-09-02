@@ -99,13 +99,9 @@ public class UpgradeStep_FAT_BOY implements UpgradeStep {
             String softwareId = "";
             String organisationId = "";
             String organisationName = "";
-            try {
-                softwareId = tpp.getSsaClaim().getStringClaim(OpenBankingConstants.SSAClaims.SOFTWARE_ID);
-                organisationId = tpp.getSsaClaim().getStringClaim(OpenBankingConstants.SSAClaims.ORG_ID);
-                organisationName = tpp.getSsaClaim().getStringClaim(OpenBankingConstants.SSAClaims.ORG_NAME);
-            } catch (ParseException e) {
-                log.error("Can't read SSA claims", e);
-            }
+            softwareId = tpp.getSsaClaim().getSoftware_id();
+            organisationId = tpp.getSsaClaim().getOrg_id();
+            organisationName = tpp.getSsaClaim().getOrg_name();
             return TppEntry.builder()
                     .oidcClientId(tpp.getClientId())
                     .name(tpp.getName())
