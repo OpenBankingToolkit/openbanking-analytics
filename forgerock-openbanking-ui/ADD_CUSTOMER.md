@@ -1,6 +1,6 @@
 ## Create a new customer
 
-```
+```shell
 ./scripts/addNewCustomer.js --customer <customerName>
 ```
 
@@ -28,7 +28,7 @@ Once you are happy with the result, click the `export` button to get the JSON ex
 
 Run the following command to apply the customization:
 
-```
+```shell
 ./scripts/addNewCustomer.js --customer <customerName> --customization <pathToCustomizationJson>
 ```
 
@@ -48,34 +48,36 @@ Automated tasks:
 If you want to see the result locally before committing the result. Add the following config in `angular.json` and replace `<customerName>`, `<appName>` and `<clusterName>`. See example: `ui-integ-hl`
 
 ```json
-"<clusterName>-<customerName>": {
+{
+  "<clusterName>-<customerName>": {
     "stylePreprocessorOptions": {
-    "includePaths": [
+      "includePaths": [
         "customers/<customerName>/apps/<appName>/scss",
         "customers/<customerName>/scss",
         "utils/scss",
         "projects/<appName>/src/scss"
-    ]
+      ]
     },
     "fileReplacements": [
-    {
+      {
         "replace": "projects/<appName>/src/environments/environment.ts",
         "with": "projects/<appName>/src/environments/environment.<clusterName>.ts"
-    },
-    {
+      },
+      {
         "replace": "projects/<appName>/src/assets/logos/icon.svg",
         "with": "customers/<customerName>/assets/logos/icon.svg"
-    },
-    {
+      },
+      {
         "replace": "projects/<appName>/src/assets/logos/logo.svg",
         "with": "customers/<customerName>/assets/logos/logo.svg"
-    },
-    {
+      },
+      {
         "replace": "projects/<appName>/src/assets/splashscreen.css",
         "with": "customers/<customerName>/assets/splashscreen.css"
-    }
+      }
     ]
-},
+  }
+}
 ```
 
 Then when using `ng serve` use `--browserTarget <appName>:build:<clusterName>-<customerName>`. See `serve.ui-integ.analytics.hl.client` task in `angular.json`

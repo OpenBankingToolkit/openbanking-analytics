@@ -252,3 +252,4 @@ npm ci
 npm run server.dev-ob.analytics
 ```
 - [https://analytics.dev-ob.forgerock.financial:4206](https://analytics.dev-ob.forgerock.financial:4206)
+> The user to grant access to analytics must have the roles PUSH_KPI and READ_KPI set in the identity field 'MSISDN Number' on AM
