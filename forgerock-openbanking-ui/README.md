@@ -1,4 +1,5 @@
 ## Run local with CLI
+> The user to grant access to analytics must have the roles PUSH_KPI and READ_KPI set in the identity field 'MSISDN Number' on AM
 ### Prepare
 ```shell
 # working directory => forgerock-openbanking-ui
@@ -31,13 +32,47 @@ npm run build.analytics.server
 # Run front end 
 npm run serve.analytics
 ```
+**To run the analytics client on local against the reference implementation services to play with**
+```shell
+# Go to reference implementation project
+# run the docker compose with profile
+docker-compose -f docker-compose-profiles.yml --profile analytics up
+# When the services are running stop the service eu.gcr.io/openbanking-214714/obri/analytics-ui:latest
+docker ps -a
+docker stop {analytics-ui container ID}
+```
+```shell
+# Back to analytics project
+# working directory => forgerock-openbanking-ui
+npm ci
+npm run serve.dev-ob.analytics.client
+```
+> got to https://analytics.dev-ob.forgerock.financial:4206
+
+**to run the analytics server on local against the reference implementation services to play with**
+```shell
+# Go to reference implementation project
+# run the docker compose with profile
+docker-compose -f docker-compose-profiles.yml --profile analytics up
+# When the services are running stop the service eu.gcr.io/openbanking-214714/obri/analytics-node:latest
+docker ps -a
+docker stop {analytics-node container ID}
+```
+```shell
+# Back to analytics project
+# working directory => forgerock-openbanking-ui
+npm ci
+npm run serve.dev-ob.analytics
+```
+> nodeBackend: 'https://analytics.dev-ob.forgerock.financial:5000/api'
+
 ### Access
 | app | url | port |
 | --- | --- | --- |
 | backend | http://localhost | 5000 |
-| front end | http://localhost | 0000 |
+| front end | http://localhost / https://analytics.dev-ob.forgerock.financial:4206 | 4206 |
 
-> GO TO http://localhost:4206
+> GO TO http://localhost:4206 or https://analytics.dev-ob.forgerock.financial:4206
 
 ## Running docker image
 
