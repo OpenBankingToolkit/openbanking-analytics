@@ -183,7 +183,7 @@ public class EndpointUsageKpiAPIController implements EndpointUsageKpiAPI {
 
 
         if (request.getAggregations().size() > 2) {
-            throw new IllegalArgumentException("Can't graph more than 2 aggrega");
+            throw new IllegalArgumentException("Can't graph more than 2 aggregations");
         }
 
         log.debug("Compute definition set");
@@ -196,15 +196,16 @@ public class EndpointUsageKpiAPIController implements EndpointUsageKpiAPI {
         long tStart = System.currentTimeMillis();
 
         log.debug("Get entries stream");
-        Stream<EndpointUsageAggregate> entries = getEndpointUsageAggregateEntries(request).parallel();
+
+        Stream<EndpointUsageAggregate> entries = getEndpointUsageAggregateEntries(request);
         log.debug("KB: " + (double) (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024);
 
         // Format the data and store them in the dataset
-        log.debug("Compute each entry");
         int[] count = new int[1];
 
         long[] addToDatasetTimer = new long[1];
         entries.forEach(e -> {
+            log.debug("Computing entry for '{}'", e);
             long tStartA = System.currentTimeMillis();
             addToDataset(lines, definitions, e, request, dateGranularityFormatter);
             addToDatasetTimer[0] += System.currentTimeMillis() - tStartA;
@@ -337,7 +338,10 @@ public class EndpointUsageKpiAPIController implements EndpointUsageKpiAPI {
 
         // We do the first dimension
         for(EndpointsUsageAggregation filter : filters) {
+            log.debug("getSetDefinition() creating setOfDefinition for filter '{}'", filter);
             setOfDefinition.put(filter, filter.getSetDefinition(request, to, dateGranularityFormat, (f, t, field) -> endpointUsageAggregateRepository.getSetDefinition(request, f, t, field), from, endpointUsageAggregateRepository));
+            log.debug("getSetDefinition() added a list of '{}' entries for filter '{}'",
+                    setOfDefinition.get(filter).size());
         }
         return setOfDefinition;
     }
@@ -368,6 +372,8 @@ public class EndpointUsageKpiAPIController implements EndpointUsageKpiAPI {
         }
 
         //For each line
+        log.debug("addToDataset() updating for each line. There are '{}' lines for this entry",
+                linesForCurrentEntry.size());
         for(EndpointsUsageKPI.Line line: linesForCurrentEntry) {
             List<Object> xs = dimension1.getValuesFromEntry(entry, dateGranularityFormatter, definitions.get(dimension1));
             //For all the x coordinates
@@ -413,41 +419,55 @@ public class EndpointUsageKpiAPIController implements EndpointUsageKpiAPI {
         if (request.filtering != null && request.filtering.obGroupNames != null) {
 
             if (request.filtering.status != null && request.filtering.tpps != null) {
+                log.debug("getEndpointUseageAgregateEntries() " +
+                        "calling findByEndpointTypeInAndIdentityIdInAndResponseStatusInAndDateBetween()");
                 return endpointUsageAggregateRepository.findByEndpointTypeInAndIdentityIdInAndResponseStatusInAndDateBetween(request.filtering.obGroupNames, request.filtering.tpps, request.filtering.status, request.from.minusMinutes(1), request.to.plusMinutes(1));
             }
 
             if (request.filtering.status != null) {
+                log.debug("getEndpointUseageAgregateEntries() calling " +
+                        "findByEndpointTypeInAndResponseStatusInAndDateBetween()");
                 return endpointUsageAggregateRepository.findByEndpointTypeInAndResponseStatusInAndDateBetween(request.filtering.obGroupNames, request.filtering.status, request.from.minusMinutes(1), request.to.plusMinutes(1));
             }
 
             if (request.filtering.tpps != null) {
+                log.debug("getEndpointUseageAgregateEntries() calling " +
+                        "findByEndpointTypeInAndIdentityIdInAndDateBetween()");
                 return endpointUsageAggregateRepository.findByEndpointTypeInAndIdentityIdInAndDateBetween(request.filtering.obGroupNames, request.filtering.tpps, request.from.minusMinutes(1), request.to.plusMinutes(1));
             }
 
+            log.debug("getEndpointUseageAgregateEntries() findByEndpointTypeInAndDateBetween()");
             return endpointUsageAggregateRepository.findByEndpointTypeInAndDateBetween(request.filtering.obGroupNames, request.from.minusMinutes(1), request.to.plusMinutes(1));
         }
 
 
         if (request.endpoint == null) {
+            log.debug("getEndpointUseageAgregateEntries() findByDateBetween()");
             return endpointUsageAggregateRepository.findByDateBetween(request.from.minusMinutes(1), request.to.plusMinutes(1));
         }
 
         if (request.filtering == null) {
+            log.debug("getEndpointUseageAgregateEntries() calling findByEndpointAndDateBetween()");
             return endpointUsageAggregateRepository.findByEndpointAndDateBetween(request.endpoint, request.from.minusMinutes(1), request.to.plusMinutes(1));
         }
 
         if (request.filtering.status != null && request.filtering.tpps != null) {
+            log.debug("getEndpointUseageAgregateEntries() calling " +
+                    "findByEndpointAndIdentityIdInAndResponseStatusInAndDateBetween()");
             return endpointUsageAggregateRepository.findByEndpointAndIdentityIdInAndResponseStatusInAndDateBetween(request.endpoint, request.filtering.tpps, request.filtering.status, request.from.minusMinutes(1), request.to.plusMinutes(1));
         }
 
         if (request.filtering.status != null) {
+            log.debug("getEndpointUseageAgregateEntries() calling findByEndpointAndResponseStatusInAndDateBetween()");
             return endpointUsageAggregateRepository.findByEndpointAndResponseStatusInAndDateBetween(request.endpoint, request.filtering.status, request.from.minusMinutes(1), request.to.plusMinutes(1));
         }
 
         if (request.filtering.tpps != null) {
+            log.debug("getEndpointUseageAgregateEntries() calling findByEndpointAndIdentityIdInAndDateBetween()");
             return endpointUsageAggregateRepository.findByEndpointAndIdentityIdInAndDateBetween(request.endpoint, request.filtering.tpps, request.from.minusMinutes(1), request.to.plusMinutes(1));
         }
 
+        log.debug("getEndpointUseageAgregateEntries() calling findByDateBetween()");
         return endpointUsageAggregateRepository.findByDateBetween(request.from.minusMinutes(1), request.to.plusMinutes(1));
     }
 
