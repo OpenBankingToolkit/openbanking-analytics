@@ -30,7 +30,7 @@
     <parent>
         <groupId>com.forgerock.openbanking.analytics</groupId>
         <artifactId>forgerock-openbanking-reference-implementation-analytics</artifactId>
-        <version>1.5.0-SNAPSHOT</version>
+        <version>1.5.0</version>
     </parent>
 
     <dependencies>
