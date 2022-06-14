@@ -27,7 +27,7 @@
     <name>ForgeRock OpenBanking Reference Implementation - Analytics</name>
     <groupId>com.forgerock.openbanking.analytics</groupId>
     <artifactId>forgerock-openbanking-reference-implementation-analytics</artifactId>
-    <version>1.5.1-SNAPSHOT</version>
+    <version>1.5.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <parent>
@@ -44,10 +44,10 @@
     <url>http://www.forgerock.org</url>
 
     <properties>
-        <ob-common.version>1.4.0</ob-common.version>
-        <ob-client.version>1.4.0</ob-client.version>
-        <ob-jwkms.version>1.4.0</ob-jwkms.version>
-        <ob-auth.version>1.4.0</ob-auth.version>
+        <ob-common.version>1.4.1</ob-common.version>
+        <ob-client.version>1.4.1</ob-client.version>
+        <ob-jwkms.version>1.4.1</ob-jwkms.version>
+        <ob-auth.version>1.4.1</ob-auth.version>
     </properties>
 
     <modules>
