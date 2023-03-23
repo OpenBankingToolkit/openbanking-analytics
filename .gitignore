@@ -28,3 +28,4 @@ sample-data/
 *.versionsBackup
 *.releaseBackup
 release.properties
+.java-version
